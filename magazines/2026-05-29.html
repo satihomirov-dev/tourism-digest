@@ -1,232 +1,339 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tourism Digest — 29 мая 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--fraunces:'Fraunces',serif;--inter:'Inter',sans-serif}
+body{font-family:var(--inter);overflow-x:hidden;background:#111}
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff);width:0%;z-index:999;transition:width .1s}
+.spread{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(3rem,8vw,8rem);position:relative;overflow:hidden}
+.src-tag{font-family:var(--inter);font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;opacity:.5;margin-bottom:1.5rem}
+h2{font-family:var(--fraunces);font-size:clamp(2rem,5vw,3.8rem);line-height:1.15;margin-bottom:1.5rem;font-weight:700}
+p{font-size:clamp(1.1rem,2vw,1.3rem);line-height:1.7;max-width:72ch}
 
-  :root {
-    --progress-color: #58a6ff;
-  }
+/* MASTHEAD */
+.masthead{background:#000;align-items:center;text-align:center;gap:1rem}
+.masthead h1{font-family:var(--fraunces);font-size:clamp(3.5rem,12vw,9rem);color:#fff;letter-spacing:-.03em;line-height:1}
+.masthead .date-ru{font-family:var(--inter);font-size:clamp(1rem,2.5vw,1.5rem);color:rgba(255,255,255,.45);letter-spacing:.2em;text-transform:uppercase;margin-top:.5rem}
+.masthead .issue-meta{font-size:.8rem;color:rgba(255,255,255,.25);margin-top:2rem;letter-spacing:.1em}
 
-  html { scroll-behavior: smooth; }
+/* SEPARATOR */
+.separator{background:#0a0a0a;align-items:flex-start;justify-content:flex-end;padding-bottom:4rem}
+.sep-label{font-family:var(--fraunces);font-size:clamp(4rem,15vw,12rem);color:#fff;opacity:.08;line-height:1;position:absolute;bottom:2rem;left:clamp(3rem,8vw,8rem)}
+.sep-count{font-family:var(--inter);font-size:1rem;color:rgba(255,255,255,.5);letter-spacing:.15em;text-transform:uppercase;position:relative;z-index:1}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1.1rem, 1.5vw, 1.25rem);
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+/* LEAD */
+.lead{background:#fff;color:#1a1a1a}
+.lead .src-tag{color:#1a1a1a}
+.lead h2{color:#1a1a1a}
+.lead p{color:#444}
 
-  /* Reading progress bar */
-  #progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    width: 0%;
-    background: var(--progress-color);
-    z-index: 9999;
-    transition: width 0.1s linear;
-  }
+/* MIDNIGHT */
+.midnight{background:#0d1117;color:#e8f4f8}
+.midnight .src-tag{color:#e8f4f8}
+.midnight .accent-bar{width:4px;height:4rem;background:#58a6ff;border-radius:2px;margin-bottom:2rem}
+.midnight h2{color:#e8f4f8}
+.midnight p{color:#a0b4c0}
 
-  /* Masthead */
-  .masthead {
-    min-height: 100vh;
-    background: #000;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
+/* ROSE */
+.rose{background:#fff0f3;color:#1a1a1a}
+.rose .src-tag{color:#c9184a}
+.rose .deco-quote{font-family:var(--fraunces);font-size:clamp(10rem,25vw,20rem);color:#c9184a;opacity:.08;position:absolute;top:-2rem;left:2rem;line-height:1;pointer-events:none;font-style:italic}
+.rose h2{color:#c9184a;position:relative}
+.rose p{color:#444;position:relative}
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 30% 50%, rgba(88,166,255,0.08) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 50%, rgba(201,24,74,0.06) 0%, transparent 60%);
-    pointer-events: none;
-  }
+/* TERMINAL */
+.terminal{background:#0a0a0a;color:#00ff88;font-family:'Courier New',monospace}
+.terminal .src-tag{color:#00ff88;opacity:.4}
+.scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,136,.015) 2px,rgba(0,255,136,.015) 4px);pointer-events:none}
+.terminal .prompt{font-size:1.1rem;color:#00ff88;opacity:.5;margin-bottom:1.5rem;font-family:'Courier New',monospace}
+.terminal p{font-size:clamp(1rem,1.8vw,1.2rem);line-height:1.8;position:relative;color:#00ff88}
 
-  .masthead-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(3.5rem, 12vw, 10rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    line-height: 0.95;
-    position: relative;
-    z-index: 1;
-  }
+/* ACADEMIC */
+.academic{background:#faf8f2;color:#2c2416}
+.academic .src-tag{color:#8b7355}
+.academic .fn-num{font-family:var(--fraunces);font-size:clamp(5rem,12vw,10rem);color:#2c2416;opacity:.06;position:absolute;top:2rem;right:3rem;line-height:1;font-weight:700}
+.academic .ruled{border-top:2px solid #2c2416;border-bottom:1px solid rgba(44,36,22,.3);padding:1.5rem 0;margin-bottom:1.5rem;position:relative}
+.academic h2{font-size:clamp(1.6rem,3.5vw,2.8rem);color:#2c2416}
+.academic p{font-family:var(--fraunces);font-style:italic;color:#5a4a35;font-size:clamp(1.1rem,1.8vw,1.25rem)}
 
-  .masthead-date {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 2.5vw, 1.6rem);
-    font-weight: 300;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-top: 1.5rem;
-    position: relative;
-    z-index: 1;
-  }
+/* STATS */
+.stats{background:#1a237e;color:#fff}
+.stats .src-tag{color:rgba(255,255,255,.4)}
+.stats .big-num{font-family:var(--fraunces);font-size:clamp(6rem,18vw,14rem);color:#fff;line-height:.9;font-weight:700;letter-spacing:-.04em}
+.stats .big-label{font-family:var(--inter);font-size:1rem;color:rgba(255,255,255,.4);letter-spacing:.2em;text-transform:uppercase;margin-bottom:2rem}
+.stats p{font-size:clamp(1rem,1.8vw,1.2rem);color:rgba(255,255,255,.8);max-width:60ch}
 
-  .masthead-rule {
-    width: clamp(4rem, 12vw, 10rem);
-    height: 1px;
-    background: rgba(255,255,255,0.2);
-    margin: 2rem auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Quiet day section */
-  .quiet-day {
-    min-height: 100vh;
-    background: #06080d;
-    color: #e8f4f8;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .quiet-day::before {
-    content: '◌';
-    position: absolute;
-    font-family: 'Fraunces', serif;
-    font-size: clamp(12rem, 35vw, 30rem);
-    color: rgba(88,166,255,0.04);
-    line-height: 1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .quiet-day-headline {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(4rem, 14vw, 11rem);
-    font-weight: 900;
-    font-style: italic;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    position: relative;
-    z-index: 1;
-  }
-
-  .quiet-day-sub {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.4rem);
-    font-weight: 300;
-    color: rgba(232,244,248,0.45);
-    margin-top: 2rem;
-    letter-spacing: 0.1em;
-    position: relative;
-    z-index: 1;
-  }
-
-  .quiet-day-channels {
-    display: flex;
-    gap: 2rem;
-    margin-top: 3rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .quiet-day-channels a {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #58a6ff;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    border: 1px solid rgba(88,166,255,0.3);
-    padding: 0.5rem 1.2rem;
-    border-radius: 2rem;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .quiet-day-channels a:hover {
-    background: rgba(88,166,255,0.1);
-    border-color: #58a6ff;
-  }
-
-  /* Footer */
-  footer {
-    background: #000;
-    color: rgba(255,255,255,0.35);
-    text-align: center;
-    padding: 2.5rem clamp(2rem, 6vw, 6rem);
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    font-family: 'Inter', sans-serif;
-  }
-
-  footer a {
-    color: rgba(255,255,255,0.5);
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    color: #58a6ff;
-  }
+footer{background:#000;color:rgba(255,255,255,.3);text-align:center;padding:3rem;font-size:.85rem;letter-spacing:.1em;font-family:var(--inter)}
+footer a{color:rgba(255,255,255,.5);text-decoration:none}
 </style>
 </head>
 <body>
-
-<div id="progress-bar"></div>
-
-<!-- Masthead -->
-<section class="masthead">
-  <div class="masthead-title">TOURISM<br>DIGEST</div>
-  <div class="masthead-rule"></div>
-  <div class="masthead-date">29 мая 2026</div>
-</section>
-
-<!-- Quiet Day -->
-<section class="quiet-day">
-  <div class="quiet-day-headline">Тихий<br>день</div>
-  <div class="quiet-day-sub">Новостей за вчера не поступало</div>
-  <div class="quiet-day-channels">
-    <a href="https://t.me/tourdom" target="_blank" rel="noopener">@tourdom</a>
-    <a href="https://t.me/atorus" target="_blank" rel="noopener">@atorus</a>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer>
-  Tourism Digest &nbsp;•&nbsp;
-  <a href="https://t.me/tourdom" target="_blank" rel="noopener">@tourdom</a> &nbsp;•&nbsp;
-  <a href="https://t.me/atorus" target="_blank" rel="noopener">@atorus</a> &nbsp;•&nbsp;
-  Сгенерировано автоматически
-</footer>
-
+<div id="progress"></div>
 <script>
-  const bar = document.getElementById('progress-bar');
-  function updateProgress() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    bar.style.width = pct + '%';
-  }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  document.getElementById('progress').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';
+});
 </script>
+
+<section class="spread masthead">
+  <h1>TOURISM<br>DIGEST</h1>
+  <div class="date-ru">29 мая 2026</div>
+  <div class="issue-meta">@tourdom &bull; @atorus &bull; 49 новостей</div>
+</section>
+
+<section class="spread separator">
+  <div class="sep-label">@tourdom</div>
+  <div class="sep-count">30 новостей</div>
+</section><section class="spread lead">
+  <div class="src-tag">@tourdom</div>
+  <h2>А ...вот ...и ...первая ...на ...сегодня ...хорошая ...новость ...от ...Anex</h2>
+  <p>a в Казани: &#171;С 31 мая по 14 июня стартует ежедневная полетная программа Казань-Анталия на рейсах Turkish Airlines. Все туристы с отмененными рейсами из этого города будут пересажены без доплат. Просьба отслеживать информацию в личном кабинете. О дальнейших изменениях и рейсах будем своевременно информировать&#187;. Привет, Казань! Есть кто из счастливчиков, кто полетит в Анталью на Туркишах? @tourdom</p>
+</section><section class="spread midnight">
+  <div class="src-tag">@tourdom</div>
+  <div class="accent-bar"></div>
+  <h2>Если вы не рады ПМЭФ из-за раскупленных билетов на &#171;Сапсаны&#187;, то вот хорошие новости.</h2>
+  <p>РЖД поставит дополнительно 16 пар поездов между Москвой и Петербургом на период самых загруженных дней форма. Также пообещали и более вместительные вагоны. Подробнее на ТурДоме. @tourdom</p>
+</section><section class="spread rose">
+  <div class="src-tag">@tourdom</div>
+  <div class="deco-quote">«</div>
+  <h2>Минтранс не остался в стороне от тренда на поддержку семей.</h2>
+  <p>Ведомство утвердило единый стандарт оснащения комнат матери и ребенка в аэропортах, авто- и ж/д вокзалах. Всего предполагается три варианта в зависимости от пассажиропотока. Базовый уровень для небольших объектов: универсальная кабина с пеленальным столиком и возможностью купить средства детской гигиены. Средний включает зону кормления с отдельными капсулами и семейным туалетом, а также игровую зону для детей до шести лет. Расширенный – для крупных транспортных узлов – предполагает максимально оборудованные комнаты с зонами пеленания, кормления, отдыха и специальными игровыми пространствами. Теперь есть повод поскандалить, если комната не соответствует стандартам Минтранса 😉 @tourdom</p>
+</section><section class="spread terminal">
+  <div class="scanlines"></div>
+  <div class="src-tag">@tourdom</div>
+  <div class="prompt">&gt; news.4</div>
+  <p>Почитали ваши комментарии под постом об отмене рейсов Air Anka и Tailwind и видим, что некоторые туристы советуют летать только регулярными рейсами – дескать это поможет избежать проблем с чартерами. Увы, это так не работает. &#171;Ковры&#187; одинаково действуют на всех. &#171;Хакнуть&#187; систему можно, только если вообще отказаться от самолетов, но вряд ли вас это устроит. Варианты от турагентов: тем, кто живет в регионах и предпочитает лететь не чартером из своего города, а регулярным рейсом через Москву, лучше приезжать в столицу имея в запасе 2–3 дня. Или добираться поездом или автомобилем. А вы что выберете? @tourdom</p>
+</section><section class="spread academic">
+  <div class="src-tag">@tourdom</div>
+  <div class="fn-num">5</div>
+  <div class="ruled"><h2>Внимание, очень важное мнение!</h2></div>
+  <p>Стендап-комик Сергей Орлов заявил о нежелании проводить отпуск в Европе и США, сославшись на личный опыт гастролей и ощущение небезопасности. Об этом он рассказал в интервью Иде Галич. &#171;Я вообще не понимаю, зачем мне ехать в Берлин, когда есть Токио. Я не понимаю, зачем мне ехать в Нью-Йорк, когда есть Бангкок. Я не понимаю, зачем мне ехать в какой-нибудь Париж, если есть Сингапур и так далее&#187;. После поездок по Западу у него сформировалось стойкое чувство дискомфорта. Сергей Орлов отметил, что его настораживает обстановка на улицах – большое количество карманных краж и поведение людей с нестабильной психикой. &#171;Если вам нравится, когда на вас могут нападать, то, конечно, пожалуйста, добро пожаловать в Лос-Анджелес, добро пожаловать в Барселону или Берлин&#187;. Сергей оказался очень нежным парнем 😅 @tourdom</p>
+</section><section class="spread stats">
+  <div class="src-tag">@tourdom</div>
+  <div class="big-num">124</div>
+  <div class="big-label">слов</div>
+  <p>Использование новых платных функций в Instagram* и других соцсетях Meta**, вероятно, подпадет под закон о финансировании экстремизма, рассказали в Совфеде. Россиянам рекомендовали не оплачивать подписки. &#171;Компания признана экстремистской, и любая ее деятельность, в чем бы она ни выражалась, соответствует этому профилю. Статус компании определен, исходите из этого. Не нужно пользоваться тем, что признано экстремистским&#187;, - сказал зампредседателя Совфеда по конституционному законодательству и государственному строительству Владимир Кожин. Ранее Meta запустила платную подписку в Instagram, Facebook* и WhatsApp*. Новые функции дают возможность смотреть чужие сториз без отображения в зрителях, продлевать свои на сутки и смотреть, кто из подписчиков смотрел сториз дважды. Теперь встанет вопрос и по Телеграму 😳 * Принадлежит Meta, признанной в РФ экстремистской ** Признана экстремистской в РФ и запрещена Все новости в MAX.</p>
+</section><section class="spread lead">
+  <div class="src-tag">@tourdom</div>
+  <h2>В ...туроператоре ...&#171;Интурист&#187; ...пояснили ...Крыше ...ТурДома, ...что ...будут ...организовывать ...выезд</h2>
+  <p>тами Air Anka до 5 июня. &#171;Раньше времени забирать никого не будем, гости отдыхают в рамках своих туров в плановом режиме&#187;, - рассказала нам представитель &#171;Интуриста&#187; Дарья Домостроева. Тем, чьи туры отменены, туроператор предлагает полный возврат или перенос на другие даты и направления. &#171;По части городов пересаживаем на рейсы Southwind или других авиакомпаний в зависимости от наличия мест. Действуем по согласованию с клиентами: как правило, им нужно время для переноса отпуска. Большинство же туристов предпочитает просто получить возврат&#187;. @tourdom</p>
+</section><section class="spread midnight">
+  <div class="src-tag">@tourdom</div>
+  <div class="accent-bar"></div>
+  <h2>&#171;Все ...еще ...не ...раз ...вспомнят ...“Букинг” ...со ...слезами ...умиления&#187;, ...–</h2>
+  <p>жную покупку &#171;Островка&#187; Яндексом один из собеседников нашей редакции. Он считает, что если ФАС согласует сделку, то произойдет такое укрупнение, в результате которого отелям станет гораздо сложнее торговаться за размер комиссии. Яндекс уже поднял ее в этом году с 15 до 17%, и теоретически ничто не мешает продолжить тренд (комиссия “Букинга” начиналась от 10–15%, но с учетом услуг по приоритетной выдаче доходила до 35%). Сложнее всего, считает эксперт, придется утилитарным отелям &#171;дверь-умывальник-кровать&#187;, узнаваемым объектам будет проще. Хорошая новость в том, что конкуренция все же сохранится – у отелей будет больше поводов сотрудничать с туроператорами. Больше подробностей о последствиях возможной сделки собрали в статье. @tourdom</p>
+</section><section class="spread rose">
+  <div class="src-tag">@tourdom</div>
+  <div class="deco-quote">«</div>
+  <h2>Онлайн-тревел-агентства ...разрабатывают ...специальные ...предложения ...для ...отельеров ...Например, ...в ...Т-Путешествиях ...отельеры</h2>
+  <p>ерсональные тарифы для разных категорий гостей. Есть возможность настроить скидку, выбрать категории номеров и определить даты-исключения — когда спецусловия не действуют. Тарифы разделены по уровням сервиса: максимальные привилегии предусмотрены для клиентов сервиса T-Private, далее - T-Premium и Pro. Позже в тариф обещают включать дополнительные услуги — апгрейд, спа, рестораны, экскурсии, ранний заезд и поздний выезд. Все новости в MAX.</p>
+</section><section class="spread terminal">
+  <div class="scanlines"></div>
+  <div class="src-tag">@tourdom</div>
+  <div class="prompt">&gt; news.10</div>
+  <p>Air Tanzania открыла продажу билетов из Москвы в Танзанию, программа стартует 2 июля. Улететь на Занзибар можно будет прямым рейсом, а вот обратно придется добираться через Дар-эс-Салам. Перелет из Внуково на остров и возврат с материка в РФ обойдется примерно в 986 долларов (около 70 тыс. руб.). Плюсом внутренний билет из одного танзанийского аэропорта в другой – 65-75 долларов. Благо, эти рейсы выполняются ежедневно и по несколько раз. Впрочем, у российских туристов есть альтернативные варианты попасть на Занзибар, хоть и с пересадками. Например, Etihad Airways через Абу-Даби за 76 тыс. руб. Подробнее написали на ТурДоме. @tourdom</p>
+</section><section class="spread academic">
+  <div class="src-tag">@tourdom</div>
+  <div class="fn-num">11</div>
+  <div class="ruled"><h2>Детские каникулы в Coral Family Club — уже не только бассейн и мини-диско.</h2></div>
+  <p>Там школьников знакомят с искусственным интеллектом — через игры, квесты и интерактив, без сложных терминов и скучных лекций. Главное — не нагружать теорией, а показать, что цифровая среда может быть безопасной и понятной. С приходом лета основная аудитория сменилась: если весной было много малышей, то в высокий сезон большинство — ребята постарше. Программы стали динамичнее: добавили командные задания и творческие лаборатории. За 17 лет работы Coral Family Club в Турции, Египте и России принял около 2 млн юных гостей. В туристической индустрии детская анимация все чаще превращается в отдельное направление с элементами образования и развития. Подробнее написали на TourDom.ru Реклама. ООО &quot;КОРАЛ ТРЕВЕЛ&quot;, ИНН 7707255341, erid: 2VSb5xYiMa2</p>
+</section><section class="spread stats">
+  <div class="src-tag">@tourdom</div>
+  <div class="big-num">95</div>
+  <div class="big-label">слов</div>
+  <p>Туристка из Омска планирует добиваться компенсации дополнительных расходов после отмены рейса Air Anka из аэропорта Кольцово в Анталью. По ее словам, перед поездкой семья несколько раз связывалась с туроператором и получала информацию, что вылет состоится: &#171;Ищут борт&#187;. Поэтому туристы отправились в Екатеринбург на поезде и сняли номер в гостинице. Тур в Турцию в итоге был аннулирован. Юристы отмечают, что помимо возврата стоимости турпродукта в подобных случаях туристы могут претендовать и на компенсацию дополнительных расходов. Но по сложившейся практике, туроператоры возмещают в досудебном порядке только прямые убытки, то есть стоимость тура. Подробнее написали на ТурДоме. @tourdom</p>
+</section><section class="spread lead">
+  <div class="src-tag">@tourdom</div>
+  <h2>На российском рынке не хватает международного лоска, который давали прежние международные гостиничные сети.</h2>
+  <p>И вернуть его в текущей ситуации отчасти может как раз тайский бренд Dusit International. Или другие крупные игроки из Азии или с Ближнего Востока. Так считают собеседники Крыши ТурДома. Их приход может дать отельерам также международную экспертизу в сервисе, операционных стандартах, да и бренд для позиционирования и продаж в конце концов. Российские сети не смогли в полной мере заменить ушедших иностранных компаний, считают эксперты. А возвращаться они в ближайшее время не будут. Подробнее написали на ТурДоме. @tourdom</p>
+</section><section class="spread midnight">
+  <div class="src-tag">@tourdom</div>
+  <div class="accent-bar"></div>
+  <h2>Никакой &#171;массовой депортации&#187; россиян из Таиланда нет, рассказали в МИД страны.</h2>
+  <p>Причиной для комментариев стали многочисленные заметки в российских СМИ, явно приукрашивающие реальность. В итоге дипломатам Таиланда пришлось внести ясность. Действительно, в прошлом году из королевства было выдворено около сотни граждан РФ. Однако местные законы одинаковы для всех иностранцев. Проще говоря, не нарушай правила пребывания и никто тебя выгонять не будет. @tourdom</p>
+</section><section class="spread rose">
+  <div class="src-tag">@tourdom</div>
+  <div class="deco-quote">«</div>
+  <h2>Пятница ...удалась. ...Только ...что ...Anex ...направил ...агентам ...сообщение. ...Дорогие ...коллеги,</h2>
+  <p>новостью: Вслед за ранее ранее объявленной программой из Казани, мы рады сообщить, что также добавлена полетная программа на базе авиакомпании Corendon Airlines из нижеследующих городов: •Самара •Нижний Новгород •Казань (только 30.05, далее Турецкие Авиалинии) •Уфа •Челябинск Все туристы с отмененными рейсами из этих городов будут пересажены без доплат. Просьба отслеживать информацию в личном кабинете. О дальнейших изменениях и рейсах будем своевременно информировать. @tourdom</p>
+</section><section class="spread terminal">
+  <div class="scanlines"></div>
+  <div class="src-tag">@tourdom</div>
+  <div class="prompt">&gt; news.16</div>
+  <p>С 1 июня дети от 10 до 16 лет смогут ездить на поездах без сопровождения по более чем 20 маршрутам, выполняемым в том числе &#171;Ласточками&#187;, &#171;Буревестниками&#187; и &#171;Финистами&#187;. Среди направлений, Москва – Нижний Новгород, Москва – Санкт-Петербург, Ростов – Кисловодск, Таганрог – Анапа и другие. Проезд ребенка будет возможен только на специально выделенных местах. Опция обойдется в 1500 руб., заказывать ее необходимо не позднее, чем за 3 дня до отправления. По прибытии должен быть встречающий, указанный при бронировании услуги. Все новости в MAX.</p>
+</section><section class="spread academic">
+  <div class="src-tag">@tourdom</div>
+  <div class="fn-num">17</div>
+  <div class="ruled"><h2>&#171;Интурист&#187; сообщает, делимся.</h2></div>
+  <p>&#171;В Екатеринбурге и Казани мы пересадили своих туристов с отмененных рейсов Air Anka на самолеты авиакомпании Southwind. По Минводам и Сочи пока неясно, ситуация решается. А из Самары, Нижнего Новгорода, Уфы и Челябинска наши клиенты полетят в Турцию на лайнерах Corendon Airlines&#187;. Информация от представителя туроператора Дарьи Домостроевой. Все новости в MAX.</p>
+</section><section class="spread stats">
+  <div class="src-tag">@tourdom</div>
+  <div class="big-num">85</div>
+  <div class="big-label">слов</div>
+  <p>Улететь в Европу летом все еще можно относительно недорого - через Ереван. В агрегаторах появились варианты из Москвы в Рим за 15 тыс. руб. и в Ларнаку за 12,5 тыс. Правда, за минимальный тариф придется расплачиваться долгими пересадками: в некоторых случаях ожидание в аэропорту Звартноц займет почти сутки. Есть и более комфортные маршруты, например, через Стамбул с короткой стыковкой, но уже дороже. Важно учитывать и визовый вопрос: для Италии и Кипра нужен шенген, а сроки оформления сейчас увеличены. Подробнее о ценах читайте на ТурДоме. @tourdom</p>
+</section><section class="spread lead">
+  <div class="src-tag">@tourdom</div>
+  <h2>Туристам в Сочи начало купального сезона грозит моржеванием.</h2>
+  <p>До календарного лета всего два дня, а на самом популярном южном курорте России в Сочи столбики термометров не радуют туристов от слова совсем. Сегодня термометры едва дотянули до 17&#176;C. А вода пока что прогрелась только до 16&#176;C выше нуля. А еще хуже то, что на выходные объявлено штормовое предупреждение. Власти успокаивают, что с 1 июня погода станет налаживаться и начало лета в Сочи будет благоприятным. Тем не менее водные процедуры могут разрешить только когда в воде будет минимум +18 &#176;C. А после шторма на это понадобится еще какое-то количество дней. &#171;С сегодняшней погодой вообще непонятно, когда она прогреется. Летим через неделю, но видимо придется без купания&#187;, – сокрушаются отдыхающие. @tourdom</p>
+</section><section class="spread midnight">
+  <div class="src-tag">@tourdom</div>
+  <div class="accent-bar"></div>
+  <h2>Предлагаем всем поддержать рейсы из Саратова в Анталью!</h2>
+  <p>Просим репост 🔥 @tourdom</p>
+</section><section class="spread rose">
+  <div class="src-tag">@tourdom</div>
+  <div class="deco-quote">«</div>
+  <h2>Просто хорошие новости с утра.</h2>
+  <p>Аэропорт Петропавловска-Камчатского стал обладателем международной премии BIG SEE. Он был отмечен в номинации &#171;Инфраструктура&#187;. &#171;Награждение победителей премии прошло в Словении. Проект на церемонии представлял архитектор Клаудио Сильвестрин. Он рассказал о том, что на создание архитектурной концепции его вдохновил вулкан Горелый на Камчатке с озером льда, которое большую часть года находится в его кратере&#187;, - рассказали в пресс-службе воздушной гавани. Все новости в MAX.</p>
+</section><section class="spread terminal">
+  <div class="scanlines"></div>
+  <div class="src-tag">@tourdom</div>
+  <div class="prompt">&gt; news.22</div>
+  <p>Тайское гостеприимство идет в Россию, но пока в гомеопатической дозе. &#171;Коммерсант&#187; пишет, что тайский оператор Dusit International планирует открыть в России 22 отеля на 3500 номеров. Из них 10 гостиниц на 1500 номеров уже подтверждены договорами. Развивать сеть будет бывший региональный директор Accor Алексис Деларофф. Новость выглядит громкой, но есть нюанс. В России сегодня насчитывается более 1 млн гостиничных номеров. Даже если в ближайшие годы Dusit реализует весь заявленный план, его доля составит менее 0,4% рынка. Поэтому значение этой истории не в цифрах. Гораздо интереснее сам факт: после ухода западных гостиничных гигантов российские отельеры продолжают искать международные бренды, доверия к которым больше, чем к отечественным, а зарубежные операторы — прощупывают возможности для работы в России. Пока речь идет не о возвращении Marriott, Hyatt или Ritz, а об игроке второго эшелона из Азии. Но если первые проекты окажутся успешными, за Dusit в теории могут последовать и другие международные сети. @tourdom</p>
+</section><section class="spread academic">
+  <div class="src-tag">@tourdom</div>
+  <div class="fn-num">23</div>
+  <div class="ruled"><h2>Вот вам и космический туризм.</h2></div>
+  <p>Ракета New Glenn компании Blue Origin взорвалась прямо на стартовой площадке во Флориде во время испытаний. Основатель Amazon Джефф Безос давно пытается догнать космическую империю Илона Маска - SpaceX. Пока не получается. Все новости в MAX.</p>
+</section><section class="spread stats">
+  <div class="src-tag">@tourdom</div>
+  <div class="big-num">62</div>
+  <div class="big-label">слов</div>
+  <p>Китай все доступнее для российских туристов. Если раньше таможенники останавливали россиян с кораллами в основном из Египта, то теперь в списочек попал и Хайнань. Тут вот новосибирец после отдыха на острове набрал с собой целый пакет. И, конечно, его с радостью приняли инспекторы в Толмачево. Главное помнить, что самое ценное из отпуска – это впечатление, а не административка из-за пары кораллов. @tourdom</p>
+</section><section class="spread lead">
+  <div class="src-tag">@tourdom</div>
+  <h2>Гостиничная цепочка Sherwood Resorts and Hotels к летнему сезону подготовила особую гастрономическую программу.</h2>
+  <p>Во всех отелях сети гостей ждет меню на основе местных фермерских продуктов. Главная новинка – Taverna 07 в отеле Sherwood Exclusive Kemer 5*: традиционная турецкая мейхане нового поколения, место для неспешных вечеров и задушевных бесед в сопровождении холодных закусок (meze), морепродуктов и ракы (анисовая водка). В этом же отеле пройдут популярные фестивали – SherwoodFest Cuisinatolia и Gastrofest 07.07. Посмотрели, чем реально отличаются отели и кому это продавать. Реклама. CEYLAN ISLETME TURIZM YATIRIM NAKLIYAT GIDA ICECEK SAN.VE.TIC.A.S, erid:2VSb5wxVFVc</p>
+</section><section class="spread midnight">
+  <div class="src-tag">@tourdom</div>
+  <div class="accent-bar"></div>
+  <h2>Не ...смогли ...пройти ...мимо ...комментария ...нашей ...подписчицы ...к ...посту ...про</h2>
+  <p>ailwind из ряда российских аэропортов. Многие туристы из регионов зачастую предпочитают чартеры из своего города, потому что боятся лететь регулярными рейсами со стыковкой в Москве из-за &#171;ковров&#187;. @tourdom</p>
+</section><section class="spread rose">
+  <div class="src-tag">@tourdom</div>
+  <div class="deco-quote">«</div>
+  <h2>Держим в курсе ситуации с отменами Air Anka.</h2>
+  <p>Anex сегодня утром дал свежую сводку. Туроператор вручную пересаживает их на рейсы других авиакомпаний. Это большая работа, но специалисты справляются. В пятницу в Турцию уже улетели 472 туриста из Казани, Сочи и Челябинска. Домой вернулись 655 человек - в Сочи, Краснодар, Самару, Казань, Минводы и Екатеринбург. Из тех туристов, чьи туры закончились 28 мая, в Анталье осталось всего 8 человек. Им продлили размещение за счет туроператора. @tourdom</p>
+</section><section class="spread terminal">
+  <div class="scanlines"></div>
+  <div class="src-tag">@tourdom</div>
+  <div class="prompt">&gt; news.28</div>
+  <p>Туристка отсудила у санатория 400 тыс. руб. после падения с лошади. Прошлой весной женщина отдыхала в санатории &#171;Обуховский&#187; в Свердловской области. На территории работал конный клуб, услугами которого она и воспользовалась. Но вот прогулка закончилась падением и переломом плечевой кости. Туристка обратилась в суд. Там учли, что после такой травмы потребуется длительное восстановление, к этому приплюсовали моральные страдания. Подробнее на ТурДоме. @tourdom</p>
+</section><section class="spread academic">
+  <div class="src-tag">@tourdom</div>
+  <div class="fn-num">29</div>
+  <div class="ruled"><h2>Когда нужно себя похвалить и на ходу придумываешь за что.</h2></div>
+  <p>Международная маршрутная сеть Внуково демонстрирует наибольшую устойчивость среди российских аэропортов в текущих условиях. С таким заявлением выступил замгендиректора по коммерции воздушной гавани Антон Кузнецов. &#171;В сравнении с докризисным периодом доля Внуково в формировании международного трафика Московского авиационного узла существенно выросла: сегодня каждый третий пассажир, вылетающий из столицы за границу, отправляется из Внуково&#187;, – пояснил эксперт. Вот еще факт для убедительности: Внуково лидирует по объемам перевозок в Узбекистан, Азербайджан, Армению, Грузию и Тунис. А какой аэропорт в Москве самый удобный? (Да начнется спор - а Жуковский считается?) @tourdom</p>
+</section><section class="spread stats">
+  <div class="src-tag">@tourdom</div>
+  <div class="big-num">78</div>
+  <div class="big-label">слов</div>
+  <p>Когда диванные эксперты рассуждают о сговорах крупных туроператоров, легко опровергнуть их версии примерами как на скриншоте. Fun&amp;Sun в связи со временными трудностями Anex из-за полетной программы на Air Anka предлагает его агентам льготные условия в виде +1% допкомиссии на бронирования по трем направлениям, сделанным в определенные даты. Вот такие добрые поддерживающие отношения между конкурентами. Тем временем мы тоже сидим на диване и ждем хороших новостей от Anex. Одна сегодня точно прилетит, минут через 5. Все новости в MAX.</p>
+</section><section class="spread separator" style="background:#1a1a2e;">
+  <div class="sep-label">@atorus</div>
+  <div class="sep-count">19 новостей</div>
+</section><section class="spread lead">
+  <div class="src-tag">@atorus</div>
+  <h2>Скидки до 55% на летний отдых в Таиланде?</h2>
+  <p>Легко! Каждый курорт Таиланда имеет свои летние особенности. Чтобы можно было безошибочно выбрать наиболее подходящий вашим туристам курорт, PAC GROUP подготовил краткий гид по островами побережьям Таиланда Летом в Таиланд не только можно, но и выгодно лететь. Доказательства: 📍Eden Beach Khao Lak Resort &amp; Spa 5* Скидки до 55% на проживание с 21.04.2026 по 09.10.2026 Бронирование до 30.09.2026 📍Grande Centre Point Pattaya 5* Скидки до 40% на проживание с 24.03.2026 по 23.12.2026 Бронирование до 30.09.2026 📍Anantara Mai Khao Phuket Villas 5* Скидки до 37% на проживание с 21.04.2026 по 31.10.2026 Бронирование до 30.05.2026 📍Hyatt Regency Koh Samui 5* Скидки до 30% на проживание с 28.04.2026 по 14.12.2026 Бронирование до 31.05.2026 Больше специальных предложений ▶️здесь 🛸 До курортов Таиланда летают прямые рейсы а/к &#171;Аэрофлот&#187; из Москвы. Также рекомендуем обратить внимание на рейсы китайских авиакомпаний с комфортными стыковками в крупных хабах Китая: Air China, China Eastern и China Southern. Это не только возможность купить билеты выгодно, но и скомбинировать две страны в одном путешествии. Реклама. АО Агентство &#171;ПАКТУР&#187;. erid: 2W5zFJRVpq7</p>
+</section><section class="spread midnight">
+  <div class="src-tag">@atorus</div>
+  <div class="accent-bar"></div>
+  <h2>✈️ ...Куда ...поехать ...в ...экскурсионный ...тур ...в ...2026 ...году: ...от</h2>
+  <p>ая Туристы все чаще выбирают не просто только у моря, а готовые маршруты с экскурсиями, переездами и продуманной программой. На фоне этого туроператоры активно расширяют линейки экскурсионных туров — от коротких поездок на выходные до больших путешествий сразу по нескольким городам и странам. В 2026 году спрос растет как на поездки по России, так и на маршруты по Узбекистану, Армении, Грузии, Турции, Китаю, Индии и Индонезии. 🪞 Одним из самых популярных направлений остается Узбекистан. Туристов привлекают Самарканд, Бухара, Хива и Ташкент, восточная архитектура, кухня и удобная логистика. Популярны маршруты на 3–7 дней сразу по нескольким городам. 🪞 Растет интерес и к Армении с Грузией. Туристы выбирают как короткие поездки на несколько дней, так и полноценные недельные маршруты с гастрономией, монастырями, винодельнями и природными локациями. 🪞 Турция тоже постепенно перестает ассоциироваться только с пляжами. Помимо Анталии и Стамбула, путешественники все чаще едут в Каппадокию, Памуккале, Бурсу и Анкару. Особенно популярны комбинированные туры, где экскурсионную программу можно совместить с отдыхом у моря. 🪞 Одним из самых быстрорастущих направлений стал Китай. Туристы интересуются маршрутами через Пекин, Шанхай, Сиань и Чжанцзяцзе, а также круизами по Янцзы и панда-турами. 🪞 В Индии набирают популярность классические маршруты &#171;Золотого треугольника&#187; с Дели, Агрой и Джайпуром, а Индонезия делает ставку на экскурсионный Бали — с храмами, вулканами, рисовыми террасами и природными маршрутами. Участники рынка отмечают, что главный плюс таких туров — готовая логистика. Туристам не нужно самостоятельно искать перелеты, трансферы, гидов и строить сложный маршрут: все уже собрано в одной программе. Подробнее о ценах, маршрутах, продолжительности туров и направлениях 2026 года читайте в Вестнике АТОР. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread rose">
+  <div class="src-tag">@atorus</div>
+  <div class="deco-quote">«</div>
+  <h2>❗️ ...✈️ ...Пассажиров ...Air ...Anka ...в ...Турцию ...сейчас ...пересаживают ...на</h2>
+  <p>ero, SouthWind и Corendon По данным туроператора Anex, по состоянию на 11:00 29 мая на отдых в Турцию уже отправили 472 туриста на рейсах альтернативных перевозчиков из Казани, Сочи и Челябинска. Судя по табло этих аэропортов, на турецкий курорт накануне, 28 мая, и сегодня утром вылетали рейсы &#171;Уральских авиалиний&#187;, IrAero, SouthWind и Corendon. Из Турции, по данным Anex, уже вывезено 655 туристов – в Сочи, Краснодар, Самару, Казань, Минеральные Воды и Екатеринбург. Напомним, Air Anka с 26 мая не может выполнять чартерные рейсы из России в Анталью: временные разрешения, по которым перевозчик летал ранее, не были продлены. По оценкам рынка, с учетом Air Anka, Tailwind и сокращения программы Azur Air в летнем сезоне может не хватить около 10% заявленной перевозки в Анталью. &#171;На курорте за 28 мая осталось всего 8 человек, размещение которым продлили за счет туроператора. Туроператор Anex на связи с партнерами и оказывает всю необходимую помощь и поддержку&#187;, – говорят в компании. Туристам, которые находятся на курорте, необходимо держать связь с гидом и ждать информации о вылете. Тем, у кого вылет еще запланирован, нужно поддерживать связь с турагентом, где приобретался тур. Агентам, в свою очередь, следует отслеживать статус заявки в личном кабинете или обращаться во внутренний чат компании. ⚡️ Что происходит с перевозкой в Анталью этим летом и почему туристам может не хватить билетов – подробно написали в Вестнике АТОР. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread terminal">
+  <div class="scanlines"></div>
+  <div class="src-tag">@atorus</div>
+  <div class="prompt">&gt; news.34</div>
+  <p>⚡️ Anex пересадит туристов с отмененных рейсов из Казани в Анталью на Turkish Airlines без доплат С 31 мая по 14 июня стартует ежедневная полетная программа Казань – Анталья на рейсах Turkish Airlines. Как сообщили в Anex, все туристы с отмененными рейсами из Казани будут пересажены на эти рейсы без доплат. Последние несколько дней туроператор пересаживал туристов с отмененных программ на доступные рейсы, а также продлевал пребывание на курорте за счет компании. При этом у туристов и агентов оставались вопросы по заявкам, где вопрос с перевозкой еще не был решен. Теперь для казанской программы найдено решение. Туристам и агентам необходимо отслеживать актуальную информацию в личном кабинете. О дальнейших изменениях и рейсах Anex обещает информировать дополнительно. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread academic">
+  <div class="src-tag">@atorus</div>
+  <div class="fn-num">35</div>
+  <div class="ruled"><h2>Сколько будет стоить отдых летом 2026 года и куда поедут туристы?</h2></div>
+  <p>Сегодня АТОР представит прогноз на летний сезон Напоминаем: сегодня в 16:00 в рамках ежегодной премии le&#39;TO пройдет брифинг с участием вице-президентов и исполнительного директора АТОР. Для присутствующих СМИ будут представлены детальные прогнозы на лето 2026 года сразу по трем ключевым сегментам рынка – внутреннему, выездному и въездному туризму. Какие российские курорты этим летом окажутся в лидерах по спросу? Сколько будет стоить отдых внутри страны? Что происходит с продажами Турции и Египта после ближневосточного кризиса? Какие зарубежные направления растут быстрее рынка? И что туристы стали осторожнее бронировать? Отдельный блок – по въездному туризму. Кто сегодня едет в Россию активнее всего? Как меняется роль Китая, стран Ближнего Востока и СНГ? И какие регионы получают больше иностранных туристов? На эти и другие вопросы ответят: Сергей Ромашкин, вице-президент АТОР по внутреннему туризму Артур Мурадян, вице-президент АТОР по международному туризму Майя Ломидзе, исполнительный директор АТОР Эксперты представят аналитику спроса, динамику по рынку и отдельным направлениям, данные по средней стоимости туров и другие факты, которые помогут понять, каким будет лето для туристов и турбизнеса. Следите за лентой Telegram-канала и сообщества &#171;ВКонтакте&#187; АТОР – ключевые цифры и выводы будем публиковать здесь. С 1 июня подробные материалы будут доступны на сайте АТОР. Аккредитованные журналисты получат доступ к детальной аналитике уже сегодня. *Аккредитация на мероприятие закрыта. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread stats">
+  <div class="src-tag">@atorus</div>
+  <div class="big-num">215</div>
+  <div class="big-label">слов</div>
+  <p>✈️ Air Tanzania открыла продажи билетов из Москвы в Танзанию Air Tanzania начала продажи билетов на рейсы из Москвы в Танзанию. Первые полеты запланированы со 2 июля, а минимальная стоимость билета туда-обратно составляет около 72,9 тыс. рублей. Согласно расписанию перевозчика, рейсы из московского Внуково в Дар-эс-Салам будут выполняться три раза в неделю — по вторникам, четвергам и субботам. На старте продаж тарифы начинаются примерно от 1021 доллара США в обе стороны. При этом пока в системе бронирования доступны билеты только до Дар-эс-Салама — перелеты сразу до Занзибара не отображаются. Эксперты отмечают, что заявленные цены соответствуют ранее ожидаемому &#171;низкому старту&#187; для нового перевозчика на российском рынке. В перспективе это может поддержать рост спроса на Танзанию и прежде всего на Занзибар. Интерес к направлению уже увеличивается: российский турпоток на Занзибар в 2025 году вырос более чем на 50%, а за январь–апрель 2026 года прибавил еще около 27% год к году. Туроператоры связывают динамику с удобными стыковками через ближневосточные и африканские хабы, расширением программ у крупных перевозчиков и растущим спросом на альтернативу Мальдивам. Отдельно обсуждается возможное введение безвизового режима между Россией и Танзанией. В отрасли считают, что сочетание прямых рейсов и упрощенного въезда может заметно усилить поток туристов в страну. А вы бы рассмотрели Танзанию и Занзибар для отдыха с прямым рейсом из Москвы? АТОР ВКонтакте | Дзен</p>
+</section><section class="spread lead">
+  <div class="src-tag">@atorus</div>
+  <h2>🏖 ...Лето ...в ...России ...становится ...пляжным: ...море ...забрало ...71% ...бронирований</h2>
+  <p>тно выросла доля пляжного отдыха. По данным АТОР, в летних бронированиях у туроператоров она поднялась с 58% до 71%. Все остальные форматы – экскурсионные туры, активный отдых, санатории, природные маршруты – вместе сократились с 42% до 29%. Почему так? У многих туристов сейчас есть деньги только на одну более-менее длинную поездку в год. И в такой ситуации они чаще выбирают самый понятный летний формат – море. Особенно заметно просели экскурсионные туры и санаторный отдых: у разных игроков снижение составляет от 12% до 50% год к году. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread midnight">
+  <div class="src-tag">@atorus</div>
+  <div class="accent-bar"></div>
+  <h2>⬇️ ...Минус ...10–12%: ...внутренний ...туризм ...пока ...не ...догнал ...прошлое ...лето</h2>
+  <p>вания туров по России на июнь–август у туроператоров идут на 10–12% ниже, чем год назад. В среднем по рынку уже продано около 55% летнего ассортимента, но негативный тренд прошлого года пока не преодолен. Причин несколько: дорогие отели и авиабилеты, нестабильная работа аэропортов, дефицит железнодорожной перевозки, а также конкуренция с зарубежными направлениями на фоне крепкого рубля. По итогам лета туроператоры ждут либо снижения продаж на 4–9%, либо повторения прошлогоднего результата – если туристы активнее начнут бронировать уже по ходу сезона. Главная надежда рынка – last minute, акции отельеров и возвращение спроса на Анапу. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread rose">
+  <div class="src-tag">@atorus</div>
+  <div class="deco-quote">«</div>
+  <h2>🔝Анапа ...вытягивает ...Краснодарский ...край, ...а ...Крым ...уверенно ...растет ...По ...данным</h2>
+  <p>равлений на лето у туроператоров сейчас входят: Краснодарский край – +8% Крым – +14% Кавказские Минеральные Воды –15% Москва и Подмосковье –9% Санкт-Петербург и Ленобласть –10% Краснодарский край растет в основном за счет Анапы: после новостей об открытии пляжей бронирования там прибавили в среднем 35–40%. При этом Сочи, хотя и остается главным по объемам, пока отстает от прошлого года на 15–20%. Крым показывает устойчивый рост: помогают отложенный спрос, более доступные цены по сравнению с Сочи и развитие пляжной инфраструктуры. А вот Кавминводы, Москва и Петербург пока в минусе. Но по столицам туроператоры ждут часть спроса уже по ходу сезона – такие поездки часто бронируют ближе к датам. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread terminal">
+  <div class="scanlines"></div>
+  <div class="src-tag">@atorus</div>
+  <div class="prompt">&gt; news.40</div>
+  <p>☀️ Турция, Египет и Вьетнам могут возглавить летний спрос на зарубежный отдых – АТОР По данным на конец мая, у туроператоров изменился топ зарубежных направлений на лето после выпадения из активных продаж ОАЭ. Сейчас структура организованных бронирований на июнь–август выглядит так: Турция – 57% продаж Египет – 12% Вьетнам – 10% Абхазия – 5% Таиланд – 3% Главная интрига сезона – Вьетнам. Его доля выросла с 4,9% до 10%, а количество бронирований в среднем по рынку – на 150%. Египет тоже укрепил позиции: доля выросла с 8,1% до 12%. Турция по-прежнему остается безусловным лидером, но ее доля чуть снизилась – с 58,2% до 57%. При этом продажи по направлению все равно растут, но умеренно – примерно на 5%. В топ-10 также входят Мальдивы, Китай, морские круизы, Индонезия и страны СНГ. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread academic">
+  <div class="src-tag">@atorus</div>
+  <div class="fn-num">41</div>
+  <div class="ruled"><h2>🇹🇷 ...Турция ...пошла ...встречным ...турпотоком ...Еще ...недавно ...Турция ...в ...организованном</h2></div>
+  <p>ее дополнительным рынком. А этим летом у ряда туроператоров она впервые вышла на первое место по бронированиям. По данным компаний АТОР, бронирования из Турции выросли в 4–5 раз. У &#171;Интуриста&#187; доля Турции в летних заявках достигла 30% против 5% годом ранее, у &#171;Невских сезонов&#187; – 20% против тех же 5% в прошлом году. На фоне просадки рынков Персидского залива именно Турция стала одним из тех направлений, которые заметно меняют структуру въездного туризма в России этим летом. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread stats">
+  <div class="src-tag">@atorus</div>
+  <div class="big-num">190</div>
+  <div class="big-label">слов</div>
+  <p>Зарубежный отдых летом не стал заметно дороже – помог крепкий рубль, сообщили в АТОР Несмотря на нестабильность на рынке, средние траты россиян по большинству популярных зарубежных направлений летом 2026 года остаются близкими к прошлогодним. А по отдельным вариантам отдых может быть даже дешевле. Главная причина – укрепление рубля и более лояльная ценовая политика отельеров. Туроператоры отмечают: именно курс валют в мае помог снова ускорить продажи летних туров. К концу мая уже продано около 50–55% летних туров за рубеж. При этом доля покупок &#171;по ходу сезона&#187; снова будет высокой – туристы продолжают следить за ценами, курсом валют и ситуацией с перевозкой. Отдельный пример – ОАЭ. Если направление снова откроют для продажи турпакетов, недельный тур в отель 4* с &#171;все включено&#187; и перелетом из Москвы, по данным Space Travel, может стоить от 155 тыс. рублей на двоих. Но есть нюанс: на отдельных направлениях цены все равно могут меняться быстро. Например, в Турции возможный дефицит перевозки может повлиять и на стоимость туров, и на выбор удобных рейсов. То есть окно для выгодных покупок еще есть, но ждать слишком долго может быть рискованно – особенно там, где не хватает рейсов. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread lead">
+  <div class="src-tag">@atorus</div>
+  <h2>Вьетнам ...может ...стать ...одним ...из ...самых ...быстрорастущих ...рынков ...въездного ...туризма</h2>
+  <p>торов резко выросло количество групповых бронирований из стран Юго-Восточной Азии. Главный сюрприз сезона – Вьетнам. По данным компаний АТОР, Вьетнам уже занимает второе место в структуре летних бронирований у &#171;Интуриста&#187; – его доля чуть меньше 30%. Много заявок из Вьетнама фиксирует и &#171;Тари Тур&#187;, а у &#171;Невских сезонов&#187; этот рынок входит в тройку лидеров. Активнее, чем год назад, ведут себя и другие страны ЮВА – Индонезия, Малайзия, Таиланд. Не только мы к вам, но и вы к нам 😊 АТОР ВКонтакте | Дзен</p>
+</section><section class="spread midnight">
+  <div class="src-tag">@atorus</div>
+  <div class="accent-bar"></div>
+  <h2>💰 ...Иностранцы ...платят ...в ...среднем ...от ...$1000 ...за ...тур ...в</h2>
+  <p>т Москва + Санкт-Петербург остается главным выбором иностранных туристов в России. Через Москву приезжают от 60% до 100% клиентов у разных туроператоров, через Петербург – до 35% у отдельных компаний. Но интерес есть не только к двум столицам. Иностранные группы также выбирают Золотое кольцо, Карелию, Великий Новгород, Казань, Байкал, Приморье, Хабаровский край и Мурманск. Средний чек летней поездки в Россию без авиабилетов, по данным туроператоров, составляет примерно $1000–1200 с человека. Индивидуальные туры обычно дороже групповых примерно в 3 раза – за счет персонального сервиса и отелей более высокого уровня. Есть и премиальные примеры: у &#171;Интуриста&#187; приводят маршрут группы американских туристов за $15 000 по программе Москва – Золотое кольцо – Санкт-Петербург. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread rose">
+  <div class="src-tag">@atorus</div>
+  <div class="deco-quote">«</div>
+  <h2>🗞 ...Вестник ...АТОР: ...главное ...за ...день ...Сегодня ...— ...о ...проблемах</h2>
+  <p>новых рейсах в Танзанию, летнем Таиланде со скидками до 40% и самых востребованных курортах Абхазии. Также рассказываем, почему туристы все чаще выбирают экскурсионные туры и как игорные зоны России собираются привлекать гостей летом 2026 года. ✈️ Рейсам Air Anka пока не нашли полной замены Туроператоры оперативно организовали вывоз туристов из Турции и начали пересаживать клиентов на рейсы других авиакомпаний. Однако полностью компенсировать выпавшие объемы перевозки на летний сезон пока не удалось, поэтому рынок продолжает искать решения. 👉 Читать материал 💼 Екатерина Бежанова: турагент должен не выживать, а зарабатывать Глава платформы &#171;Адвентура&#187; рассказала, с какими проблемами сталкиваются современные турагенты и почему рынок постепенно уходит в сторону онлайн-платформ без офисов и лишних расходов. По ее словам, профессия турагента в ближайшие годы сильно изменится. 👉 Читать материал 🇹🇿 Air Tanzania открыла продажи билетов из Москвы Первые рейсы Air Tanzania между Москвой и Танзанией запланированы на июль, а минимальная стоимость перелета туда-обратно начинается примерно от 72,9 тыс. рублей. Для Занзибара это может стать дополнительным драйвером спроса со стороны российских туристов. 👉 Читать материал 🇹🇭 Таиланд летом: ТОП-5 курортов со скидками до 40% Туроператоры напоминают, что лето в Таиланде — не повод отказываться от отдыха. В низкий сезон туристы получают более доступные цены, меньше людей на пляжах, SPA-программы и большой выбор фруктов. В подборке — лучшие направления для летнего отпуска. 👉 Читать материал 🏖 Абхазия летом 2026 года: какой курорт выбрать Гагра, Пицунда, Цандрипш, Новый Афон и Сухум по-разному подходят для отдыха: где-то туристов ждут широкие пляжи и инфраструктура, где-то — тишина, сосны и камерные отели. Туроператоры отмечают рост спроса сразу на несколько курортов Абхазии. 👉 Читать материал 🎰 Игорные зоны России ждут более 570 тыс. гостей летом Ассоциация АИРИС прогнозирует высокий летний турпоток в игорные зоны России. Ставку делают не только на казино, но и на концерты, фестивали, гастрономию и событийный туризм. 👉 Читать материал 🧭 Экскурсионные туры становятся новым трендом Туристы все чаще выбирают готовые маршруты с продуманной логистикой и экскурсионной программой — от поездок по Узбекистану и Китаю до путешествий по Алтаю. Туроператоры активно расширяют ассортимент таких туров. 👉 Читать материал 🇪🇬 Египет сохраняет объемы перевозки летом Несмотря на корректировки отдельных программ, Хургада и Шарм-эль-Шейх остаются одними из самых массовых зарубежных направлений с прямыми вылетами из России. Туроператоры не фиксируют резкого сокращения перевозки на летний сезон. 👉 Читать материал АТОР ВКонтакте | Дзен Поддержать канал бустом</p>
+</section><section class="spread terminal">
+  <div class="scanlines"></div>
+  <div class="src-tag">@atorus</div>
+  <div class="prompt">&gt; news.46</div>
+  <p>🚆 Дети с 10 лет смогут ездить одни более чем по 20 маршрутам РЖД С 1 июня юные пассажиры от 10 до 16 лет смогут путешествовать без сопровождения взрослых более чем по 20 маршрутам РЖД. Услуга будет доступна, в том числе, в поездах: 🟢 &#171;Аврора&#187; 🟢 &#171;Буревестник&#187; 🟢 &#171;Ласточка&#187; – например, Москва – Смоленск, Роза Хутор – Краснодар, Таганрог – Новороссийск 🟢 &#171;Финист&#187; – например, Екатеринбург – Тюмень, Екатеринбург – Пермь В пути за ребенком будут присматривать сотрудники поездной бригады – начальник поезда и проводник. На станции прибытия ребенка передадут встречающему, который указан в заявлении. Как оформить услугу: заявку нужно подать в билетной кассе не позднее чем за 3 суток до отправления поезда с начальной станции. При посадке понадобятся: ▪️ документ, на который оформлен билет ▪️ оригинал и две копии заявления об ответственности за перевозку ▪️ квитанция об оплате услуги Раньше такая услуга была доступна только в &#171;Сапсанах&#187;. Ею пользовались около 300 родителей или законных представителей в год. По правилам перевозок в поездах дальнего следования дети могут ездить без сопровождения взрослых с 10 лет. Ребенка на поезде к бабушке, а сами на море 😉. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread academic">
+  <div class="src-tag">@atorus</div>
+  <div class="fn-num">47</div>
+  <div class="ruled"><h2>📆 Цифра дня По данным АТОР, за год доля морских курортов в продажах туроператоров выросла с 58% до 71%.</h2></div>
+  <p>Все остальные форматы отдыха — экскурсионные поездки, санатории, активный туризм и природные маршруты — суммарно сократились с 42% до 29%. Эксперты связывают это с изменением поведения туристов: многие россияне сегодня готовы потратиться только на одну полноценную поездку за лето, поэтому выбирают самый востребованный и понятный формат — отдых у моря. Особенно заметно, по данным рынка, просели экскурсионные туры и санаторный сегмент. Вы что выбираете летом: 🔥 — пляж 🤩 — экскурсии 😁 — дача 😒 — работа #ЦифраДня АТОР ВКонтакте | Дзен Поддержать канал бустом</p>
+</section><section class="spread stats">
+  <div class="src-tag">@atorus</div>
+  <div class="big-num">70</div>
+  <div class="big-label">слов</div>
+  <p>&#171;Интурист&#187; пересаживает туристов с Air Anka на Corendon Airlines. Такая опция доступна путешественникам из Самары, Нижнего Новгорода, Уфы и Челябинска. &#171;Все туристы с отмененными рейсами из этих городов будут пересажены без доплат. Просьба отслеживать информацию в личном кабинете, - сказали в компании, отметив, что о дальнейших изменениях и рейсах проинформирую дополнительно. Ранее стало известно, что пассажиры Air Anka из Казани без доплат пересаживаются на Turkish Airlines. АТОР ВКонтакте | Дзен</p>
+</section><section class="spread lead">
+  <div class="src-tag">@atorus</div>
+  <h2>❄️ ...Где ...начинается ...Арктика ...и ...почему ...на ...этот ...вопрос ...нет</h2>
+  <p>о не просто территория за Полярным кругом. Ученые, экологи, экономисты и политики до сих пор определяют ее границы по-разному, и подходов к этому существует больше десяти. Самый известный вариант — географический. Согласно ему, Арктика начинается севернее Полярного круга на широте 66&#176;33′, где бывают полярный день и полярная ночь. Но есть и другие подходы. Например, климатический: Арктикой считают территории, где средняя температура самого теплого месяца не превышает +10 &#176;C. Биологический подход ориентируется на границу тундры и лесов, а криогенный — на районы вечной мерзлоты, которая в Сибири уходит далеко южнее Полярного круга. В России существует и собственное официальное понятие — Арктическая зона РФ. В нее полностью или частично входят 10 регионов, включая Мурманскую область, Ямал, Чукотку, Якутию, Коми и Карелию. Эти границы формировались уже не по климату, а с учетом экономики, инфраструктуры и Северного морского пути. Для туристов это означает, что Арктика может выглядеть очень по-разному: от тундры и ледников до северных городов, круизных маршрутов и промышленных центров. Есть и международный подход. Арктическими странами считаются Россия, Канада, США, Дания, Норвегия, Исландия, Швеция и Финляндия. А границы влияния государств в Северном Ледовитом океане определяются Конвенцией ООН по морскому праву и делением на экономические зоны и континентальный шельф. Подробнее о природных, экономических и политических границах Арктики, а также о том, какие территории официально входят в Арктическую зону России, — читайте на сайте. АТОР ВКонтакте | Дзен</p>
+</section>
+
+<footer>
+  Tourism Digest &bull; <a href="https://t.me/tourdom">@tourdom</a> &bull; <a href="https://t.me/atorus">@atorus</a> &bull; Сгенерировано автоматически
+</footer>
 </body>
 </html>
