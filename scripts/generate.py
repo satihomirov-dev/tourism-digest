@@ -62,100 +62,226 @@ def collect(channel):
 def esc(s):
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
-STYLES = ['lead', 'midnight', 'rose', 'terminal', 'academic', 'stats']
+def make_card(post, idx, source):
+    m = re.match(r'^(.{20,150}?[.!?])\s', post)
+    headline = m.group(1) if m else ' '.join(post.split()[:12]) + '…'
+    body = post[len(headline):].strip()
+    n = idx + 1
+    body_html = f'<p class="body">{esc(body)}</p>' if body else ''
+    return f'''<article class="card">
+  <span class="card-num">{n:02d}</span>
+  <h2>{esc(headline)}</h2>
+  {body_html}
+  <div class="card-source">{esc(source)}</div>
+</article>'''
 
-def make_spread(post, idx, source):
-    style = STYLES[idx % 6]
-    words = len(post.split())
-    m = re.match(r'^(.{20,120}?[.!?])\s', post)
-    first = m.group(1) if m else ' '.join(post.split()[:10]) + '…'
-    rest  = post[len(first):].strip()
+def make_channel_header(label, count):
+    return f'<div class="ch-header"><span class="ch-name">{esc(label)}</span><span class="ch-count">{count} новостей</span></div>'
 
-    if style == 'lead':
-        return f'<section class="spread lead"><div class="src-tag">{source}</div><h2>{esc(first)}</h2><p>{esc(rest)}</p></section>'
-    if style == 'midnight':
-        return f'<section class="spread midnight"><div class="accent-bar"></div><div class="src-tag">{source}</div><h2>{esc(first)}</h2><p>{esc(rest)}</p></section>'
-    if style == 'rose':
-        return f'<section class="spread rose"><div class="deco-quote">«</div><div class="src-tag">{source}</div><h2>{esc(first)}</h2><p>{esc(rest)}</p></section>'
-    if style == 'terminal':
-        return f'<section class="spread terminal"><div class="scanlines"></div><div class="src-tag">{source}</div><div class="prompt">&gt; post.{idx+1:03d}</div><p>{esc(post)}</p></section>'
-    if style == 'academic':
-        return f'<section class="spread academic"><div class="fn-num">{idx+1}</div><div class="src-tag">{source}</div><div class="ruled"><h2>{esc(first)}</h2></div><p>{esc(rest)}</p></section>'
-    return f'<section class="spread stats"><div class="src-tag">{source}</div><div class="big-num">{words}</div><div class="big-label">слов</div><p>{esc(post)}</p></section>'
+CSS = '''
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-def make_sep(label, count, extra=''):
-    return f'<section class="spread separator"{extra}><div class="sep-bg">{label}</div><div class="sep-count">{count} новостей</div><div class="sep-label">{label}</div></section>'
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --ink: #1c1c1e;
+  --ink-2: #48484a;
+  --ink-3: #8e8e93;
+  --accent: #1c1c1e;
+  --rule: #e0dfd9;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
 
-CSS = '''*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;overflow-x:hidden;background:#111}
-#bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff);width:0%;z-index:999}
-.spread{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(3rem,8vw,8rem);position:relative;overflow:hidden}
-.src-tag{font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;opacity:.45;margin-bottom:1.5rem}
-h2{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3.8rem);line-height:1.15;margin-bottom:1.5rem;font-weight:700}
-p{font-size:clamp(1.1rem,2vw,1.3rem);line-height:1.75;max-width:70ch}
-.masthead{background:#000;align-items:center;text-align:center;gap:1rem}
-.masthead h1{font-family:'Fraunces',serif;font-size:clamp(3.5rem,12vw,9rem);color:#fff;letter-spacing:-.03em;line-height:1}
-.masthead .sub{color:rgba(255,255,255,.35);font-size:clamp(1rem,2.5vw,1.5rem);letter-spacing:.2em;text-transform:uppercase;margin-top:.75rem}
-.masthead .meta{color:rgba(255,255,255,.2);font-size:.8rem;margin-top:1.5rem;letter-spacing:.1em}
-.separator{background:#0a0a0a;justify-content:flex-end;padding-bottom:5rem}
-.sep-bg{font-family:'Fraunces',serif;font-size:clamp(5rem,18vw,14rem);color:#fff;opacity:.05;position:absolute;bottom:1rem;left:clamp(3rem,8vw,8rem);line-height:1;pointer-events:none}
-.sep-label{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,4rem);color:#fff;position:relative}
-.sep-count{color:rgba(255,255,255,.3);font-size:.9rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;position:relative}
-.lead{background:#fff;color:#1a1a1a}.lead .src-tag,.lead h2{color:#1a1a1a}.lead p{color:#555}
-.midnight{background:#0d1117;color:#e8f4f8}.midnight .src-tag{color:#8ab4c8}
-.accent-bar{width:4px;height:4rem;background:#58a6ff;border-radius:2px;margin-bottom:2rem}
-.midnight h2{color:#e8f4f8}.midnight p{color:#8ab4c8}
-.rose{background:#fff0f3;color:#1a1a1a}.rose .src-tag{color:#c9184a}
-.deco-quote{font-family:'Fraunces',serif;font-size:clamp(12rem,28vw,22rem);color:#c9184a;opacity:.07;position:absolute;top:-3rem;left:1rem;line-height:1;pointer-events:none;font-style:italic}
-.rose h2{color:#c9184a;position:relative}.rose p{color:#555;position:relative}
-.terminal{background:#0a0a0a;color:#00ff88;font-family:'Courier New',monospace}
-.terminal .src-tag{color:#00ff88;opacity:.35}
-.scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,255,136,.018) 3px,rgba(0,255,136,.018) 4px);pointer-events:none}
-.prompt{font-size:1rem;color:#00ff88;opacity:.4;margin-bottom:1.5rem}
-.terminal p{font-size:clamp(1rem,1.8vw,1.15rem);line-height:1.85;position:relative}
-.academic{background:#faf8f2;color:#2c2416}.academic .src-tag{color:#8b7355}
-.fn-num{font-family:'Fraunces',serif;font-size:clamp(6rem,14vw,11rem);color:#2c2416;opacity:.05;position:absolute;top:2rem;right:3rem;line-height:1;font-weight:700}
-.ruled{border-top:2px solid #2c2416;border-bottom:1px solid rgba(44,36,22,.25);padding:1.5rem 0;margin-bottom:1.5rem;position:relative}
-.academic h2{font-size:clamp(1.6rem,3.5vw,2.8rem);color:#2c2416}
-.academic p{font-family:'Fraunces',serif;font-style:italic;color:#5a4a35;font-size:clamp(1.05rem,1.8vw,1.2rem)}
-.stats{background:#1a237e;color:#fff}.stats .src-tag{color:rgba(255,255,255,.35)}
-.big-num{font-family:'Fraunces',serif;font-size:clamp(6rem,18vw,13rem);color:#fff;line-height:.9;font-weight:700;letter-spacing:-.04em}
-.big-label{font-size:.9rem;color:rgba(255,255,255,.35);letter-spacing:.2em;text-transform:uppercase;margin-bottom:2rem}
-.stats p{font-size:clamp(1rem,1.8vw,1.15rem);color:rgba(255,255,255,.75);max-width:62ch}
-footer{background:#000;color:rgba(255,255,255,.25);text-align:center;padding:3rem 2rem;font-size:.8rem;letter-spacing:.1em}
-footer a{color:rgba(255,255,255,.4);text-decoration:none}'''
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+#bar {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--ink); width: 0%; z-index: 999;
+  transition: width .1s linear;
+}
+
+/* MASTHEAD */
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.masthead h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.masthead .date-ru {
+  margin-top: .6rem;
+  font-size: .85rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+.masthead .total {
+  margin-top: .4rem;
+  font-size: .78rem;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .08em;
+}
+
+/* LAYOUT */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+/* CHANNEL HEADER */
+.ch-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 2.5rem 0 1rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 0;
+}
+.ch-name {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.ch-count {
+  font-size: .78rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* CARD */
+.card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 1.25rem;
+  row-gap: .4rem;
+}
+.card-num {
+  font-family: var(--font-serif);
+  font-size: .8rem;
+  color: var(--ink-3);
+  padding-top: .35rem;
+  font-weight: 300;
+  font-style: italic;
+}
+.card h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  grid-column: 2;
+}
+.card .body {
+  font-size: .95rem;
+  color: var(--ink-2);
+  line-height: 1.65;
+  grid-column: 2;
+}
+.card-source {
+  grid-column: 2;
+  font-size: .72rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .25rem;
+}
+
+/* EMPTY STATE */
+.empty {
+  padding: 5rem 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--ink-3);
+  letter-spacing: .06em;
+  background: var(--bg);
+}
+footer a { color: var(--ink-2); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 480px) {
+  .card { grid-template-columns: 1.5rem 1fr; column-gap: .75rem; }
+}
+'''
 
 def build_html(tourdom, atorus, date_str):
     d = datetime.strptime(date_str, '%Y-%m-%d')
     date_ru = f'{d.day} {MONTHS_RU[d.month]} {d.year}'
     total = len(tourdom) + len(atorus)
-    spreads, idx = '', 0
+
+    body_parts = []
+    idx = 0
     if tourdom:
-        spreads += make_sep('@tourdom', len(tourdom))
+        body_parts.append(make_channel_header('@tourdom', len(tourdom)))
         for p in tourdom:
-            spreads += make_spread(p, idx, '@tourdom'); idx += 1
+            body_parts.append(make_card(p, idx, '@tourdom'))
+            idx += 1
     if atorus:
-        spreads += make_sep('@atorus', len(atorus), ' style="background:#0d1b2a"')
+        body_parts.append(make_channel_header('@atorus', len(atorus)))
         for p in atorus:
-            spreads += make_spread(p, idx, '@atorus'); idx += 1
-    if not total:
-        spreads = f'<section class="spread stats" style="background:#111;align-items:center;text-align:center"><div class="big-num" style="opacity:.15">...</div><div class="big-label">Тихий день</div><p style="color:rgba(255,255,255,.35)">Новостей за {date_ru} не поступало.</p></section>'
+            body_parts.append(make_card(p, idx, '@atorus'))
+            idx += 1
+
+    inner = '\n'.join(body_parts) if body_parts else f'<div class="empty">Новостей за {date_ru} не поступало.</div>'
+
     return f'''<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tourism Digest — {date_ru}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>{CSS}</style>
 </head>
 <body>
 <div id="bar"></div>
 <script>window.addEventListener('scroll',()=>{{const d=document.documentElement;document.getElementById('bar').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'}})</script>
-<section class="spread masthead"><h1>TOURISM<br>DIGEST</h1><div class="sub">{date_ru}</div><div class="meta">@tourdom &bull; @atorus &bull; {total} новостей</div></section>
-{spreads}
-<footer>Tourism Digest &bull; <a href="https://t.me/tourdom">@tourdom</a> &bull; <a href="https://t.me/atorus">@atorus</a> &bull; Сгенерировано автоматически</footer>
-</body></html>'''
+<header class="masthead">
+  <h1>Tourism Digest</h1>
+  <div class="date-ru">{date_ru}</div>
+  <div class="total">{total} новостей &bull; @tourdom &bull; @atorus</div>
+</header>
+<div class="container">
+{inner}
+</div>
+<footer>
+  Tourism Digest &bull;
+  <a href="https://t.me/tourdom">@tourdom</a> &bull;
+  <a href="https://t.me/atorus">@atorus</a> &bull;
+  Сгенерировано автоматически
+</footer>
+</body>
+</html>'''
 
 if __name__ == '__main__':
     print(f'Fetching posts for {yesterday}...', file=sys.stderr)
