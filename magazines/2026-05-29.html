@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tourism Digest — 29 мая 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pad: clamp(2rem, 8vw, 8rem);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: #fff;
+    border-bottom: 3px solid #111;
+    padding: 2rem var(--pad);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .masthead-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #111;
+  }
+
+  .masthead-date {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #555;
+    text-transform: uppercase;
+  }
+
+  /* ── QUIET DAY SPREAD ── */
+  .spread-quiet {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #f8f5f0 0%, #eee8dc 50%, #e4ddd0 100%);
+    padding: 4rem var(--pad);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spread-quiet::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(180,160,120,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(140,120,90,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .spread-quiet::after {
+    content: '✦';
+    position: absolute;
+    bottom: 4rem;
+    right: var(--pad);
+    font-size: clamp(6rem, 20vw, 18rem);
+    color: rgba(150,130,100,0.12);
+    line-height: 1;
+    pointer-events: none;
+    font-family: 'Fraunces', serif;
+  }
+
+  .quiet-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8a7a66;
+    margin-bottom: 2rem;
+    border-left: 3px solid #8a7a66;
+    padding-left: 1rem;
+  }
+
+  .quiet-headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 900;
+    line-height: 0.95;
+    color: #2c2418;
+    max-width: 14ch;
+    margin-bottom: 3rem;
+  }
+
+  .quiet-headline em {
+    font-style: italic;
+    color: #7a6a50;
+  }
+
+  .quiet-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #4a3f30;
+    max-width: 55ch;
+    margin-bottom: 2rem;
+  }
+
+  .quiet-channels {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .quiet-channel-badge {
+    background: rgba(100, 80, 50, 0.12);
+    border: 1px solid rgba(100, 80, 50, 0.25);
+    border-radius: 2rem;
+    padding: 0.5rem 1.25rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5c4d38;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .quiet-channel-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #8a7a66;
+  }
+
+  .quiet-meta {
+    margin-top: 3rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: #7a6a55;
+    font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1a1a1a;
+    color: #888;
+    padding: 2.5rem var(--pad);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    letter-spacing: 0.03em;
+  }
+
+  footer .footer-brand {
+    color: #bbb;
+    font-weight: 600;
+  }
+
+  footer a {
+    color: #58a6ff;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-title">Tourism Digest</span>
+  <span class="masthead-date">29 мая 2026 &nbsp;·&nbsp; Выпуск № автоматический</span>
+</header>
+
+<!-- QUIET DAY SPREAD -->
+<section class="spread-quiet">
+  <div class="quiet-label">Выпуск от 29 мая 2026</div>
+  <h1 class="quiet-headline">Тихий<br><em>день</em></h1>
+  <p class="quiet-body">
+    Сегодня каналы туристической отрасли хранят молчание — новостей за 29 мая 2026 года не поступало.
+    Это бывает: рынок дышит, и иногда день проходит без громких заголовков.
+  </p>
+  <p class="quiet-body">
+    Мы отслеживали публикации в обоих источниках и не обнаружили ни одного материала за указанную дату.
+    Следующий выпуск выйдет завтра — с первыми новостями нового дня.
+  </p>
+
+  <div class="quiet-channels">
+    <div class="quiet-channel-badge">
+      <span class="dot"></span>
+      @tourdom — 0 новостей
+    </div>
+    <div class="quiet-channel-badge">
+      <span class="dot"></span>
+      @atorus — 0 новостей
+    </div>
+  </div>
+
+  <p class="quiet-meta">Данные проверены автоматически · 29 мая 2026</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>
+    <span class="footer-brand">Tourism Digest</span>
+    &nbsp;·&nbsp; Источники: <a href="https://t.me/tourdom" target="_blank">@tourdom</a>
+    &nbsp;<a href="https://t.me/atorus" target="_blank">@atorus</a>
+  </span>
+  <span>Сгенерировано автоматически</span>
+</footer>
+
+</body>
+</html>
