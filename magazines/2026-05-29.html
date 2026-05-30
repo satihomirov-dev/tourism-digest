@@ -6,292 +6,227 @@
 <title>Tourism Digest — 29 мая 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --pad: clamp(3rem, 8vw, 8rem);
-  --body-size: clamp(1.1rem, 1.5vw, 1.4rem);
-}
+  :root {
+    --progress-color: #58a6ff;
+  }
 
-body {
-  font-family: 'Inter', sans-serif;
-  font-size: var(--body-size);
-  overflow-x: hidden;
-}
+  html { scroll-behavior: smooth; }
 
-/* ── Masthead ── */
-.masthead {
-  background: #fff;
-  border-bottom: 3px solid #111;
-  padding: 2.5rem var(--pad) 2rem;
-  display: flex;
-  align-items: baseline;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-.masthead-title {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2.2rem, 6vw, 5rem);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: #111;
-  line-height: 1;
-}
-.masthead-date {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-  font-weight: 500;
-  color: #555;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-/* ── Section header ── */
-.section-header {
-  background: #111;
-  padding: 1.5rem var(--pad);
-}
-.section-header-inner {
-  max-width: 960px;
-  margin: 0 auto;
-}
-.channel-tag {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #e8f4f8;
-  letter-spacing: 0.05em;
-}
+  /* Reading progress bar */
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--progress-color);
+    z-index: 9999;
+    transition: width 0.1s linear;
+  }
 
-/* ── Spread base ── */
-.spread {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-.spread-inner {
-  max-width: 960px;
-  width: 100%;
-  margin: 0 auto;
-  padding: var(--pad);
-  position: relative;
-  z-index: 2;
-}
-.label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  color: #aaa;
-}
-.body-text {
-  font-size: var(--body-size);
-  line-height: 1.75;
-  margin-top: 1.5rem;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
+  /* Masthead */
+  .masthead {
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 8rem);
+    position: relative;
+    overflow: hidden;
+  }
 
-/* ── 1. Lead ── */
-.spread-lead { background: #fff; }
-.headline-giant {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2rem, 5vw, 4.5rem);
-  font-weight: 900;
-  line-height: 1.1;
-  color: #111;
-  letter-spacing: -0.02em;
-}
-.spread-lead .body-text { color: #333; }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(88,166,255,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(201,24,74,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
 
-/* ── 2. Midnight ── */
-.spread-midnight { background: #0d1117; }
-.accent-blue { color: #58a6ff !important; }
-.headline-midnight {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(1.8rem, 4vw, 3.8rem);
-  font-weight: 700;
-  line-height: 1.15;
-  color: #e8f4f8;
-}
-.spread-midnight .body-text { color: #c9d1d9; }
+  .masthead-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.5rem, 12vw, 10rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    position: relative;
+    z-index: 1;
+  }
 
-/* ── 3. Rose ── */
-.spread-rose { background: #fff0f3; }
-.deco-quote {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(8rem, 20vw, 18rem);
-  font-weight: 900;
-  color: #ffc2d1;
-  line-height: 0.8;
-  position: absolute;
-  top: var(--pad);
-  left: calc(var(--pad) - 2rem);
-  z-index: 1;
-  pointer-events: none;
-  user-select: none;
-}
-.spread-rose .spread-inner { position: relative; z-index: 2; }
-.accent-rose { color: #c9184a !important; }
-.headline-rose {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(1.8rem, 4vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.15;
-  color: #c9184a;
-}
-.spread-rose .body-text { color: #3d0020; }
+  .masthead-date {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
 
-/* ── 4. Terminal ── */
-.spread-terminal { background: #0a0a0a; }
-.scanlines {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 3px,
-    rgba(0,255,136,0.03) 3px,
-    rgba(0,255,136,0.03) 4px
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-.term-label { color: #00ff88 !important; font-family: 'Courier New', monospace; }
-.headline-term {
-  font-family: 'Courier New', monospace;
-  font-size: clamp(1.2rem, 2.5vw, 2.2rem);
-  font-weight: 400;
-  line-height: 1.4;
-  color: #00ff88;
-  word-break: break-word;
-}
-.term-body {
-  font-family: 'Courier New', monospace;
-  color: #7fff7f;
-  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
-}
+  .masthead-rule {
+    width: clamp(4rem, 12vw, 10rem);
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+    margin: 2rem auto;
+    position: relative;
+    z-index: 1;
+  }
 
-/* ── 5. Academic ── */
-.spread-academic { background: #faf8f2; }
-.headline-academic {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
-  font-weight: 700;
-  line-height: 1.2;
-  color: #1a1209;
-}
-.ruled-line {
-  border-top: 1px solid #c8b88a;
-  margin: 1.2rem 0;
-}
-.academic-body {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  color: #2a2010;
-}
-.footnote-num {
-  font-size: 0.75em;
-  vertical-align: super;
-  margin-right: 0.25em;
-  color: #8a6a20;
-}
+  /* Quiet day section */
+  .quiet-day {
+    min-height: 100vh;
+    background: #06080d;
+    color: #e8f4f8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 8rem);
+    position: relative;
+    overflow: hidden;
+  }
 
-/* ── 6. Stats ── */
-.spread-stats { background: #1a237e; }
-.stats-label { color: rgba(255,255,255,0.5) !important; }
-.hero-number {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(6rem, 20vw, 18rem);
-  font-weight: 900;
-  color: rgba(255,255,255,0.15);
-  line-height: 0.85;
-  letter-spacing: -0.04em;
-}
-.hero-caption {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 2rem;
-}
-.headline-stats {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(1.5rem, 3vw, 2.8rem);
-  font-weight: 700;
-  line-height: 1.2;
-  color: #fff;
-}
-.stats-body { color: rgba(255,255,255,0.75); }
+  .quiet-day::before {
+    content: '◌';
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-size: clamp(12rem, 35vw, 30rem);
+    color: rgba(88,166,255,0.04);
+    line-height: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+  }
 
-/* ── Quiet day ── */
-.spread-quiet {
-  background: #f5f5f0;
-  min-height: 100vh;
-}
-.quiet-inner {
-  text-align: center;
-  padding-top: 15vh;
-}
-.quiet-icon {
-  font-size: 5rem;
-  color: #bbb;
-  margin-bottom: 2rem;
-}
-.quiet-headline {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 900;
-  color: #333;
-  letter-spacing: -0.02em;
-}
-.quiet-sub {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
-  color: #888;
-  margin-top: 1.5rem;
-}
+  .quiet-day-headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(4rem, 14vw, 11rem);
+    font-weight: 900;
+    font-style: italic;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    position: relative;
+    z-index: 1;
+  }
 
-/* ── Footer ── */
-footer {
-  background: #111;
-  color: #666;
-  padding: 2.5rem var(--pad);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  text-align: center;
-  letter-spacing: 0.05em;
-}
-footer a { color: #888; text-decoration: none; }
+  .quiet-day-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 300;
+    color: rgba(232,244,248,0.45);
+    margin-top: 2rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quiet-day-channels {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quiet-day-channels a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #58a6ff;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(88,166,255,0.3);
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .quiet-day-channels a:hover {
+    background: rgba(88,166,255,0.1);
+    border-color: #58a6ff;
+  }
+
+  /* Footer */
+  footer {
+    background: #000;
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+    padding: 2.5rem clamp(2rem, 6vw, 6rem);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    font-family: 'Inter', sans-serif;
+  }
+
+  footer a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: #58a6ff;
+  }
 </style>
 </head>
 <body>
 
-<header class="masthead">
-  <div class="masthead-title">TOURISM DIGEST</div>
+<div id="progress-bar"></div>
+
+<!-- Masthead -->
+<section class="masthead">
+  <div class="masthead-title">TOURISM<br>DIGEST</div>
+  <div class="masthead-rule"></div>
   <div class="masthead-date">29 мая 2026</div>
-</header>
+</section>
 
-
-<section class="spread spread-quiet">
-  <div class="spread-inner quiet-inner">
-    <div class="quiet-icon">◌</div>
-    <h2 class="quiet-headline">Тихий день</h2>
-    <p class="quiet-sub">Новостей за вчера не поступало</p>
+<!-- Quiet Day -->
+<section class="quiet-day">
+  <div class="quiet-day-headline">Тихий<br>день</div>
+  <div class="quiet-day-sub">Новостей за вчера не поступало</div>
+  <div class="quiet-day-channels">
+    <a href="https://t.me/tourdom" target="_blank" rel="noopener">@tourdom</a>
+    <a href="https://t.me/atorus" target="_blank" rel="noopener">@atorus</a>
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
-  Tourism Digest &bull; @tourdom &bull; @atorus &bull; Сгенерировано автоматически
+  Tourism Digest &nbsp;•&nbsp;
+  <a href="https://t.me/tourdom" target="_blank" rel="noopener">@tourdom</a> &nbsp;•&nbsp;
+  <a href="https://t.me/atorus" target="_blank" rel="noopener">@atorus</a> &nbsp;•&nbsp;
+  Сгенерировано автоматически
 </footer>
 
+<script>
+  const bar = document.getElementById('progress-bar');
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+</script>
 </body>
 </html>
