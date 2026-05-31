@@ -2,239 +2,500 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tourism Digest — 30 мая 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --progress-color: #58a6ff;
-  }
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --ink: #1c1c1e;
+  --ink-2: #48484a;
+  --ink-3: #8e8e93;
+  --accent: #1c1c1e;
+  --rule: #e0dfd9;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
 
-  html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: #000;
-    color: #fff;
-    overflow-x: hidden;
-  }
+#bar {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--ink); width: 0%; z-index: 999;
+  transition: width .1s linear;
+}
 
-  /* Reading progress bar */
-  #progress-bar {
-    position: fixed;
-    top: 0; left: 0;
-    height: 3px;
-    width: 0%;
-    background: var(--progress-color);
-    z-index: 1000;
-    transition: width 0.1s linear;
-  }
+/* MASTHEAD */
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.masthead h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.masthead .date-ru {
+  margin-top: .6rem;
+  font-size: .85rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+.masthead .total {
+  margin-top: .4rem;
+  font-size: .78rem;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .08em;
+}
 
-  /* Masthead */
-  .masthead {
-    min-height: 100vh;
-    background: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+/* LAYOUT */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 60%, rgba(88, 166, 255, 0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
+/* CHANNEL HEADER */
+.ch-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 2.5rem 0 1rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 0;
+}
+.ch-name {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.ch-count {
+  font-size: .78rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
 
-  .masthead-eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(0.65rem, 1.5vw, 0.85rem);
-    font-weight: 500;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 2rem;
-  }
+/* CARD */
+.card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 1.25rem;
+  row-gap: .4rem;
+}
+.card-num {
+  font-family: var(--font-serif);
+  font-size: .8rem;
+  color: var(--ink-3);
+  padding-top: .35rem;
+  font-weight: 300;
+  font-style: italic;
+}
+.card h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  grid-column: 2;
+}
+.card .body {
+  font-size: .95rem;
+  color: var(--ink-2);
+  line-height: 1.65;
+  grid-column: 2;
+}
+.card-source {
+  grid-column: 2;
+  font-size: .72rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .25rem;
+}
 
-  .masthead-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(3.5rem, 14vw, 13rem);
-    font-weight: 900;
-    line-height: 0.88;
-    letter-spacing: -0.03em;
-    color: #fff;
-    margin-bottom: 3rem;
-  }
+/* EMPTY STATE */
+.empty {
+  padding: 5rem 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+}
 
-  .masthead-rule {
-    width: clamp(4rem, 12vw, 10rem);
-    height: 1px;
-    background: rgba(255,255,255,0.2);
-    margin: 0 auto 2.5rem;
-  }
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--ink-3);
+  letter-spacing: .06em;
+  background: var(--bg);
+}
+footer a { color: var(--ink-2); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
 
-  .masthead-date {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(1.4rem, 4vw, 2.8rem);
-    font-weight: 300;
-    font-style: italic;
-    color: rgba(255,255,255,0.55);
-    letter-spacing: 0.02em;
-  }
-
-  /* Quiet day section */
-  .quiet-day {
-    min-height: 100vh;
-    background: #04060a;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .quiet-day::before {
-    content: '◌';
-    position: absolute;
-    font-size: clamp(20rem, 60vw, 60rem);
-    color: rgba(255,255,255,0.015);
-    font-family: 'Fraunces', serif;
-    line-height: 1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .quiet-day-label {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(0.65rem, 1.5vw, 0.8rem);
-    font-weight: 500;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: rgba(88, 166, 255, 0.6);
-    margin-bottom: 3rem;
-  }
-
-  .quiet-day-headline {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(4rem, 16vw, 14rem);
-    font-weight: 800;
-    line-height: 0.9;
-    color: #fff;
-    letter-spacing: -0.04em;
-    margin-bottom: 3.5rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .quiet-day-sub {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    font-weight: 300;
-    color: rgba(255,255,255,0.35);
-    max-width: 36ch;
-    line-height: 1.7;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Stars decoration */
-  .stars {
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 2.5rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .star {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: rgba(88, 166, 255, 0.5);
-    animation: pulse 3s ease-in-out infinite;
-  }
-  .star:nth-child(2) { animation-delay: 0.8s; }
-  .star:nth-child(3) { animation-delay: 1.6s; }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.4); }
-  }
-
-  /* Footer */
-  footer {
-    background: #000;
-    color: rgba(255,255,255,0.25);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    text-align: center;
-    padding: 3rem clamp(2rem, 6vw, 6rem);
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
-
-  footer span {
-    color: rgba(255,255,255,0.12);
-    margin: 0 0.5rem;
-  }
+@media (max-width: 480px) {
+  .card { grid-template-columns: 1.5rem 1fr; column-gap: .75rem; }
+}
 </style>
 </head>
 <body>
+<div id="bar"></div>
+<script>window.addEventListener('scroll',()=>{const d=document.documentElement;document.getElementById('bar').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'})</script>
+<header class="masthead">
+  <h1>Tourism Digest</h1>
+  <div class="date-ru">30 мая 2026</div>
+  <div class="total">23 новостей &bull; @tourdom &bull; @atorus</div>
+</header>
+<div class="container">
+<div class="ch-header"><span class="ch-name">@tourdom</span><span class="ch-count">17 новостей</span></div>
+<article class="card">
+  <span class="card-num">01</span>
+  <h2>В Анапе из перечня опасных участков вывели еще одну территорию – от Лечебного пляжа до детского санатория «Бимлюк», протяженностью 3,5 км.</h2>
+  <p class="body">Решение приняли после завершения работ по восстановлению береговой линии.
 
-<div id="progress-bar"></div>
+До этого статус безопасной получила тестовая прибрежная территория, которой пользуются детский курорт «Вита», ОК «Жемчужина России» и отели «Мираклеон» в Витязево. Ограничения сняли и с галечных участков от Малого Утриша в направлении Центрального пляжа. Подробнее на ТурДоме.
 
-<!-- Masthead -->
-<section class="masthead">
-  <p class="masthead-eyebrow">Ежедневный журнал об индустрии туризма</p>
-  <h1 class="masthead-title">TOURISM<br>DIGEST</h1>
-  <div class="masthead-rule"></div>
-  <p class="masthead-date">30 мая 2026</p>
-</section>
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">02</span>
+  <h2>Нас спрашивают, почему мы топим за Саратов, поддерживаем подписчиков, которые просят больше перевозки.</h2>
+  <p class="body">Напомним, оттуда планировались полеты Tailwind Airlines в Анталью, но были прекращены 26 мая из-за отсутствия допуска Росавиации. В комментариях нам пишут: что такого, можно купить билет на прямой рейс Southwind. Да, все так, но программа у этого перевозчика только по средам и субботам, вылеты из Саратова ночные, в 02:10. Саратовчанам, как и другим жителям городов-немиллионников, тоже хочется летать комфортно и иметь выбор. 
 
-<!-- Quiet day -->
-<section class="quiet-day">
-  <p class="quiet-day-label">Выпуск дня</p>
-  <div class="stars">
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-  </div>
-  <h2 class="quiet-day-headline">Тихий<br>день</h2>
-  <p class="quiet-day-sub">Сегодня каналы @tourdom и @atorus отдыхают. Новостей нет — и это тоже новость.</p>
-</section>
+К слову о ценах. В системах бронирования 1 билет на 5 августа из Саратова в Анталью с багажом предлагается за 34 810 руб., а чтобы вернуться 12 августа — за 43 720. 
 
-<!-- Footer -->
+Напомним, Tailwind Airlines планировалось задействовать из четырех городов: Астрахани, Краснодара, Саратова и Грозного. Ясность появилась только в отношении Астрахани. Информации о судьбе программ из других аэропортов пока нет.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">03</span>
+  <h2>Вчера вечером Минтранс с Росавиацией опубликовали любопытный отчет о встрече заместителя министра…</h2>
+  <p class="body">транспорта Владимира Потешкина и уполномоченного посла Турецкой Республики в России Танжу Бильгича. Поводом стала ситуация вокруг турецких авиакомпаний Air Anka и Tailwind, которые не получили согласования на выполнение полетов в Россию после 25 мая. Мы прочитали релиз, обратили внимание на главное и то, что было сказано «между строк». 
+
+Выводы: 
+ - ситуация вышла за рамки технического согласования расписания и потребовала подключения государственных структур обеих стран;
+ - виноватыми назвали авиакомпании, а решать проблему обязали туроператоров;
+ - до 16 июня заменным рейсам Air Anka, их будут выполнять Turkish Airlines и Corendon, дали разрешение на полеты. А дальше – как договорятся российские и турецкие авиационные власти.
+
+По поводу альтернатив программе Tailwind в сообщении ничего не сказано. 
+
+Полный разбор читайте в нашей новости на ТурДоме. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">04</span>
+  <h2>Можно ли провозить через Крымский мост дополнительные канистры с бензином?</h2>
+  <p class="body">Число подобных поисковых запросов в последние дни выросло. И действительно, ситуация на полуострове с топливом непростая, действуют ограничения, хотя острого дефицита, по словам местных жителей, нет. Очереди на АЗС также небольшие. Тем не менее некоторые туристы, которые сейчас едут в Крым и собираются в ближайшее время, предпочитают подстраховаться – взять с собой 20–30 литров топлива. На всякий случай.
+
+Подробнее написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">05</span>
+  <h2>В 2026 году у отелей прибавилось юридических рисков — и часть из…</h2>
+  <p class="body">них касается не только юриста, но и ресепшена, сайта, бронирований и работы с данными гостей.
+
+Например, стоит проверить правила отмен и no-show, документы для заселения, миграционный учет, туристический налог, обработку персональных данных и информацию на русском языке. Формально это «законодательные изменения», на практике — процессы, из-за которых отель может получить штраф, жалобу гостя или вопросы при проверке.
+
+2 июня в 15:00 Roomlink и «Юристы для турбизнеса Байбородин и партнеры» проведут бесплатный вебинар «Новые правила работы отеля в 2026 году: законы, риски и частые ошибки».
+
+Разбирать будут не статьи законов, а конкретные зоны риска и то, что отелю стоит проверить у себя уже сейчас. Бонусом участники получат чек-лист для самопроверки.
+
+Зарегистрироваться можно здесь: roomlink.ru/web
+#реклама
+О рекламодателе</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">06</span>
+  <h2>Нам пишут. «Из-за отмены рейсов Air Anka и пересадки на другую авиакомпанию нам сдвинули дату вылета из Сочи в Анталью на 2 дня вперед.</h2>
+  <p class="body">Должны были отправиться 1 июня утром, теперь улетим на “ИрАэро” 2-го числа поздно вечером. Получается, что 2 дня из восьми пропадут. Конечно, ожидаем компенсации за потерянный отдых. Но если предложат дополнительные дни проживания в этом отеле, выбрали бы такой вариант. Просто любим эту гостиницу, часто сюда ездим».
+
+Туристы могут требовать соразмерного уменьшения цены турпродукта и возврата средств за неоказанные услуги, напомнили юристы. Но единой методики расчета нет – туроператоры чаще всего определяют сумму возврата исходя из внутренней калькуляции. Подробнее написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">07</span>
+  <h2>В Госдуме предложили ввести социальные налоговые вычеты за покупку туров по России.</h2>
+  <p class="body">С такой инициативой выступил заместитель председателя комитета по бюджету и налогам Каплан Панеш. 
+
+Он предложил установить предельную сумму затрат на поездку в размере 250 тыс. руб. на каждого работающего члена семьи и ставку возврата – 13%. При этом максимальная компенсация, по мнению депутата, не должна превышать 32,5 тыс. руб. на человека и 65 тыс. на семью из двух работающих родителей. Подробнее написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">08</span>
+  <h2>В Сочи сегодня День города.</h2>
+  <p class="body">188 лет. По этому случаю приготовили огромное хачапури и рекордную порцию мидий. Но погода дрянь – холод, дождь и даже снег, и туристы ищут места потеплее. Кто-то рванул в аквапарк и бассейн, другие по музеям. Есть и те, кто просто скучает в номере с кофе и клубникой. Одно радует: с понедельника лето все-таки начнется – обещают +20 по Цельсию. Подробнее написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">09</span>
+  <h2>«Я находила домики даже за 115 тыс.</h2>
+  <p class="body">в сутки». Туристка поделилась калькуляцией своих расходов в Суздале за два дня. За это время пара потратила 200 тысяч рублей. 
+
+Помимо проживания – 22 тыс. в сутки в одной гостинице, и 40 тыс. – в другой, в списке есть другие дорогостоящие пункты. Например, аренда костюмов и фотосессия – 25 тыс. руб., баня вместе с парениями – 47 тыс. в сумме, чаепитие на берегу реки. Как считаете, отдых стоил таких денег?
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">10</span>
+  <h2>Власти Таиланда запустили приложение для оформления карты прибытия Thailand Digital Arrival Card (TDAC).</h2>
+  <p class="body">Сервис позволяет иностранным туристам заранее, перед въездом, заполнить данные. При этом время прохождения иммиграционного контроля сократится до 1–3 минут.
+
+В будущем через THIM станут доступны другие услуги, например подача заявления на продление визы и уведомление о месте проживания. Подробнее написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">11</span>
+  <h2>В Европу из Петербурга этим летом можно улететь относительно дешево.</h2>
+  <p class="body">В системах бронирования появились билеты в Италию, Австрию и Германию на рейсах AJet с пересадкой в Турции. Самый бюджетный вариант – Вена: билет в одну сторону на 6 июля стоит 12,8 тыс. руб. Правда, лететь придется 14 часов и только с небольшим рюкзаком.
+
+Места на рейсах в Рим обойдутся в 36 тыс. руб. в обе стороны, во Франкфурт – в 30 тыс. Туристы с шенгеном могут использовать такие маршруты как недорогую альтернативу более удобным вылетам Turkish Airlines, которые стоят заметно дороже. Подробнее о ценах написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">12</span>
+  <h2>В Стамбуле туристический апокалипсис.</h2>
+  <p class="body">В город одновременно приехали поклонники Канье Уэста, а также тысячи людей, решивших отметить здесь Курбан-байрам.
+
+Концерт рэпера состоится сегодня. Из-за того, что он выпал на мусульманский праздник, улицы в центре запружены народом, к достопримечательностям огромные очереди, а цены в отелях подскочили.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">13</span>
+  <h2>Под занавес высокого сезона подешевели туры в Египет.</h2>
+  <p class="body">В частности, варианты с вылетом из Москвы 14–16 июня можно найти по цене чуть больше 50 тыс. руб. на человека. Так, 6 ночей в Swiss Heaven Sharming Inn 4* c 14 июня по системе «все включено» обойдутся в 107 тыс. руб. на двоих, а в Sharm Holiday 4*, расположенном недалеко от богатой на развлечения бухты Наама Бэй, 108 тыс. руб. Отдых в статусном Rixos Radamis Sharm El Sheikh 5* будет стоить в июне 182 тыс. – меньше 100 тыс. руб. на одного туриста. Подробнее написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">14</span>
+  <h2>В системах бронирования нашли для вас недорогие билеты в Стамбул.</h2>
+  <p class="body">Например, 8 июня можно улететь из Сочи рейсами «Уральских авиалиний» или «Азимута» всего за 6 тыс. руб. в одну сторону. С багажом стоимость вырастет до 8–9 тыс. Перелет туда-обратно на самолетах «Азимута» с 9 по 16 июня обойдется в 13 тыс. руб., а с чемоданом – от 19 тыс. 
+
+Из Москвы цены выше: минимальный round trip на июнь у «Победы» стоит 27 тыс. руб. без багажа. Подробнее написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">15</span>
+  <h2>Вчера было много новостей по поводу замен рейсов турецких авиакомпаний, которые не…</h2>
+  <p class="body">состоялись из-за отсутствия допусков от Росавиации – мы собрали все самое главное в статье на ТурДоме.
+
+Здесь перескажем вкратце: заказчику рейсов Air Anka туроператору Anex удалось получить разрешения на полеты из регионов на Turkish Airlines и Corendon Airlines. «Интурист» задействовал Southwind и работает над тем, чтобы обеспечить свои региональные программы перевозкой. 
+
+Пока нет информации от Tailwind Airlines, которая должна была выполнять перелеты из четырех городов. Что не мешает нам надеяться на благосклонность Росавиации к туристам, которые рассчитывали напрямую полететь с детишками к морю.   
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">16</span>
+  <h2>Не все так плохо у авиабизнеса — вчера пресс-служба нацперевозчика сообщила: совет…</h2>
+  <p class="body">директоров «Аэрофлота» рекомендовал предстоящему годовому Общему собранию акционеров утвердить выплату дивидендов за 2025 год. Размер выплаты — 21,0 млрд руб., что составляет 5,29 руб. на одну обыкновенную именную акцию. Годовое заседание Общего собрания акционеров ПАО «Аэрофлот» состоится 29 июня 2026 года.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">17</span>
+  <h2>В Fun&amp;Sun нам подтвердили информацию от подписчика Olga Olga о том, что…</h2>
+  <p class="body">туристов с отмененных рейсов Tailwind из Астрахани пересадили на самолеты «Уральских авиалиний». U6 3579 вылетит сегодня в Анталью в 14:00. 
+
+О других городах пока данных нет.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<div class="ch-header"><span class="ch-name">@atorus</span><span class="ch-count">6 новостей</span></div>
+<article class="card">
+  <span class="card-num">18</span>
+  <h2>🏆 Представляем вам победителей le’TO 2026 Вчера на Национальной туристической медиапремии le’TO…</h2>
+  <p class="body">были объявлены и награждены победители. А мы начинаем рассказывать о них подробнее.
+
+Первые номинации – для туроператоров. Победителями стали:
+
+«Медиалидер года» – FUN&amp;SUN
+Награда вручается самому цитируемому и упоминаемому в СМИ туроператорскому бренду.
+
+«Медиапрорыв года» – Corona Travel
+Победителем стала компания, показавшая самый заметный рост уровня публичности в СМИ.
+
+«Лучший телеграм-канал туроператора» – FUN&amp;SUN
+Эта номинация отмечает самый полезный, вовлекающий и клиентоориентированный канал туроператора.
+
+«Визуальный креатив года» – «Русский Экспресс»
+Награда вручена за лучший ролик туроператора по результатам открытого голосования на ресурсах АТОР-Медиа.
+
+Специальная номинация АТОР-Медиа – PEGAS Touristik
+Этой наградой АТОР-Медиа отметила одного из своих партнеров за успешное конструктивное взаимодействие в области маркетинга и рекламы.
+
+Поздравляем победителей премии le’TO!
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">19</span>
+  <h2>🏆 Представляем победителей le’TO 2026 в номинациях для СМИ Продолжаем рассказывать о…</h2>
+  <p class="body">лауреатах Национальной туристической медиапремии le’TO.
+
+Следующая категория – средства массовой информации. Здесь победителей определяли по медиааналитике АТОР-Медиа и партнеров: учитывались публикации о туристическом рынке, внутреннем, въездном и выездном туризме.
+
+«Первый федеральный» – ТАСС, Анастасия Шинкеева
+Победитель в номинации для федеральных СМИ – лидер по количеству уникальных материалов о туристическом рынке среди ТОП-30 федеральных изданий.
+
+«Первый региональный» – РИАМО, Елена Богдашкина
+Награда вручена региональному СМИ – лидеру по количеству материалов о туристическом рынке среди ТОП-30 региональных изданий.
+
+«Первый по России» – «Российская газета», Ольга Бухарова
+Победитель в номинации за лидерство по количеству публикаций о внутреннем и въездном туризме в России.
+
+«Первый международный» – РИА Новости, Карина Базюк
+Награда вручена за лидерство по количеству публикаций о выездном туризме и зарубежных туристических направлениях – аналитике, новостях и обзорах.
+
+Поздравляем победителей премии le’TO!
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">20</span>
+  <h2>🏆 Представляем победителей le’TO в специальных и новых номинациях Продолжаем рассказывать о…</h2>
+  <p class="body">лауреатах Национальной туристической медиапремии le’TO. Вчера на церемонии были вручены не только отраслевые и медийные награды, но и специальные номинации.
+
+«Видеоблогер года» – проект «Своим Ходом» Виталия и Елизаветы Ичиных
+Новая номинация 2026 года отмечает самый яркий и качественный тревел-блог. Победителя выбирали по итогам открытого голосования на ресурсах АТОР-Медиа.
+
+«Лучшее PR-агентство по продвижению туризма» – Travel Media
+Награда вручена за активную и эффективную работу по продвижению страны или региона на российском туристическом рынке.
+
+«RUSSPASS Журнал. Россия в деталях» – Виталий Калашников
+Победителем стал автор яркого, креативного и вдохновляющего материала о путешествиях, посвященного Тобольску.
+
+«За лучшее продвижение продукта туроператора в видеоблоге» – Ника Вайпер
+Специальная номинация FUN&amp;SUN отметила работу с туристическим продуктом в формате видеоблога.
+
+Поздравляем победителей премии le’TO!
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">21</span>
+  <h2>💴 В АТОР назвали средние чеки на отдых в России летом 2026…</h2>
+  <p class="body">года
+
+Рост цен на внутренний отдых этим летом замедлился. По оценке АТОР, в среднем по рынку повышение сейчас составляет 4-6% – это примерно в два раза меньше, чем в 2025 году.
+
+Но по направлениям картина разная.
+
+Средние чеки летних туров по России без перелета:
+
+Краснодарский край – 100–130 тыс. руб. на двоих за 9 ночей
+В 2025 году: 100–127 тыс. руб.
+
+Крым – 117–150 тыс. руб. на двоих за 10 ночей
+В 2025 году: 100–120 тыс. руб.
+
+Санкт-Петербург – 40–60 тыс. руб. на двоих за 4–5 ночей
+В 2025 году: 40–55 тыс. руб.
+
+Кавказские Минеральные Воды – 140–150 тыс. руб. на двоих за 10 ночей
+В 2025 году: 123–130 тыс. руб.
+
+Подмосковье – 95–125 тыс. руб. на двоих за 7 ночей
+В 2025 году: 90–122 тыс. руб.
+
+Москва – 25–30 тыс. руб. на двоих за 4 ночи
+В 2025 году: 23–27 тыс. руб.
+
+Сильнее всего в топе подорожали Крым и Кавминводы. В Краснодарском крае средний чек почти не изменился: на рынок влияют цены Анапы на уровне прошлого года, спецпредложения отелей Сочи и выбор туристами более коротких или более бюджетных туров.
+
+Еще один заметный тренд – экономия на дороге. Туристы все чаще выбирают личный автомобиль для близких поездок вместо перелета.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">22</span>
+  <h2>Какое у вас самое яркое впечатления из всех путешествий?</h2>
+  <p class="body">Пишите в комментариях 👇🏻
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">23</span>
+  <h2>🏆 Вчера в Radisson Collection Hotel 5* в Москве прошла четвертая Национальная туристическая медиапремия le’TO.</h2>
+  <p class="body">Премия, учрежденная АТОР, уже стала отраслевым знаком качества – она отмечает российских туроператоров за продвижение организованного туризма, а СМИ – за качественные материалы о туризме и турбизнесе.
+
+В этом году le’TO поддержали:
+
+генеральный партнер – ПАКС;
+титульный партнер – FUN&amp;SUN;
+аналитический партнер – «Медиалогия»;
+партнеры – Coral Travel, TEZ Tour, курорт «Архыз», Telwel и выставка-форум ОТДЫХ Leisure;
+ключевой партнер – RUSSPASS Журнал.
+
+Подарки для финалистов и победителей также предоставили туроператоры «Водоход», «Мультитур», China Travel, ICS Travel Group, «Скантур» и страховая компания Евроинс Туристическое Страхование.
+
+Скоро расскажем обо всех победителях, а пока – немного атмосферы с вечера в фотографиях.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+</div>
 <footer>
-  Tourism Digest <span>•</span> @tourdom <span>•</span> @atorus <span>•</span> Сгенерировано автоматически
+  Tourism Digest &bull;
+  <a href="https://t.me/tourdom">@tourdom</a> &bull;
+  <a href="https://t.me/atorus">@atorus</a> &bull;
+  Сгенерировано автоматически
 </footer>
-
-<script>
-  const bar = document.getElementById('progress-bar');
-  function updateProgress() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    bar.style.width = pct + '%';
-  }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-</script>
-
 </body>
 </html>
