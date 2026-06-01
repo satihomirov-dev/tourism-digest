@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tourism Digest — 31 мая 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --progress-color: #58a6ff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0d0d0d;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* Reading progress bar */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--progress-color);
+    z-index: 9999;
+    transition: width 0.1s linear;
+  }
+
+  /* Masthead */
+  .masthead {
+    min-height: 100vh;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 8rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(88,166,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .masthead-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 12vw, 10rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .masthead-rule {
+    width: clamp(60px, 15vw, 160px);
+    height: 2px;
+    background: #58a6ff;
+    margin: 2rem auto;
+  }
+
+  .masthead-date {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 3vw, 1.6rem);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* Quiet day spread */
+  .quiet-day {
+    min-height: 100vh;
+    background: #080c10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 8rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quiet-day::before {
+    content: '◦';
+    position: absolute;
+    font-size: 60vw;
+    color: rgba(255,255,255,0.015);
+    font-family: 'Fraunces', serif;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .quiet-day-label {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(88,166,255,0.7);
+    margin-bottom: 2rem;
+  }
+
+  .quiet-day-headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 800;
+    font-style: italic;
+    line-height: 1;
+    color: #e8f4f8;
+    margin-bottom: 2.5rem;
+  }
+
+  .quiet-day-body {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(232,244,248,0.5);
+    max-width: 540px;
+  }
+
+  .quiet-day-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(88,166,255,0.4);
+    margin: 2.5rem auto;
+  }
+
+  /* Footer */
+  footer {
+    background: #000;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    padding: 3rem clamp(1.5rem, 5vw, 4rem);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  footer span {
+    color: rgba(88,166,255,0.5);
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- Masthead -->
+<section class="masthead">
+  <h1 class="masthead-title">Tourism<br>Digest</h1>
+  <div class="masthead-rule"></div>
+  <p class="masthead-date">31 мая 2026</p>
+</section>
+
+<!-- Quiet day -->
+<section class="quiet-day">
+  <p class="quiet-day-label">Выпуск от 31 мая 2026</p>
+  <h2 class="quiet-day-headline">Тихий день</h2>
+  <div class="quiet-day-divider"></div>
+  <p class="quiet-day-body">
+    Сегодня каналы <span style="color:rgba(88,166,255,0.7)">@tourdom</span> и <span style="color:rgba(88,166,255,0.7)">@atorus</span> не опубликовали новостей, которые попали бы в дайджест.<br><br>
+    Возвращайтесь завтра — туристическая индустрия не стоит на месте.
+  </p>
+</section>
+
+<!-- Footer -->
+<footer>
+  Tourism Digest &nbsp;•&nbsp; <span>@tourdom</span> &nbsp;•&nbsp; <span>@atorus</span> &nbsp;•&nbsp; Сгенерировано автоматически
+</footer>
+
+<script>
+  const bar = document.getElementById('progress-bar');
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+</script>
+
+</body>
+</html>
