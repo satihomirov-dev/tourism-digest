@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tourism Digest — 3 июня 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --progress-color: #58a6ff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* Reading progress bar */
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--progress-color);
+    z-index: 9999;
+    transition: width 0.1s linear;
+  }
+
+  /* Quiet day spread */
+  .quiet-day {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #080c10;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 8rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quiet-day::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 30%, rgba(88, 166, 255, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 70% 70%, rgba(88, 166, 255, 0.03) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .quiet-day .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 2.5rem;
+  }
+
+  .quiet-day .headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(5rem, 18vw, 14rem);
+    font-weight: 900;
+    line-height: 0.9;
+    color: rgba(255,255,255,0.07);
+    letter-spacing: -0.03em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .quiet-day .main-text {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.15;
+    color: rgba(255,255,255,0.88);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 2rem;
+  }
+
+  .quiet-day .sub-text {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.04em;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 3rem;
+  }
+
+  .quiet-day .date-badge {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(88, 166, 255, 0.7);
+    border: 1px solid rgba(88, 166, 255, 0.2);
+    padding: 0.5em 1.4em;
+    border-radius: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Footer */
+  footer {
+    background: #000;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    padding: 2.5rem clamp(1rem, 4vw, 4rem);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  footer span {
+    color: rgba(88, 166, 255, 0.6);
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<section class="quiet-day">
+  <div class="eyebrow">Tourism Digest &nbsp;·&nbsp; 3 июня 2026</div>
+  <div class="headline" aria-hidden="true">Тишина</div>
+  <div class="main-text">Тихий день</div>
+  <div class="sub-text">Новостей за вчера не поступало</div>
+  <div class="date-badge">3 июня 2026</div>
+</section>
+
+<footer>
+  Tourism Digest &nbsp;·&nbsp; <span>@tourdom</span> &nbsp;·&nbsp; <span>@atorus</span> &nbsp;·&nbsp; Сгенерировано автоматически
+</footer>
+
+<script>
+  const bar = document.getElementById('progress-bar');
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = docHeight > 0 ? (scrollTop / docHeight * 100) + '%' : '100%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+</script>
+</body>
+</html>
