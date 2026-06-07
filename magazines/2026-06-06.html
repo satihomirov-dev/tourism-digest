@@ -2,210 +2,397 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tourism Digest — 6 июня 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --progress-color: #58a6ff;
-  }
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --ink: #1c1c1e;
+  --ink-2: #48484a;
+  --ink-3: #8e8e93;
+  --accent: #1c1c1e;
+  --rule: #e0dfd9;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
 
-  html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+#bar {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--ink); width: 0%; z-index: 999;
+  transition: width .1s linear;
+}
 
-  /* Reading progress bar */
-  #progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    width: 0%;
-    background: var(--progress-color);
-    z-index: 9999;
-    transition: width 0.1s linear;
-  }
+/* MASTHEAD */
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.masthead h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.masthead .date-ru {
+  margin-top: .6rem;
+  font-size: .85rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+.masthead .total {
+  margin-top: .4rem;
+  font-size: .78rem;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .08em;
+}
 
-  /* Masthead */
-  .masthead {
-    min-height: 100vh;
-    background: #000;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+/* LAYOUT */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, #1a1a2e 0%, #000 70%);
-    z-index: 0;
-  }
+/* CHANNEL HEADER */
+.ch-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 2.5rem 0 1rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 0;
+}
+.ch-name {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.ch-count {
+  font-size: .78rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
 
-  .masthead-content {
-    position: relative;
-    z-index: 1;
-  }
+/* CARD */
+.card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 1.25rem;
+  row-gap: .4rem;
+}
+.card-num {
+  font-family: var(--font-serif);
+  font-size: .8rem;
+  color: var(--ink-3);
+  padding-top: .35rem;
+  font-weight: 300;
+  font-style: italic;
+}
+.card h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  grid-column: 2;
+}
+.card .body {
+  font-size: .95rem;
+  color: var(--ink-2);
+  line-height: 1.65;
+  grid-column: 2;
+}
+.card-source {
+  grid-column: 2;
+  font-size: .72rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .25rem;
+}
 
-  .masthead-eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
-    font-weight: 500;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 1.5rem;
-  }
+/* EMPTY STATE */
+.empty {
+  padding: 5rem 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+}
 
-  .masthead-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(3.5rem, 12vw, 10rem);
-    font-weight: 900;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 2rem;
-  }
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--ink-3);
+  letter-spacing: .06em;
+  background: var(--bg);
+}
+footer a { color: var(--ink-2); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
 
-  .masthead-date {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    font-weight: 300;
-    font-style: italic;
-    color: #aaa;
-  }
-
-  .masthead-line {
-    width: 60px;
-    height: 1px;
-    background: #444;
-    margin: 2rem auto;
-  }
-
-  /* Quiet day spread */
-  .quiet-day {
-    min-height: 100vh;
-    background: #0d0d0d;
-    color: #e0e0e0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    text-align: center;
-  }
-
-  .quiet-day-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(4rem, 14vw, 12rem);
-    font-weight: 900;
-    font-style: italic;
-    color: #222;
-    line-height: 1;
-    margin-bottom: 3rem;
-    text-shadow: 0 0 80px rgba(255,255,255,0.05);
-  }
-
-  .quiet-day-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.4rem);
-    font-weight: 300;
-    color: #666;
-    letter-spacing: 0.1em;
-    max-width: 500px;
-  }
-
-  .quiet-day-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #333;
-    margin: 3rem auto;
-  }
-
-  /* Footer */
-  footer {
-    background: #000;
-    color: #555;
-    text-align: center;
-    padding: 3rem clamp(2rem, 6vw, 6rem);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    border-top: 1px solid #111;
-  }
-
-  footer span {
-    color: #444;
-  }
-
-  footer a {
-    color: #666;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  footer a:hover {
-    color: #aaa;
-  }
+@media (max-width: 480px) {
+  .card { grid-template-columns: 1.5rem 1fr; column-gap: .75rem; }
+}
 </style>
 </head>
 <body>
+<div id="bar"></div>
+<script>window.addEventListener('scroll',()=>{const d=document.documentElement;document.getElementById('bar').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'})</script>
+<header class="masthead">
+  <h1>Tourism Digest</h1>
+  <div class="date-ru">6 июня 2026</div>
+  <div class="total">19 новостей &bull; @tourdom &bull; @atorus</div>
+</header>
+<div class="container">
+<div class="ch-header"><span class="ch-name">@tourdom</span><span class="ch-count">14 новостей</span></div>
+<article class="card">
+  <span class="card-num">01</span>
+  <h2>Доброе утро! Вода в подмосковных реках и озёрах ещё не прогрелась, но погодка прекрасная и некоторые уже открыли сезон.</h2>
+  <p class="body">А как у вас? Где проводите эту субботу? Пишите в комментариях.
 
-<div id="progress-bar"></div>
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">02</span>
+  <h2>Аэропорт Пулково с утра временно не отправляет и не принимает самолеты.</h2>
+  <p class="body">В связи с этим более чем на два часа задерживаются 17 рейсов. На запасные аэродромы направлены 13 бортов. «Мы ожидаем открытия воздушного пространства и оперативно приступим к восстановлению расписания», — передают из пресс службы. 
 
-<!-- Masthead -->
-<section class="masthead">
-  <div class="masthead-content">
-    <p class="masthead-eyebrow">Ежедневный дайджест туристической отрасли</p>
-    <h1 class="masthead-title">TOURISM<br>DIGEST</h1>
-    <div class="masthead-line"></div>
-    <p class="masthead-date">6 июня 2026</p>
-  </div>
-</section>
+Губернатор Беглов призвал жителей Санкт-Петербурга не выходить на улицу из-за угрозы атак БПЛА. В 9:55 утра беспилотная опасность была отменена, ограничения на прием и отправку рейсов в аэропорту сняты.
 
-<!-- Quiet Day -->
-<section class="quiet-day">
-  <h2 class="quiet-day-title">Тихий<br>день</h2>
-  <div class="quiet-day-dot"></div>
-  <p class="quiet-day-subtitle">Вчера в каналах @tourdom и @atorus не было публикаций. Следующий выпуск — завтра.</p>
-</section>
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">03</span>
+  <h2>Еще больше задержек из-за ночного «ковра» в аэропорту Сочи – более 50 на вылет и 40 на прилет.</h2>
+  <p class="body">Некоторые рейсы не могут отправиться со вчерашнего дня, например, 5N 545 «Смартавиа» в Санкт-Петербург и 1821F «ИрАэро» в Анталью – опаздывают на 20 и 14 часов соответственно. На запасных аэродромах остаются 4 самолета, летевших в Сочи. Пассажиры 9 рейсов размещены в гостиницах. 
 
-<!-- Footer -->
+Как рассказали в аэропорту, обстановка в терминале спокойная: «На период нахождения пассажиров в аэровокзальном комплексе мы делаем все возможное, чтобы обеспечить комфортное и безопасное ожидание».
+
+Видео – аэропорт Сочи
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">04</span>
+  <h2>Один из популярных отелей Текировы, Mövenpick Resort Antalya Tekirova, так и не открылся к сезону.</h2>
+  <p class="body">Как рассказали очевидцы, отдыхающие по соседству, огромный объект пустует, никаких признаков подготовки к приему гостей не видно.
+
+Причина в том, что обе попытки продать отель через аукцион провалились. После изъятия у структур предпринимателя Исмаила Лепиева, Movenpick Tekirova выставили на торги. Стартовая цена составляла почти 6 млрд турецких лир, однако покупателей не нашлось. Турецкий госфонд, впрочем не оставляет попыток найти хотя бы арендатора или управляющую компанию.
+
+Кто был в этом отеле? Чем он вам запомнился? 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">05</span>
+  <h2>Нилетто сегодня не споет.</h2>
+  <p class="body">Организаторы отменили фестиваль «Паруса Кронштадта», который должен был пройти 6 и 7 июня в историческом парке «Остров фортов». Об этом рассказали в Комитете по туризму Санкт-Петербурга.
+
+Интерес был большой, во всяком случае регистрацию на интерактивные экскурсии закрыли заранее. Кроме экскурсий и выступления Нилетто планировались танцы, спектакли, квизы, мастер-классы, DJ-сеты и прочие активности. 
+
+О причинах отмены не сообщается, но очевидно, что это сделано в целях безопасности. Ранее из-за налета БПЛА закрывались выезд и въезд в Кронштадт. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">06</span>
+  <h2>«Всё включено» на Черном море дешевле 20 тыс.</h2>
+  <p class="body">руб. на человека? Да, такие варианты тоже есть.
+
+Мы проверили актуальные цены на туры без перелета с заездом 13 июня на 7 ночей. Самое выгодное предложение нашлось в Витязево под Анапой: отдых в отеле 3* с системой all inclusive обойдется от 38 тыс. руб. на двоих, то есть всего от 19 тыс. на человека.
+
+В Крыму минимальный ценник выше – от 48 тыс. руб. за двоих за неделю. В Сочи бюджетные варианты «всё включено» стартуют примерно от 56 тыс. руб. на двоих.
+
+Впрочем, экономия имеет свои причины. В Анапе спрос по-прежнему сдерживает история с разливом мазута, а в Крыму туристов беспокоит ситуация с автомобильным топливом.
+
+Тем, кто рассчитывает на отдых в премиальном сегменте, стоит готовиться к совсем другим расходам: в отелях 5* цены выше в разы и могут достигать нескольких сотен тысяч рублей за неделю. Более того, в некоторых самых востребованных гостиницах свободных мест до конца июня уже нет. Подробнее читайте на ТурДоме. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">07</span>
+  <h2>«Что с ТурДомом?» – спрашивают подписчики, так как у многих сегодня возникли трудности с доступом к сайту.</h2>
+  <p class="body">Сейчас на «ТурДоме» идут технические работы, о сроках их завершения сообщим дополнительно. А пока будем делиться новостями здесь, на «Крыше». Кстати, как у вас сегодня работает телеграм?
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">08</span>
+  <h2>«Больше ни ногой в авиакомпании, которые летают через противников».</h2>
+  <p class="body">Вынужденная посадка в Хельсинки рейса Turkish Airlines, следовавшего из Стамбула в Питер, вызвало настоящую панику у одной из россиянок. Она подумала, что вот-вот на борту появятся финские правоохранители, начнут задавать вопросы и проверят ее телефон, где «радикально антизападная лента». 
+
+Переживания, впрочем, были напрасны. Во-первых, в самолет никто из спецслужб не поднялся (да и не должны были по идее), во-вторых, никто ничего не проверял, в-третьих, самолет оперативно вылетел обратно в Стамбул.
+
+Как рассказала редакции знакомая с ситуацией турагент, скорее всего, туристка улетит следующим рейсом или через один – в Питер отправляется много. «В крайнем случае дадут отель и отправят завтра. Схема отработанная: в марте-апреле из Казани такое бывало часто», – добавила наша собеседница.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">09</span>
+  <h2>Основатель Wildberries Татьяна Ким довольна тем как развивается проект создания отелей под маркой WB Travel в Турции и Египте.</h2>
+  <p class="body">В интервью РБК она отозвалась об этом начинании очень позитивно: «приятно, когда видишь, что то, что ты планировала, оно срабатывает».
+«Отели раскупаются мгновенно,потому что доверие к бренду очень сильное»,— сказала Татьяна Ким со ссылкой на руководителя Тараса Демуру. А ещё объяснила, что под плашку WB travel «берут не всех» и анонсировала аналогичную историю с отелями и в России: их появится порядка сотни в разных регионах.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">10</span>
+  <h2>В Минкурортов Крыма подтвердили готовность помочь отдыхающим с бензином, но уточнили важный…</h2>
+  <p class="body">момент: речь прежде всего о туристах, которые уже приехали на полуостров до начала топливных сложностей и сейчас могут столкнуться с проблемами на обратном пути. Для таких гостей через официальные средства размещения собирают заявки на получение талонов на топливо.
+
+Тем, кто только планирует автопутешествие в Крым, рекомендуют рассчитывать в первую очередь на собственные ресурсы и брать с собой максимально разрешенный запас бензина – до 100 л на автомобиль. По оценке ведомства, этого должно хватить и на поездки по полуострову, и на дорогу до материковых АЗС.
+
+Подробнее читайте на ТурДоме. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">11</span>
+  <h2>Нам пишут. «Рейс SU 1110 Москва – Сочи.</h2>
+  <p class="body">Должны были вылететь из Шереметьево в 04:55, вылетели в 09:50, а в 15:30 приземлились в Ставрополе. Туристы просидели достаточно долго в самолете, сейчас их выгрузили, заселяют в гостиницу, рейс назначен на завтра на 11:45», – сообщил редакции турагент. Проблема, по его словам, еще и в том, что не выдают багаж: «Туристы с годовалым ребенком, и все питание находится в багаже, а ничего другого ребенок не ест. Родители просто в шоке».
+
+Причиной незапланированной посадки стали ограничения, которые действовали в аэропорту Сочи с 15:19 почти до 19 часов. В настоящее время задерживаются десятки рейсов на прилет и вылет. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">12</span>
+  <h2>Наши специалисты выяснили причину перебоев с доступом к ТурДому.</h2>
+  <p class="body">«Сегодня производилось большое количество тестов по аналогичным проблемам, исходя из них мы можем сделать вывод, что работает фильтрация на стороне ТСПУ», — сообщили в техподдержке хостинга.
+
+Речь о «технических средствах противодействия угрозам», которые применяются у провайдеров для защиты российского сегмента интернета от внешних угроз.
+
+Мы работаем над тем, чтобы вытащить ТурДом из фильтров. Сейчас большинство провайдеров уже показывают сайт. Проверьте!
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">13</span>
+  <h2>Надежды на отмену «бана» на продажу туров в ОАЭ в ходе ПМЭФ не оправдались.</h2>
+  <p class="body">Вчера глава Минэкономразвития Максим Решетников встречался с арабским коллегой, Абдуллой бин Тук Аль-Марри. Однако волнующий турбизнес вопрос там даже не поднимался – во всяком случае в пресс-релизе говорится только о переговорах по безналичным расчетам в ходе турпоездок. Без каких-либо подробностей.
+
+Отмену рекомендаций воздержаться от поездок в ОАЭ, Саудовскую Аравию и другие ближневосточные страны ждали на ПМЭФ не случайно. На форум приехали многочисленные делегации и ответный дружественный жест был бы логичным. Но и теперь еще не всё потеряно: турбизнес собирается лоббировать отмену на предстоящем форуме «Путешествуй». Подробнее написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">14</span>
+  <h2>Внимательно изучили ваши комментарии по поводу доступа к «Госуслугам» и прочим российским сервисам из-за границы.</h2>
+  <p class="body">Несмотря на то, что есть позитивные отзывы из серии «все работает без проблем», сложности существуют – и в Турции, и в других странах. При этом универсального решения нет. Некоторым туристам попасть на отечественные платформы помогает роуминг по родной симке (но это дорого), другим – VPN c российским IP-адресом. Однако стопроцентного результата не дает ни первое, ни второе – может не сработать. Подробнее написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<div class="ch-header"><span class="ch-name">@atorus</span><span class="ch-count">5 новостей</span></div>
+<article class="card">
+  <span class="card-num">15</span>
+  <h2>⚠️ Фестиваль «Паруса Кронштадта» отменен Фестиваль «Паруса Кронштадта», который должен был пройти…</h2>
+  <p class="body">6-7 июня на территории «Острова фортов», в этом году не состоится.
+
+Об этом сообщили в Комитете по развитию туризма Санкт-Петербурга. Ранее вход на площадку был временно закрыт в связи с ситуацией в Кронштадте. Сейчас принято решение об отмене мероприятия.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">16</span>
+  <h2>⛽️ Власти Крыма открыли горячую линию для туристов из-за ситуации с топливом…</h2>
+  <p class="body">После введения ограничений на продажу бензина в Крыму для туристов, испытывающих сложности с выездом с полуострова, заработала специальная горячая линия: 8 800 511 80 18.
+
+По словам властей республики, за работу линии отвечает заместитель министра транспорта Крыма Сергей Гулюк. Обращаться можно по вопросам, связанным с обеспечением выезда за пределы региона.
+
+Для туристов планируют определить специальные автозаправочные комплексы в разных частях полуострова — на юге, западном побережье и в центральной части Крыма. Там гости региона смогут заправить автомобили и продолжить путь домой.
+
+Напомним, ранее в Крыму временно запретили продажу бензина за наличные, а также приостановили свободную выдачу топливных талонов. По уже приобретенным талонам действует ограничение — не более 20 литров топлива в одни руки.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">17</span>
+  <h2>🌴 Тропический остров без толп туристов: новое направление в Азии набирает популярность…</h2>
+  <p class="body">Пока большинство путешественников выбирают популярные курорты Юго-Восточной Азии, все больше внимания привлекает малайзийский штат Саравак на острове Борнео. Его столица — Кучинг — предлагает совсем другой формат отдыха: без шумных курортов и переполненных пляжей.
+
+Здесь туристов ждут дикие джунгли, национальные парки, редкие животные, колониальная архитектура и богатая культура коренных народов острова.
+
+Одно из самых известных мест региона — национальный парк Бако, где можно увидеть знаменитых обезьян-носачей, лангуров и экзотические растения. А во время речных прогулок по мангровым зарослям путешественники наблюдают за дельфинами, крокодилами и тысячами светлячков.
+
+Не менее интересен и сам Кучинг. Город считается одним из самых чистых в Юго-Восточной Азии, славится необычной гастрономией, музеями и атмосферной набережной. В 2021 году он получил статус творческого города гастрономии ЮНЕСКО.
+
+Добраться до Кучинга можно через Куала-Лумпур: перелет до острова занимает около двух часов. Туроператоры отмечают растущий интерес россиян к этому направлению на фоне спроса на необычные маршруты и отдых вдали от массового туризма.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">18</span>
+  <h2>✈️ В Росавиации новое назначение Премьер-министр РФ Михаил Мишустин назначил Артема Кореняко…</h2>
+  <p class="body">заместителем руководителя Росавиации. Соответствующее распоряжение опубликовано на официальном портале правовой информации.
+
+До назначения Артем Кореняко занимал должность советника руководителя Росавиации.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">19</span>
+  <h2>✈️ Еще одна авиакомпания возвращает рейсы в Дубай Казахстанская Air Astana объявила…</h2>
+  <p class="body">о возобновлении полетов в Дубай из Алматы и Астаны после нескольких месяцев перерыва. Рейсы из Алматы стартуют 20 июня, из Астаны – 10 июля. 
+
+Маршруты будут выполняться через воздушное пространство Пакистана. В компании подчеркивают, что решение принято для обеспечения безопасности полетов.
+
+▪️ Из Алматы сначала будут летать два раза в неделю, а с 6 июля выйдут на ежедневное расписание.
+
+▪️ Из Астаны рейсы начнутся с трех частот в неделю, а с 3 августа также станут ежедневными.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+</div>
 <footer>
-  Tourism Digest &nbsp;•&nbsp; <a href="https://t.me/tourdom">@tourdom</a> &nbsp;•&nbsp; <a href="https://t.me/atorus">@atorus</a> &nbsp;•&nbsp; <span>Сгенерировано автоматически</span>
+  Tourism Digest &bull;
+  <a href="https://t.me/tourdom">@tourdom</a> &bull;
+  <a href="https://t.me/atorus">@atorus</a> &bull;
+  Сгенерировано автоматически
 </footer>
-
-<script>
-  const bar = document.getElementById('progress-bar');
-  function updateProgress() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    bar.style.width = pct + '%';
-  }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
-</script>
-
 </body>
 </html>
