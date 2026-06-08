@@ -2,232 +2,473 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tourism Digest — 7 июня 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --progress-color: #58a6ff;
-  }
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --ink: #1c1c1e;
+  --ink-2: #48484a;
+  --ink-3: #8e8e93;
+  --accent: #1c1c1e;
+  --rule: #e0dfd9;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
 
-  html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    background: #000;
-    color: #fff;
-    overflow-x: hidden;
-  }
+#bar {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--ink); width: 0%; z-index: 999;
+  transition: width .1s linear;
+}
 
-  /* Reading progress bar */
-  #progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    width: 0%;
-    background: var(--progress-color);
-    z-index: 9999;
-    transition: width 0.1s linear;
-  }
+/* MASTHEAD */
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.masthead h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.masthead .date-ru {
+  margin-top: .6rem;
+  font-size: .85rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+.masthead .total {
+  margin-top: .4rem;
+  font-size: .78rem;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .08em;
+}
 
-  /* Masthead */
-  .masthead {
-    min-height: 100vh;
-    background: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
+/* LAYOUT */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, #111 0%, #000 70%);
-    pointer-events: none;
-  }
+/* CHANNEL HEADER */
+.ch-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 2.5rem 0 1rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 0;
+}
+.ch-name {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.ch-count {
+  font-size: .78rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
 
-  .masthead-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(3rem, 12vw, 10rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    line-height: 0.9;
-    color: #fff;
-    position: relative;
-    z-index: 1;
-  }
+/* CARD */
+.card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 1.25rem;
+  row-gap: .4rem;
+}
+.card-num {
+  font-family: var(--font-serif);
+  font-size: .8rem;
+  color: var(--ink-3);
+  padding-top: .35rem;
+  font-weight: 300;
+  font-style: italic;
+}
+.card h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  grid-column: 2;
+}
+.card .body {
+  font-size: .95rem;
+  color: var(--ink-2);
+  line-height: 1.65;
+  grid-column: 2;
+}
+.card-source {
+  grid-column: 2;
+  font-size: .72rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .25rem;
+}
 
-  .masthead-rule {
-    width: clamp(4rem, 20vw, 12rem);
-    height: 2px;
-    background: #fff;
-    margin: 2rem auto;
-    position: relative;
-    z-index: 1;
-  }
+/* EMPTY STATE */
+.empty {
+  padding: 5rem 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+}
 
-  .masthead-date {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #888;
-    position: relative;
-    z-index: 1;
-  }
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--ink-3);
+  letter-spacing: .06em;
+  background: var(--bg);
+}
+footer a { color: var(--ink-2); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
 
-  /* Quiet day spread */
-  .quiet-day {
-    min-height: 100vh;
-    background: #0d0d0d;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .quiet-day::before {
-    content: '~';
-    position: absolute;
-    font-family: 'Fraunces', serif;
-    font-size: 40vw;
-    color: #111;
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .quiet-day-headline {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(3.5rem, 10vw, 8rem);
-    font-weight: 700;
-    font-style: italic;
-    line-height: 1.05;
-    color: #e8e8e8;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 2rem;
-  }
-
-  .quiet-day-body {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    font-weight: 300;
-    color: #666;
-    max-width: 48ch;
-    line-height: 1.8;
-    position: relative;
-    z-index: 1;
-  }
-
-  .quiet-day-channels {
-    margin-top: 3rem;
-    display: flex;
-    gap: 2rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .quiet-day-channels a {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    color: #444;
-    text-decoration: none;
-    text-transform: uppercase;
-    border-bottom: 1px solid #333;
-    padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-
-  .quiet-day-channels a:hover {
-    color: #888;
-    border-color: #666;
-  }
-
-  /* Footer */
-  footer {
-    background: #000;
-    color: #444;
-    text-align: center;
-    padding: 3rem clamp(2rem, 6vw, 6rem);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    border-top: 1px solid #111;
-  }
-
-  footer a {
-    color: #555;
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    color: #888;
-  }
+@media (max-width: 480px) {
+  .card { grid-template-columns: 1.5rem 1fr; column-gap: .75rem; }
+}
 </style>
 </head>
 <body>
+<div id="bar"></div>
+<script>window.addEventListener('scroll',()=>{const d=document.documentElement;document.getElementById('bar').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'})</script>
+<header class="masthead">
+  <h1>Tourism Digest</h1>
+  <div class="date-ru">7 июня 2026</div>
+  <div class="total">23 новостей &bull; @tourdom &bull; @atorus</div>
+</header>
+<div class="container">
+<div class="ch-header"><span class="ch-name">@tourdom</span><span class="ch-count">20 новостей</span></div>
+<article class="card">
+  <span class="card-num">01</span>
+  <h2>Самолет авиакомпании «Победа», летевший из Москвы, трижды пытался сесть в Сочи и…</h2>
+  <p class="body">дважды приземлился в других городах, по дороге покружив над несколькими аэропортами. В итоге на черноморский курорт пассажиры добрались на автобусе спустя почти сутки намеченного времени.
 
-<div id="progress-bar"></div>
+В общей сложности люди находились на борту около 11 часов. Они заявили, что с тех пор, как лайнеру впервые не разрешили посадку в Адлере, им давали только воду, а поесть они смогли лишь поздно вечером в аэропорту Минвод, когда их, наконец, выпустили из салона. 
 
-<!-- Masthead -->
-<section class="masthead">
-  <h1 class="masthead-title">TOURISM<br>DIGEST</h1>
-  <div class="masthead-rule"></div>
-  <p class="masthead-date">7 июня 2026</p>
-</section>
+Перевозчик утверждает, что обслуживал туристов в соответствии с федеральными авиационными правилами. А дополнительные компенсации не предусмотрены, пишет телеграм-канал «Осторожно, новости». Однако пассажиры намерены подать претензию 
+ 
+Между тем, аэропорт Сочи уже двое суток не может восстановить расписание: 44 сегодняшний рейса перенесены на понедельник. Самая большая задержка на данный момент – 36 часов. Подробнее написали на ТурДоме. 
 
-<!-- Quiet Day -->
-<section class="quiet-day">
-  <h2 class="quiet-day-headline">Тихий день</h2>
-  <p class="quiet-day-body">
-    Вчера в каналах @tourdom и @atorus не было новостей.<br>
-    Иногда тишина — тоже новость.
-  </p>
-  <div class="quiet-day-channels">
-    <a href="https://t.me/tourdom" target="_blank" rel="noopener">@tourdom</a>
-    <a href="https://t.me/atorus" target="_blank" rel="noopener">@atorus</a>
-  </div>
-</section>
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">02</span>
+  <h2>Конфликт на Ближнем Востоке снова обострился: Иран атаковал Израиль, выпустив по одним…</h2>
+  <p class="body">данным не менее восьми, по другим — не менее десяти баллистических ракет по северу страны.
 
-<!-- Footer -->
+В правительстве исламской республики заявили, что это было предупреждение, чтобы еврейское государство прекратило удары по Бейруту. Однако израильская пресса пишет, что Тель-Авив намерен жестко ответить на агрессию. Президент США Дональд Трамп сообщил, что позвонит Нетаньяху и потребует не атаковать Иран в ответ: «Мы очень близки к соглашению о прекращении войны. Я не хочу, чтобы это сорвало договоренности», - сказал он в интервью N12.
+
+Между тем, на фоне атаки Израиль закрыл аэропорт Бен-Гурион, а Катар и Иран — свое воздушное пространство. Ограничения на полеты ввели и в воздушном пространстве Сирии.
+
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">03</span>
+  <h2>Доброе утро! Сегодня Международный день сказок.</h2>
+  <p class="body">Праздник неофициальный, но отмечается в России и других странах как повод для популяризации чтения и сохранения традиций устного народного творчества. 
+
+Изначально слово «сказка» означало точное описание, достоверное объявление, объяснение или юридический документ. Существовали, например, ревизские сказки – именные списки населения, составлявшиеся во время переписи. А для вымысла и легенд использовали слова «баснь» или «байка». 
+
+Со временем под «сказками» стали понимать истории, которые сочиняли знатные особы, желая получить более эффектную запись в Степенной книге. 
+
+Ну а мы рассматриваем сказки, конечно же, с туристической стороны. Например, всегда было интересно: за тридевять земель в тридесятом царстве – это где? Поделитесь идеями в комментариях. 
+
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">04</span>
+  <h2>Туристы продолжают осваивать обновленный Ленинградский вокзал в Москве.</h2>
+  <p class="body">И далеко не всё здесь получает комплиментарные отзывы. Например, бизнес-зал один из посетителей, отельер Юнис Теймурханлы, назвал «главным разочарованием» после реконструкции. 
+
+По его оценкам, помещение сократили вдвое, и оно уже сейчас выглядит перегруженным. А еще не хватает уборных. Да и те, что есть, комфортными назвать не получилось. Подробнее написали на ТурДоме.
+
+А своими отзывами делитесь в комментариях.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">05</span>
+  <h2>В Севастополе начали заправлять автомобили по персональному QR-коду: сгенерировать его можно в специальном чат-боте в MАКС.</h2>
+  <p class="body">Об этом сообщил губернатор Михаил Развожаев. Новшество ввели пока на сети заправок ТЭС, где частникам больше не будут продавать топливо по талонам. По новым правилам заветный QR-код выдают через электронную очередь, норма – 20 литров на машину в неделю.
+
+Весь дневной лимит кодов на сегодня разобрали еще ночью буквально за пару часов после объявления о нововведении. Новая партия на завтра будет доступна только после 22:00.
+ 
+Тех, кому удалось получить заветную «картинку», предупредили: отпускать бензин по ним будут с 9 до 21 часа, можно приехать завтра и послезавтра. Еще одна хорошая новость: разрешено заливать топливо в канистру, если бензобак в машине уже пуст и на ней нельзя добраться до АЗС.
+
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">06</span>
+  <h2>Аэропорт Пулково возвращается в штатное расписание после вчерашнего сбоя.</h2>
+  <p class="body">Все субботние рейсы уже отправлены. У большинства сегодняшних задержки не превышают 4 часов. Но есть и серьезные отставания от графика.
+ 
+Например, N4-245/B2-2115 в Омск отложен на 12 часов, N4-307/B2-2137 в Казань – без малого на 13, а SU-2835 в Сочи – почти на 17 часов. Пассажирам рекомендуют отслеживать статус рейсов на онлайн-табло аэропорта, по объявлениям в терминале или узнавать по телефону кол-центра +7 (812) 324-30-00.
+ 
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">07</span>
+  <h2>А вот в Сочи ситуация сложнее: час назад там снова ввели «ковер», и задержки рейсов превышают уже 38 часов.</h2>
+  <p class="body">Например, WZ-1920 должен был улететь в Махачкалу еще в 21:45 пятницы, но отложен пока до 12:10 воскресенья. 
+
+Почти 35 часов придется ждать отправления SU-1779 в Шереметьево. Всего со вчерашнего дня отложено три десятка рейсов, треть из них – более чем на сутки. 
+
+Из тех, что должны вылетать сегодня, 10 перенесли на понедельник, 8 июня, у остальных отставание от графика достигает 16 часов. Подробнее написали на ТурДоме. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">08</span>
+  <h2>«Снимаю до десятка в день»: туристка заявила о нашествии клещей на турецком курорте.</h2>
+  <p class="body">Москвичка вместе со своими котами отдыхает в курортном городке Махмутлар в 12 км от центра Аланьи. Она снимает квартиру на первом этаже одного из местных жилых комплексов и регулярно выпускает четвероногих во двор. Обнаружив в своей кровати клеща, женщина решила, что его принес один из котов, и начала тщательно осматривать питомцев после прогулок на местном газоне. Она утверждает, что ежедневно находит по несколько насекомых, пишет Shot.
+ 
+На самом деле клещи активизировались в Турции еще в апреле – об этом сообщала местная пресса. Но на популярных курортах Антальи и провинции Мугла (где расположены Бодрум и Мармарис) риск укуса клеща невысок, так как парки и территории отелей обрабатываются от насекомых. О том, в каких туристических регионах действительно опасно, написали на ТурДоме. 
+ 
+ @tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">09</span>
+  <h2>Анапа снова в центре внимания властей, теперь уже все ресурсы подключены, чтобы…</h2>
+  <p class="body">донести до трудящихся мысль о безопасности отдыха в регионе и закрыть вопрос с мазутом.
+
+Вчера сразу два высокопоставленных чиновника высказались насчет качества пляжей Анапы – сначала вице-премьер Чернышенко заявил, что песок там чище, чем на Лазурном берегу Франции.
+
+Затем губернатор Краснодарского края Кондратьев, сославшись на тайского отельера, который недавно открыл гостиницу в Анапе, сообщил: «Там даже песок, о котором много говорили, они смотрели, и они сказали, что он не уступает песку, который в Таиланде». 
+
+Можно быть уверенными, что пляжам, одобренным Роспотребнадзором, до конца сезона никаких проблем не грозит. Единственный любопытный момент, который не можем не отметить, – импровизируя во время интервью, чиновники в качестве эталона приводят примеры зарубежных курортов – очевидно, из собственного опыта.
+
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">10</span>
+  <h2>Пока не можем лично удостовериться в высоком качестве песка в Анапе, компенсируем это видео нашего админа с пляжа в Кемере.</h2>
+  <p class="body">Здесь все как обычно. 
+
+Снято в отеле Nirvana Dolce Vita.
+ 
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">11</span>
+  <h2>Отчего бы не слетать?</h2>
+  <p class="body">Например в конце осени из Казани в Токио за 48 тыс. руб. 
+
+Заметили в системах онлайн-бронирования относительно недорогие билеты из столицы Татарстана в Японию у авиакомпании China Eastern, на одном из плечей маршрута задействована также Shanghai Airlines. Отправление туда – 18 ноября, возвращение – 3 декабря. Пересадка в Шанхае на обратном пути длительная, почти сутки – туристы могут воспользоваться безвизом с КНР, провести день в китайском мегаполисе, предварительно забронировав гостиницу. 
+
+Наличие билетов и тарифы проверяли в 13:00. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">12</span>
+  <h2>Из Крыма сообщают – ситуация с автомобильным топливом улучшается: на заправках регулярно…</h2>
+  <p class="body">продают бензин и дизель, а на улицах Симферополя вновь появились пробки.
+
+Информация о том, где и какое горючее продают в данный момент, появляется в соцсетях и официальных ресурсах. Так, бот «Где бензин? Крым» подсказал, что в свободной продаже появился АИ-92 на АЗС в Ялте, в Евпатории, АЗС-7 в пгт. Черноморское. А на ЮБК был в наличии и 95-й бензин. 
+Однако многие туристы пишут, что так и не нашли, где можно его купить, либо простояли несколько часов в очереди и остались ни с чем. О том, как развивается ситуация с горючим на полуострове, написали на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">13</span>
+  <h2>В Турции полуголые туристы «достали» персонал одного из супермаркетов: в Аланье в…</h2>
+  <p class="body">супермаркете Migros отказались обслуживать покупателей в бикини и купальных костюмах.
+Инициатива нашла поддержку у российских туристов, некоторые даже предлагают ввести штрафы за появление в подобном виде на улицах курортных городов.
+ 
+Но, пожалуй, основное раздражение у россиян вызывают «битвы» за шезлонги у бассейнов и на пляжах и поведение в ресторанах all inclusive в отелях. Очевидцы регулярно жалуются на давку у лотков с фруктами или морепродуктами и жадность соотечественников. В черном списке также чрезмерное употребление бесплатного алкоголя, панибратство и «тыканье» персоналу – «слышь, командир, повтори-ка» или «эй, принеси», а также навязывание общения окружающим. 
+ 
+А что вас раздражает на отдыхе? 
+
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">14</span>
+  <h2>Похоже, разработчики GPT тоже нацелились на туристов.</h2>
+  <p class="body">Сообщив, что «Чат мертв», они заявили о модернизации – крупнейшей с момента запуска, пишет Financial Times со ссылкой на источники в компании OpenAI.
+ 
+ChatGPT собираются  превратить в полноценного ИИ-агента, который сможет выполнять широкий спектр задач. Например, бронировать билеты, составлять расписание дел… А там, глядишь, и до сбора тура недалеко.
+ 
+Начать «капремонт» планируют в ближайшие недели. Как думаете, сможет обновленный GPT «урвать» билеты на «южные поезда» в разгар сезона?
+ 
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">15</span>
+  <h2>Движение автотранспорта в Крым через автомобильный пункт пропуска «Джанкой» временно остановлено.</h2>
+  <p class="body">Об этом сообщил губернатор Херсонской области Владимир Сальдо.
+ 
+Сейчас проезд через регион на полуостров и обратно осуществляется по альтернативным маршрутам через АПП «Армянск»:
+1 вариант: Мелитополь – Новоалексеевка – Новотроицкое – Громовка – Чаплинка – Армянск.
+2 вариант: Мелитополь – Новоалексеевка – Новотроицкое – Чкалово – Аскания-Нова – Чаплинка – Армянск.
+
+Инфографика: официальный телеграм-канал Владимира Сальдо 
+ 
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">16</span>
+  <h2>Жители Анапы и туристы расходятся в оценке качества нового песка на местных…</h2>
+  <p class="body">пляжах и с вице-премьером РФ Чернышенко, и с губернатором Кубани Кондратьевым. Говорят: грязный, с глиной и вообще больше похож на строительный: «Таким хорошо подсыпку под дороги делать».
+
+Однако в Роспотребнадзоре утверждают, что большинство береговых территорий Анапы уже получили санитарно-эпидемиологические заключения, поэтому абсолютно безопасны и готовы к летнему отдыху. И, судя по всему, вопрос с открытием всех пляжей уже решен, остались лишь некоторые формальности. Дмитрий Чернышенко даже дату назвал: «15 июня ждем». 
+
+Правда, местные отельеры хотят раньше: к следующей пятнице они прогнозируют так много туристов, что «возле бассейнов гости просто все физически не поместятся, даже стоя». Подробнее написали на ТурДоме. 
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">17</span>
+  <h2>В Ярославской области перевернулся экскурсионный автобус.</h2>
+  <p class="body">ДТП произошло в Угличском округе в деревне Сверчково. 
+
+По предварительным данным в салоне находились 32 пассажира. Пострадали 12 человек, в том числе двое детей, сообщил губернатор Михаил Евраев.
+
+Всех доставили в Угличскую центральную районную больницу. Причины аварии устанавливаются.
+
+Фото: Официальный сайт ГУ МЧС России по Ярославской области
+
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">18</span>
+  <h2>После открытия нового Voyage Kundu 5* в Анталье туристы продолжают делиться впечатлениями от отеля.</h2>
+  <p class="body">И если часть замечаний по сервису, о которых мы писали ранее, уже устранили, то теперь гости обращают внимание на условия для купания.
+
+По словам отдыхающих, на мелководье местами встречаются остатки строительного мусора и металлические элементы на дне. В соцсетях туристы советуют соблюдать осторожность при заходе в море, особенно семьям с детьми. Некоторые опасные участки отмечены буйками.
+
+В отеле ситуацию пока публично не комментировали. Разъяснения юриста по поводу перспектив компенсаций недовольным туристам опубликовали на ТурДоме.
+
+Видео: Анна Олейникова
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">19</span>
+  <h2>Уточнили, что даст российским туристам полная отмена виз с Малайзией, Индонезией, Бахрейном, Кувейтом.</h2>
+  <p class="body">О продолжающихся переговорах с этими странами заявил вице-премьер Дмитрий Чернышенко в рамках ПМЭФ в Санкт-Петербурге.
+
+Когда все соглашения вступят в силу, для пакетных и самостоятельных путешественников станет проще логистика, исчезнут визовые сборы и сократится время на подготовку к поездкам. 
+
+Упрощенный механизм въезда планируют внедрить для россиян и Индия с Вьетнамом, но только для групп, путешествующих по линии аккредитованных туроператоров. Подробнее написали на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">20</span>
+  <h2>Российского туриста собираются депортировать с Бали после инцидента в отеле Swiss-Belresort Pecatu на Бали.</h2>
+  <p class="body">Мужчина вел себя неадекватно: кричал без видимой причины, разговаривал сам с собой, а затем якобы начал размахивать ножом на балконе номера, напугав людей у бассейна. Подробнее читайте на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<div class="ch-header"><span class="ch-name">@atorus</span><span class="ch-count">3 новостей</span></div>
+<article class="card">
+  <span class="card-num">21</span>
+  <h2>✈️ Еще одна авиакомпания возвращает рейсы в Дубай Казахстанская Air Astana объявила…</h2>
+  <p class="body">о возобновлении полетов в Дубай из Алматы и Астаны после нескольких месяцев перерыва. Рейсы из Алматы стартуют 20 июня, из Астаны – 10 июля. 
+
+Маршруты будут выполняться через воздушное пространство Пакистана. В компании подчеркивают, что решение принято для обеспечения безопасности полетов.
+
+▪️ Из Алматы сначала будут летать два раза в неделю, а с 6 июля выйдут на ежедневное расписание.
+
+▪️ Из Астаны рейсы начнутся с трех частот в неделю, а с 3 августа также станут ежедневными.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">22</span>
+  <h2>🏖 Решение об открытии всех пляжей Анапы для туристов могут принять уже…</h2>
+  <p class="body">15 июня
+
+Об этом на ПМЭФ сообщил вице-премьер РФ Дмитрий Чернышенко в интервью гендиректору ТАСС Андрею Кондрашову.
+
+По словам Чернышенко, сейчас продолжается оценка состояния пляжей, а решение по их открытию может быть принято в ближайшие дни.
+
+Кроме того, вице-премьер заявил, что песок на пляжах Анапы «чище, чем на Лазурном берегу Франции».
+
+Будут ли открыты все пляжи Анапы уже к длинным выходным – узнаем совсем скоро.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">23</span>
+  <h2>⚠️ Авиакомпании корректируют рейсы в Сочи Из-за временных ограничений на вылет и…</h2>
+  <p class="body">прилет воздушных судов в аэропорту Сочи авиакомпании меняют расписание. Часть рейсов задержаны или отменены.
+
+▪️ Аэрофлот сообщил о переносе времени вылета и отмене некоторых рейсов. Часть рейсов, прибывающих в Сочи, направлена на запасные аэродромы.
+
+▪️ «Победа» также корректирует расписание. Пассажирам доступен сервис вынужденного возврата – билет можно вернуть в два клика, в том числе по невозвратным тарифам.
+
+Пассажирам рекомендуют перед выездом в аэропорт проверять статус рейса на онлайн-табло, сайте авиакомпании, в разделе управления бронированием, по SMS или электронной почте. При отмене рейса приезжать в аэропорт не нужно.
+
+Тем временем Ространснадзор взял ситуацию в аэропорту Сочи на особый контроль и направил инспекторов для проверки соблюдения прав пассажиров при задержках и отменах рейсов.
+
+Проверят, предоставляют ли пассажирам положенные по ФАП-82 услуги: воду, питание, размещение в гостинице при длительной задержке, своевременное информирование и оформление необходимых документов.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+</div>
 <footer>
-  Tourism Digest &nbsp;•&nbsp;
-  <a href="https://t.me/tourdom" target="_blank" rel="noopener">@tourdom</a> &nbsp;•&nbsp;
-  <a href="https://t.me/atorus" target="_blank" rel="noopener">@atorus</a> &nbsp;•&nbsp;
+  Tourism Digest &bull;
+  <a href="https://t.me/tourdom">@tourdom</a> &bull;
+  <a href="https://t.me/atorus">@atorus</a> &bull;
   Сгенерировано автоматически
 </footer>
-
-<script>
-  const bar = document.getElementById('progress-bar');
-  function updateProgress() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    bar.style.width = pct + '%';
-  }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
-</script>
 </body>
 </html>
