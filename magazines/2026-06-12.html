@@ -2,233 +2,474 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tourism Digest — 12 июня 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --accent: #58a6ff;
-    --progress-color: #58a6ff;
-  }
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --ink: #1c1c1e;
+  --ink-2: #48484a;
+  --ink-3: #8e8e93;
+  --accent: #1c1c1e;
+  --rule: #e0dfd9;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
 
-  html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+#bar {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--ink); width: 0%; z-index: 999;
+  transition: width .1s linear;
+}
 
-  /* Reading progress bar */
-  #progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background: var(--progress-color);
-    z-index: 9999;
-    transition: width 0.1s linear;
-  }
+/* MASTHEAD */
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.masthead h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.masthead .date-ru {
+  margin-top: .6rem;
+  font-size: .85rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+.masthead .total {
+  margin-top: .4rem;
+  font-size: .78rem;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .08em;
+}
 
-  /* Masthead */
-  .masthead {
-    min-height: 100vh;
-    background: #000;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
+/* LAYOUT */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 50%, #1a1a2e 0%, #000 70%);
-  }
+/* CHANNEL HEADER */
+.ch-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 2.5rem 0 1rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 0;
+}
+.ch-name {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.ch-count {
+  font-size: .78rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
 
-  .masthead-inner {
-    position: relative;
-    z-index: 1;
-  }
+/* CARD */
+.card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 1.25rem;
+  row-gap: .4rem;
+}
+.card-num {
+  font-family: var(--font-serif);
+  font-size: .8rem;
+  color: var(--ink-3);
+  padding-top: .35rem;
+  font-weight: 300;
+  font-style: italic;
+}
+.card h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  grid-column: 2;
+}
+.card .body {
+  font-size: .95rem;
+  color: var(--ink-2);
+  line-height: 1.65;
+  grid-column: 2;
+}
+.card-source {
+  grid-column: 2;
+  font-size: .72rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .25rem;
+}
 
-  .masthead-eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    font-size: clamp(0.75rem, 1.5vw, 1rem);
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 2rem;
-  }
+/* EMPTY STATE */
+.empty {
+  padding: 5rem 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+}
 
-  .masthead-title {
-    font-family: 'Fraunces', serif;
-    font-weight: 900;
-    font-size: clamp(3rem, 12vw, 10rem);
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-    color: #fff;
-    margin-bottom: 2.5rem;
-  }
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--ink-3);
+  letter-spacing: .06em;
+  background: var(--bg);
+}
+footer a { color: var(--ink-2); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
 
-  .masthead-date {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(1.2rem, 3vw, 2.2rem);
-    color: #aaa;
-  }
-
-  .masthead-rule {
-    width: 80px;
-    height: 1px;
-    background: #444;
-    margin: 2.5rem auto;
-  }
-
-  /* Quiet day section */
-  .quiet-day {
-    min-height: 100vh;
-    background: #0d1117;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .quiet-day::before {
-    content: '~';
-    position: absolute;
-    font-family: 'Fraunces', serif;
-    font-size: 40vw;
-    color: rgba(255,255,255,0.02);
-    font-weight: 900;
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .quiet-day-inner {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
-  }
-
-  .quiet-day-headline {
-    font-family: 'Fraunces', serif;
-    font-weight: 900;
-    font-size: clamp(3.5rem, 10vw, 8rem);
-    line-height: 1;
-    color: #e8f4f8;
-    margin-bottom: 2rem;
-    letter-spacing: -0.02em;
-  }
-
-  .quiet-day-sub {
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    color: #8b949e;
-    line-height: 1.8;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .quiet-day-accent {
-    display: block;
-    width: 60px;
-    height: 2px;
-    background: #58a6ff;
-    margin: 2.5rem auto;
-  }
-
-  .quiet-day-note {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    color: #484f58;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-top: 3rem;
-  }
-
-  /* Footer */
-  footer {
-    background: #000;
-    color: #555;
-    text-align: center;
-    padding: 3rem clamp(2rem, 6vw, 6rem);
-    font-size: 0.85rem;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.05em;
-    border-top: 1px solid #111;
-  }
-
-  footer a {
-    color: #58a6ff;
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    text-decoration: underline;
-  }
+@media (max-width: 480px) {
+  .card { grid-template-columns: 1.5rem 1fr; column-gap: .75rem; }
+}
 </style>
 </head>
 <body>
+<div id="bar"></div>
+<script>window.addEventListener('scroll',()=>{const d=document.documentElement;document.getElementById('bar').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'})</script>
+<header class="masthead">
+  <h1>Tourism Digest</h1>
+  <div class="date-ru">12 июня 2026</div>
+  <div class="total">24 новостей &bull; @tourdom &bull; @atorus</div>
+</header>
+<div class="container">
+<div class="ch-header"><span class="ch-name">@tourdom</span><span class="ch-count">18 новостей</span></div>
+<article class="card">
+  <span class="card-num">01</span>
+  <h2>В Таиланде на пляжах появились опасные медузы Physalia physalis: из-за нашествия «португальских…</h2>
+  <p class="body">корабликов» власти закрыли несколько туристических мест на Ко Ланте. Морские существа также были замечены на побережье в Патонге и Кароне на Пхукете и острове Пхи-Пхи.
 
-<div id="progress-bar"></div>
+Туристам запретили прогулки и купание, отменили морские прогулки со снорклингом. «Даже погибшие особи, лежащие на песке, жгутся адски и смертельно опасны для человека», – отметили в соцсетях и посоветовали особенно следить за детьми, которых привлекает красивый внешний вид медуз с похожим на парус голубовато-фиолетовым гребнем. Подробнее о морской напасти читайте на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">02</span>
+  <h2>Похоже, в июле в Анталью можно улететь дешевле, чем на некоторые российские курорты.</h2>
+  <p class="body">В системах бронирования появились билеты из Москвы от 8,8 тыс. руб. в одну сторону. Такие цены на отдельные даты предлагает Southwind Airlines. Даже вариант с багажом стоит 11,5 тыс. Для сравнения: у других перевозчиков цены начинаются от 15–20 тыс. руб. за перелет в одну сторону без чемодана. 
 
-<!-- Masthead -->
-<section class="masthead">
-  <div class="masthead-inner">
-    <p class="masthead-eyebrow">Ежедневный выпуск</p>
-    <h1 class="masthead-title">TOURISM<br>DIGEST</h1>
-    <div class="masthead-rule"></div>
-    <p class="masthead-date">12 июня 2026</p>
-  </div>
-</section>
+Есть и недорогие варианты round trip. Например, слетать в Анталью с 13 по 21 июля можно за 23 тыс. руб. (за 35 тыс. с багажом). Подробнее о ценах написали на ТурДоме.
 
-<!-- Quiet day spread -->
-<section class="quiet-day">
-  <div class="quiet-day-inner">
-    <h2 class="quiet-day-headline">Тихий<br>день</h2>
-    <span class="quiet-day-accent"></span>
-    <p class="quiet-day-sub">
-      Сегодня новостей не поступало. Туристический мир взял паузу —
-      а значит, самое время для собственных открытий.
-    </p>
-    <p class="quiet-day-note">@tourdom · @atorus · 12 июня 2026</p>
-  </div>
-</section>
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">03</span>
+  <h2>Полиция задержала работавших с туристами в Сочи нелегальных аниматоров.</h2>
+  <p class="body">Судя по фото и видео в телеграм-канале ведомства, один из нарушителей выбрал для бизнеса образ зебры, у другого тоже был костюм какого-то животного. Они ходили по улицам в Красной Поляне и за плату фотографировались с прохожими.
 
-<!-- Footer -->
+По итогу проверки у жителей Абинска 20 и 22 лет не оказалось разрешений на предпринимательскую деятельность. На каждого нарушителя оформили по два протокола: один за коммерческую деятельность без регистрации или лицензии, другой – за «самоуправство».
+
+@tourdom
+
+Фото: Телеграм-канал УВД по городу Сочи ГУ МВД России</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">04</span>
+  <h2>МИД РФ предупредило россиян об угрозе ареста в Таиланде по запросу США.</h2>
+  <p class="body">На граждан РФ идет «настоящая охота», говорится в сообщении на официальном сайте ведомства.
+
+«США действуют напористо, без оглядки на таиландские власти проводят спецоперации с целью «отлова» наших граждан, которые попали в их поле зрения по тем или иным причинам. Многие из задержанных сталкиваются с угрозами со стороны американских спецслужб, запугиванием, психологическим давлением с целью склонения к признанию вины», - заявило МИД.
+
+Ведомство рекомендовало россиянам воздержаться от поездок в Таиланд, а также избегать пересадок в местных аэропортах, если у них есть опасения в уголовном преследовании со стороны США.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">05</span>
+  <h2>«Либо плачу 2 тыс. лир, либо выхожу»: в Стамбуле турист отказался оплачивать такси, посчитав цену несправедливой.</h2>
+  <p class="body">По его мнению, водитель вдвое завысил стоимость, запросив 6,7 тыс. руб. в пересчете с турецких лир.
+
+Вирусное видео вызвало волну возмущения в соцсетях и привлекло внимание службы по контролю движения транспорта в Турции. Местные власти встали на сторону иностранца. Таксиста оштрафовали на 219 тыс. руб. (140,5 тыс. лир), у него отобрали водительскую лицензию и завели уголовное дело за обман. Подробнее написали на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">06</span>
+  <h2>Thai Airways изучает возможность восстановления прямого воздушного сообщения с Россией.</h2>
+  <p class="body">Это может произойти к 2027 году, сообщила исполнительный директор таиландского туристического управления Сулатда Саруттилаван.
+
+По ее словам, реализацию планов пока сдерживает дефицит самолетов. Перевозчик ожидает поставок новых лайнеров, после чего сможет расширить маршрутную сеть и начать полеты в Россию.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">07</span>
+  <h2>Огромный фотоаппарат нашли на ВДНХ 😳 Проверили, это точно не ИИ: сервис…</h2>
+  <p class="body">путешествий Туту реально сделал гигантскую инсталляцию в Москве. С фотобудкой и кучей мерча для путешествий. 
+
+Нам рассказали, что фиолетовый фотоаппарат Туту стоит на ВДНХ до 14 июня — вот вам и план на выходные!
+
+Туту, а когда уже гигантский бассейн для москвичей будет… 📸</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">08</span>
+  <h2>Uzbekistan Airways объявила о сокращении частоты полетов по ряду маршрутов в Россию.</h2>
+  <p class="body">Такое решение вызвано нехваткой авиационного топлива и ростом его стоимости, говорится в сообщении в телеграм-канале перевозчика.
+
+Пассажирам, которых затронут корректировки расписания, предложат два варианта. Можно перенести вылет на ближайшие доступные даты по тому же направлению без доплаты или полностью вернуть стоимость билета.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">09</span>
+  <h2>Венесуэла остается безопасной для туризма – заявили 12 июня участники круглого стола «Россия – Венесуэла» на форуме «Путешествуй!» в Москве.</h2>
+  <p class="body">Об этом Крыше ТурДома рассказал модератор, гендиректор туроператора «АРТ-ТУР» Дмитрий Арутюнов.
+
+Правда, массовым направлением Венесуэла вряд ли останется. Вместо бюджетных перелетов Conviasa туристов возят самолеты Turkish Airlines, а в ближайшее время начнут летать лайнеры Qatar Airways. Рынок будет ориентироваться на более состоятельных путешественников, которым интересен не только пляжный отдых на острове Маргарита, но и достопримечательности страны. Подробнее написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">10</span>
+  <h2>Нам пишут. «На трассе из Кемера в сторону Антальи образовалась огромная пробка из-за аварии.</h2>
+  <p class="body">У меня сын не может приехать, стоит с 16 часов. Собралась куча туристических автобусов, все едут в аэропорт. Наверное, многие сегодня опоздают на свои рейсы. Местные СМИ уже публикуют фото туристов с чемоданами, которые вынуждены идти пешком в аэропорт». 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">11</span>
+  <h2>Семья с двумя детьми, один из которых инвалид, должна была вылететь из Сочи в Ярославль 10 июня в 00:05 рейсом А4 5015.</h2>
+  <p class="body">Однако ночью, по словам туристки, вылет несколько раз переносили, а затем пришло уведомление об отмене. 
+
+На горячей линии «Азимута» подтвердили: рейса не будет, деньги вернут. Оказалось, аэропорт Ярославля Туношна закрыт из-за «ковра»: ограничения ввели еще 9 июня. 
+
+Чтобы попасть домой, пассажирам пришлось покупать авиабилеты из Сочи до Москвы, ехать через город на автовокзал и затем автобусом добираться до Ярославля. «Нужно было успеть забрать машину со стоянки аэропорта и потом еще пилить в Ивановскую область. Мы прошли квест на выносливость», – написала туристка. Подробнее читайте на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">12</span>
+  <h2>Доброе утро! Сегодня День России, открывающий серию из трёх выходных!</h2>
+  <p class="body">Где проводите их? Пишите в комментариях и делитесь фото!
+
+С праздником!
+
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">13</span>
+  <h2>В авиационных телеграм-каналах обратили внимание на опубликованный NOTAM аэропорта Махачкалы, согласно которому…</h2>
+  <p class="body">до 19 июня действуют ограничения на дополнительную заправку самолётов.
+
+ Документ предусматривает лимиты для ряда международных направлений и особый порядок обслуживания чартерных рейсов.
+Причины введения ограничений в NOTAM не указаны. Оказывают ли они влияние на выполнение рейсов, пока также неизвестно. 
+Официально о таких мерах не сообщалось, но «Авиационная антресоль» утверждает, что аналогичные уведомления появились в Минводах, Краснодаре, Астрахани и Нижнем Новгороде.
+
+«Важно: такие ограничения не означают снижения уровня безопасности полётов. Заправка выполняется в объёме, необходимом для выполнения рейса по плану полёта, включая обязательные резервы», — пишет источник.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">14</span>
+  <h2>Безалкогольный all inclusive как один из вариантов питания в Турции имеет шансы на успех – так считают многие наши подписчики.</h2>
+  <p class="body">В опросе, где приняли участие почти 2,5 тыс. человек, четверть респондентов поддержали идею полностью, отметив рост популярности ЗОЖ и нежелание переплачивать за спиртное. Еще 20% готовы рассмотреть такой формат при условии – он должен быть дешевле классического AI. 
+
+Впрочем, около трети туристов уверены: «все включено» без алкоголя теряет смысл. Многие сошлись на компромиссе – дать гостям выбор между турпакетами с алкоголем и без него или возможность покупки на месте. Подробнее написали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">15</span>
+  <h2>«Аэрофлот возвращает прямые полеты на Шри-Ланку в зимнем сезоне: билеты и туры из Москвы с октября уже есть в продаже.</h2>
+  <p class="body">Улететь в Коломбо на первом рейсе и вернуться через 2 недели обойдется от 92,7 тыс. руб. с учетом багажа. Стоимость туров на беспосадочных рейсах в «пятерки» начинается от 276 тыс. руб. на двоих на завтраках и от 342 тыс. при выборе «все включено». На эти же даты цены в отели 4* – от 212 тыс. руб. на ВВ и на 19 тыс. дороже за полупансион. Подробнее о стоимости авиабилетов и туров написали на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">16</span>
+  <h2>Emirates намерена запустить специальную страховую программу для пассажиров, которые боятся летать в…</h2>
+  <p class="body">Дубай на фоне напряженной ситуации на Ближнем Востоке. Об этом сообщил президент авиакомпании Тим Кларк в интервью Financial Times.
+
+Руководство Emirates обсуждает со страховщиками собственный продукт с доступной ценой. Страховка будет предусматривать возврат денег, а также доставку пассажиров домой на рейсах других авиакомпаний. Такой подход должен снизить беспокойство клиентов, которые боятся оказаться вдали от дома в случае обострения конфликта в регионе, пояснил Кларк.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">17</span>
+  <h2>Власти Шри-Ланки обсуждают с российской стороной возможность прямого авиасообщения за рамками высокого сезона.</h2>
+  <p class="body">В Коломбо рассчитывают, что даже в это время удастся обеспечить как минимум один беспосадочный рейс в неделю, сообщил замглавы МИД Руван Ранасингхе.
+
+«Аэрофлот» на лето приостановил программу. Чтобы заполнить этот перерыв, обсуждается запуск чартеров, а также привлечение на маршруты SriLankan Airlines.
+
+Основным препятствием остается страховое обеспечение, напомнил представитель МИД. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">18</span>
+  <h2>Не каждый день в Казань прилетают пассажиры весом больше тонны.</h2>
+  <p class="body">Авиакомпания «Волга-Днепр» доставила из Лаоса двух слонят, подаренных президентом страны российскому коллеге.
+
+Правда, «слонята» – понятие относительное: один весит 1 т, второй – 1,1 т. Летели VIP-гости вместе с тонной любимых снэков - сахарного тростника и слоновой травы. Так что общий вес груза вместе с вольерами получился 7,5 т.
+
+За состоянием животных в полете следили специалисты из Лаоса и Казани, а в аэропорту их встретили сотрудники городской администрации. Новым домом для Фовина и Намтана станет зоосад Казани, рассказали в пресс-службе перевозчика.
+
+Фото: @premni
+
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<div class="ch-header"><span class="ch-name">@atorus</span><span class="ch-count">6 новостей</span></div>
+<article class="card">
+  <span class="card-num">19</span>
+  <h2>Как ИИ меняет путешествия — и при чём тут гигантский фотоаппарат 🤖…</h2>
+  <p class="body">Сервис путешествий Туту вышел на пленарку форума «Путешествуй» с интересными цифрами о развитии тревел-теха: их ИИ-агент уже закрывает больше 50% обращений, а сложный маршрут собирает меньше чем за 10 секунд. Туту ежемесячно пользуются 42 миллиона человек, так что за ребятами точно стоит следить — тем более они открыто делятся экспертизой.
+
+Ну а где большая экспертиза, там и большой креатив: на форум Туту привезли гигантский фотоаппарат с кучей призов. Лично видели, как самые серьёзные люди после пленарки делали фото на память.</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">20</span>
+  <h2>🏝️ Российский гостиничный бренд может выйти на рынок ОАЭ Cosmos Hotel Group…</h2>
+  <p class="body">рассматривает возможность управления отелями в Объединенных Арабских Эмиратах.
+
+О планах компании на форуме «Путешествуй!» в рамках сессии «Туристический диалог Россия – ОАЭ» рассказал министр экономического развития РФ Максим Решетников. По его словам, выход российских гостиничных сетей на зарубежные рынки важен для повышения их конкурентоспособности на мировом уровне.
+
+Президент Cosmos Hotel Group Александр Биба уточнил, что компания уже предпринимала попытки выйти на рынок ОАЭ и вела переговоры по нескольким объектам. Однако реализовать эти планы не удалось из-за введенных в отношении компании ограничений.
+
+Сейчас ситуация изменилась: зарубежные партнеры вновь проявили интерес к сотрудничеству и обсуждают возможность появления бренда Cosmos в ОАЭ.
+
+«Прежде всего, они заинтересованы в том, чтобы российские туристы тоже посещали наши отели. Это хорошее двустороннее движение для поиска дополнительных точек соприкосновения», – отметил Александр Биба.
+
+В пресс-службе Cosmos Hotel Group уточнили, что компания прорабатывает различные варианты присутствия на зарубежных рынках, включая управление гостиницами и франчайзинговую модель. О конкретных проектах будет объявлено дополнительно.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">21</span>
+  <h2>АТОР поздравляет с Днем России!</h2>
+  <p class="body">Наша страна огромная и удивительно разная: от древних городов и северных лесов до южных морей, гор, степей и бескрайних рек. Ее невозможно узнать по одной поездке, но можно открывать снова и снова.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">22</span>
+  <h2>🇹🇭 Туроператоры не сталкивались со случаями задержания российских туристов в Таиланде по запросам США, сообщили в АТОР.</h2>
+  <p class="body">Ранее в пятницу, 12 декабря, МИД РФ призвал россиян осторожнее относиться к поездкам в Таиланд из-за риска задержания по запросам США.
+
+В АТОР отметили: гражданам, которые знают о возможных претензиях к ним со стороны третьих стран, стоит учитывать рекомендации министерства.
+
+В ассоциации напомнили, что подобные случаи остаются единичными. При этом ежегодно Таиланд принимает более 1,8 млн туристов из России.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">23</span>
+  <h2>🤝 На форуме «Путешествуй!» АТОР и Cosmos Hotel Group подписали соглашение о…</h2>
+  <p class="body">сотрудничестве в сфере туризма
+
+Партнерство направлено на создание благоприятных условий для устойчивого развития внутреннего и международного туризма в России.
+
+Что это значит на практике?
+
+✔️ Обмен актуальной информацией о тенденциях и событиях туристического рынка;
+
+✔️ Совместное участие в конференциях, выставках и отраслевых мероприятиях;
+
+✔️ Развитие инклюзивного туризма и повышение доступности путешествий;
+
+✔️ Сотрудничество в подготовке и переподготовке кадров для туристической отрасли;
+
+✔️ Участие в разработке нормативно-правовых инициатив, направленных на развитие туризма.
+
+Сегодня успешное развитие туризма невозможно без тесного взаимодействия всех участников отрасли – туроператоров, гостиничного бизнеса, экспертов и органов власти. Подписанное соглашение открывает новые возможности для совместной работы над проектами, которые будут способствовать росту качества туристических услуг и повышению привлекательности России как туристического направления.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">24</span>
+  <h2>Шоу в Санкт-Петербурге, которое стоит увидеть без толп: готовимся к главной ночи…</h2>
+  <p class="body">лета 🎆
+
+«Алые паруса» — это магия, ради которой туристы в Петербург едут специально. Если вы хотите ощутить волшебство без многотысячной давки, есть простой лайфхак: посмотреть репетиции. В эти ночи бриг «Россия» также выходит в акваторию, а набережные куда свободнее.
+
+🗓️ Календарь репетиций «Алых парусов — 2026»:
+
+По предварительной информации, увидеть главный символ праздника можно будет:
+
+• в ночь с 12 на 13 июня — вторая репетиция, отработка деталей и синхронизации
+• 25–26 июня и 26–27 июня — завершающие и генеральная репетиции
+
+Сам праздник состоится в ночь с 27 на 28 июня.
+
+📍 Где смотреть (проверенные места без толп)
+
+У нас уже есть готовая инструкция: годом ранее мы собрали лучшие локации, откуда открывается идеальный вид на бриг «Россия». Делимся картами и личным опытом.
+
+👉 Читайте нашу статью: Как посмотреть «Алые Паруса» в Петербурге без толп, география с тех пор никак не изменилась
+
+⚠️ Важное примечание:
+График развода мостов и время прохода судна могут меняться в зависимости от погодных условий и решений организаторов. Вся информация актуальна на момент публикации — обязательно перепроверяйте актуальное расписание перед выходом на прогулку.
+
+📹 Наслаждайтесь самым красивым видео репетиции и делитесь впечатлениями в комментариях!
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+</div>
 <footer>
-  Tourism Digest &nbsp;•&nbsp; <a href="https://t.me/tourdom">@tourdom</a> &nbsp;•&nbsp; <a href="https://t.me/atorus">@atorus</a> &nbsp;•&nbsp; Сгенерировано автоматически
+  Tourism Digest &bull;
+  <a href="https://t.me/tourdom">@tourdom</a> &bull;
+  <a href="https://t.me/atorus">@atorus</a> &bull;
+  Сгенерировано автоматически
 </footer>
-
-<script>
-  const bar = document.getElementById('progress-bar');
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
-  });
-</script>
-
 </body>
 </html>
