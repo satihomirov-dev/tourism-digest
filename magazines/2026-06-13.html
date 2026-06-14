@@ -2,200 +2,343 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tourism Digest — 13 июня 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --progress-color: #58a6ff;
-  }
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --ink: #1c1c1e;
+  --ink-2: #48484a;
+  --ink-3: #8e8e93;
+  --accent: #1c1c1e;
+  --rule: #e0dfd9;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
 
-  html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1.1rem, 2vw, 1.25rem);
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+#bar {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--ink); width: 0%; z-index: 999;
+  transition: width .1s linear;
+}
 
-  /* Reading progress bar */
-  #progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    width: 0%;
-    background: var(--progress-color);
-    z-index: 9999;
-    transition: width 0.1s linear;
-  }
+/* MASTHEAD */
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.masthead h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.masthead .date-ru {
+  margin-top: .6rem;
+  font-size: .85rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+.masthead .total {
+  margin-top: .4rem;
+  font-size: .78rem;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .08em;
+}
 
-  /* Masthead */
-  .masthead {
-    min-height: 100vh;
-    background: #000;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
+/* LAYOUT */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 30%, #1a1a2e 0%, #000 70%);
-  }
+/* CHANNEL HEADER */
+.ch-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 2.5rem 0 1rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 0;
+}
+.ch-name {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.ch-count {
+  font-size: .78rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
 
-  .masthead-content { position: relative; z-index: 1; }
+/* CARD */
+.card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 1.25rem;
+  row-gap: .4rem;
+}
+.card-num {
+  font-family: var(--font-serif);
+  font-size: .8rem;
+  color: var(--ink-3);
+  padding-top: .35rem;
+  font-weight: 300;
+  font-style: italic;
+}
+.card h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  grid-column: 2;
+}
+.card .body {
+  font-size: .95rem;
+  color: var(--ink-2);
+  line-height: 1.65;
+  grid-column: 2;
+}
+.card-source {
+  grid-column: 2;
+  font-size: .72rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .25rem;
+}
 
-  .masthead-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(3rem, 12vw, 10rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    line-height: 0.9;
-    text-transform: uppercase;
-  }
+/* EMPTY STATE */
+.empty {
+  padding: 5rem 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+}
 
-  .masthead-rule {
-    width: 60%;
-    height: 1px;
-    background: rgba(255,255,255,0.3);
-    margin: 2rem auto;
-  }
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--ink-3);
+  letter-spacing: .06em;
+  background: var(--bg);
+}
+footer a { color: var(--ink-2); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
 
-  .masthead-date {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 3vw, 1.8rem);
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-  }
-
-  /* Quiet day spread */
-  .quiet-day {
-    min-height: 100vh;
-    background: #0d0d0d;
-    color: #e0e0e0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .quiet-day::before {
-    content: '◦';
-    position: absolute;
-    font-size: 40vw;
-    color: rgba(255,255,255,0.02);
-    font-family: 'Fraunces', serif;
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  .quiet-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(3.5rem, 10vw, 8rem);
-    font-weight: 300;
-    font-style: italic;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    margin-bottom: 2rem;
-    color: #f5f5f5;
-  }
-
-  .quiet-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.4rem);
-    font-weight: 300;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    max-width: 600px;
-  }
-
-  .quiet-line {
-    width: 80px;
-    height: 1px;
-    background: rgba(255,255,255,0.2);
-    margin: 2.5rem auto;
-  }
-
-  .quiet-note {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 0.05em;
-    margin-top: 3rem;
-  }
-
-  /* Footer */
-  footer {
-    background: #111;
-    color: rgba(255,255,255,0.35);
-    text-align: center;
-    padding: 3rem clamp(2rem, 5vw, 5rem);
-    font-size: 0.85rem;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.05em;
-  }
-
-  footer a {
-    color: rgba(255,255,255,0.5);
-    text-decoration: none;
-  }
-
-  footer a:hover { color: rgba(255,255,255,0.8); }
+@media (max-width: 480px) {
+  .card { grid-template-columns: 1.5rem 1fr; column-gap: .75rem; }
+}
 </style>
 </head>
 <body>
+<div id="bar"></div>
+<script>window.addEventListener('scroll',()=>{const d=document.documentElement;document.getElementById('bar').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'})</script>
+<header class="masthead">
+  <h1>Tourism Digest</h1>
+  <div class="date-ru">13 июня 2026</div>
+  <div class="total">14 новостей &bull; @tourdom &bull; @atorus</div>
+</header>
+<div class="container">
+<div class="ch-header"><span class="ch-name">@tourdom</span><span class="ch-count">13 новостей</span></div>
+<article class="card">
+  <span class="card-num">01</span>
+  <h2>Доброе утро! Телеграм-каналы делятся видео из Дубая: вчера по случаю дня России…</h2>
+  <p class="body">самый высокий небоскреб Бурдж Халифа вновь засиял цветами российского флага.
 
-<div id="progress-bar"></div>
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">02</span>
+  <h2>Нам пишут: на сайте РЖД невозможно приобрести места на ряд поездов с черноморских курортов с 8 сентября.</h2>
+  <p class="body">«Что происходит, мне как раз пришло время покупать билеты».
 
-<!-- Masthead -->
-<section class="masthead">
-  <div class="masthead-content">
-    <div class="masthead-title">Tourism<br>Digest</div>
-    <div class="masthead-rule"></div>
-    <div class="masthead-date">13 июня 2026</div>
-  </div>
-</section>
+Последние возможные бронирования в системе, в частности, из Адлера в Москву доступны только на 7 сентября. При этом в южном направлении места на более поздние даты находятся в свободной продаже.
+В службе поддержки РЖД туристов просят не волноваться, заверяя, что пустыми поезда возвращаться не будут, но точной даты открытия продаж не сообщают. На сентябрь перевозчик запланировал реконструкцию железнодорожных путей, из-за чего ряд маршрутов будет изменен. Пока все еще идут расчеты и согласования временного расписания. Подробнее о том, когда можно ожидать загрузки мест в систему продаж, написали на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">03</span>
+  <h2>Появились видео огромной пробки, в которой вчера застряли туристические автобусы на пути в аэропорт Антальи.</h2>
+  <p class="body">Причиной стала авария с участием фуры: она перегородила трассу.
 
-<!-- Quiet day -->
-<section class="quiet-day">
-  <div class="quiet-title">Тихий день</div>
-  <div class="quiet-line"></div>
-  <div class="quiet-subtitle">Новостей за эту дату не поступало</div>
-  <div class="quiet-note">Каналы @tourdom и @atorus молчали 13 июня 2026</div>
-</section>
+"Много людей опоздали на свои рейсы, мои в том числе. Самолет улетел", - написал в редакцию один из турагентов. 
 
+Некоторые авиакомпании специально отложили вылет, чтобы дождаться своих туристов. Так поступили, в частности, в Azur Air и IrAero.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">04</span>
+  <h2>В аэропорту Сочи из-за ночного «ковра» задержано более 60 рейсов.</h2>
+  <p class="body">Наиболее крупные сбои расписания на внутренних маршрутах. Самолет Nordwind в Казань вылетел на 14 часов позже графика, лайнер «Победы» в Москву – на 11 часов. 
+
+Туристам, отправляющимся за границу, повезло. Рейс «ИрАэро» в Анталью задержался всего на 2 часа, «Азимута» в Стамбул – на 1,5 часа, а предстоящий вылет «Аэрофлота» в турецкий мегаполис перенесен на 2,5 часа: с 13:40 на 16:15. Подробнее читайте на ТурДоме. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">05</span>
+  <h2>А вот и реакция Росавиации на вчерашний пост — ограничения на заправку…</h2>
+  <p class="body">в аэропортах действительно введены, но распространяются они только на иностранные авиакомпании. 
+
+Причиной стал “танкеринг”: по официальной версии зарубежные перевозчики повадились заправлять самолеты в российских аэропортах впрок. Это выгоднее, чем за рубежом.
+
+В Росавиации подчеркнули, что ограничение касается именно таких дополнительных объемов топлива, а не обычной заправки для выполнения рейса. Российские аэропорты обеспечены топливом в полном объеме и дефицита нет, сообщает регулятор. Подробности собрали на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">06</span>
+  <h2>Еще видео о вчерашней пробке на трассе в аэропорт Антальи: туристам пришлось бросить автобусы и идти пешком.</h2>
+  <p class="body">Впрочем, некоторые все восприняли с юмором: «Бесплатная экскурсия!» 
+
+Редакция уточнила, какая обстановка была сегодня утром на трассе в аэропорт Антальи. В турецких пабликах сообщали, что машины ехали медленно. На подъезде к Терминалу 2 также проблемы из-за дорожных работ: затор возможен ближе к середине дня и вечеру, когда прибывают и вылетают курортные чартеры. 
+
+Кто сегодня ездил в аэропорт Антальи? Просьба отписаться о ситуации на дороге в комментариях.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">07</span>
+  <h2>Россиянам, работающим в сферах высоких технологий, следует учитывать риски преследования по запросу США при поездках в Таиланд.</h2>
+  <p class="body">Об этом заявил ТАСС посол РФ в Бангкоке Евгений Томихин. Он прокомментировал опубликованное 12 июня заявление российского МИДа о том, что американские власти устроили «настоящую охоту» на российских туристов в королевстве.
+
+«К сожалению, сегодня ситуация развивается таким образом, что в любой стране американцы могут устроить неприятности. Многие люди связаны с высокими технологиями, кибербезопасностью, различными современными платежными инструментами. И, конечно, здесь американцы, наверное, могут найти повод, чтобы обвинить того или иного человека в нарушении американского законодательства» , - сказал дипломат.
+
+По мнению МИД РФ, от поездок стоит отказаться туристам, у которых есть опасения, что они могут представлять интерес для американских властей.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">08</span>
+  <h2>Российские авиакомпании должны будут принимать жалобы на поврежденный багаж в режиме онлайн,…</h2>
+  <p class="body">если власти согласятся изменить правила авиаперевозок, заявил глава комитета Госдумы Ярослав Нилов. 
+
+В обращении к главе Минтранса депутат предложил обязать перевозчиков принимать жалобы пассажиров через сайт компании, мобильное приложение или портал «Госуслуги». При этом у клиентов должна остаться возможность подать документы лично или отправить их по почте.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">09</span>
+  <h2>Нам пишут: «Рейс 2s171 авиакомпании Southwind из Даламана в Шереметьево отложен из-за неисправности самолета.</h2>
+  <p class="body">Всех пассажиров после размещения на борту вывели обратно в аэропорт».
+
+Как рассказал очевидец – наш подписчик Александр, вылет в Москву был назначен на 9 утра. По завершении посадки лайнер отъехал от рукава, а минут через 20 командир воздушного судна объявил, что по технической причине рейс придется отложить. 
+
+Пассажирам сообщили ориентировочное время повторного отправления самолета – 13:40, однако оно уже прошло. Примерно 30 минут назад авиакомпания предложила людям питание. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">10</span>
+  <h2>Бодрум на длинные июньские выходные принял светский десант из России.</h2>
+  <p class="body">Блогер Алексей Жидковский вчера записал румтур из Maxx Royal Bodrum, а Ксения Собчак показала как выглядит номер и приветственный комплимент от Mandarin Oriental Bodrum. При этом никто из них отели не тэгнул, что намекает на отсутствие рекламного подтекста (впрочем, это не точно). 
+
+Отдельного упоминания удостоился только рыбный ресторан Sakhalin Bodrum, который славится своими видами на бухту. Объединившись с Кристиной Потупчик, медийные личности  отпраздновали там День России.
+
+Как оказалось, всех собрала супермодель Наталья Водянова, которая организует сегодня благотворительный вечер своего фонда совместно с продюсером Яной Рудковской. Естественно, ждут и Диму Билана. 
+
+В общем, Бодрум окончательно закрепил за собой статус самого модного летнего курорта. Подробнее на ТурДоме. 
+. 
+
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">11</span>
+  <h2>У туристов появилась возможность летать между Санкт-Петербургом и Владивостоком прямыми авиарейсами.</h2>
+  <p class="body">«Аэрофлот» с 19 июня возобновит полеты из Пулково на Дальний Восток. Билеты на ближайшие даты разлетаются быстро несмотря на то, что дешевле до Дальнего Востока из Питера добраться со стыковкой в Москве. Подробнее о ценах написали на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">12</span>
+  <h2>Туристам в Санкт-Петербурге начали раздавать бумажные карты и путеводители из-за перебоев с…</h2>
+  <p class="body">мобильной связью и интернетом, рассказал губернатор Александр Беглов. 
+
+Печатные материалы можно получить в павильонах Городского туристско-информационного бюро. Там посетителям рассказывают, как работает транспорт, и помогают выбрать маршрут. То же самое на улицах города делают сотрудники мобильной информационной службы Ask Me.
+
+Если нужна дополнительная информация, гостям предлагают позвонить в городской контакт-центр. Кроме того, граждане России могут обращаться с вопросами в чат-бот в сервисе «Макс».
+
+Пишите кто сейчас в Санкт-Петербурге: есть связь? И как вам идея вернуться к бумажным картам?
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">13</span>
+  <h2>За пассажирами рейса 2s171 прибыл резервный борт.</h2>
+  <p class="body">Посадка завершается, скоро лайнер должен отправиться из Даламана в Москву. 
+
+Авиакомпания Southwind дважды предоставила питание ожидающим повторного вылета туристам, сообщил наш подписчик-очевидец. 
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<div class="ch-header"><span class="ch-name">@atorus</span><span class="ch-count">1 новостей</span></div>
+<article class="card">
+  <span class="card-num">14</span>
+  <h2>⛽️ Росавиация ограничила заправку самолетов иностранных авиакомпаний в ряде аэропортов России В…</h2>
+  <p class="body">аэропортах Минеральных Вод, Махачкалы, Нижнего Новгорода и некоторых других городов иностранным перевозчикам рекомендовали заправлять самолеты только в объеме, необходимом для выполнения рейса.
+
+Как пояснили в Росавиации, на фоне ситуации на мировом рынке топлива некоторые авиакомпании начали пополнять запасы авиакеросина «впрок» – чтобы сократить расходы и иметь резерв на случай посадки на запасных аэродромах.
+
+В ведомстве подчеркивают, что дефицита топлива в российских аэропортах нет. Все авиагавани обеспечены необходимыми объемами керосина, а программа полетов выполняется в штатном режиме.
+
+По данным Росавиации, ситуация связана в том числе с ростом цен на топливо после обострения ситуации на Ближнем Востоке и проблемами с поставками через Ормузский пролив.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+</div>
 <footer>
-  Tourism Digest &nbsp;•&nbsp; <a href="https://t.me/tourdom">@tourdom</a> &nbsp;•&nbsp; <a href="https://t.me/atorus">@atorus</a> &nbsp;•&nbsp; Сгенерировано автоматически
+  Tourism Digest &bull;
+  <a href="https://t.me/tourdom">@tourdom</a> &bull;
+  <a href="https://t.me/atorus">@atorus</a> &bull;
+  Сгенерировано автоматически
 </footer>
-
-<script>
-  const bar = document.getElementById('progress-bar');
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
-  });
-</script>
 </body>
 </html>
