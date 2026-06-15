@@ -2,221 +2,346 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tourism Digest — 14 июня 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --progress-color: #58a6ff;
-  }
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --ink: #1c1c1e;
+  --ink-2: #48484a;
+  --ink-3: #8e8e93;
+  --accent: #1c1c1e;
+  --rule: #e0dfd9;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
 
-  html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: #000;
-    color: #fff;
-    overflow-x: hidden;
-  }
+#bar {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--ink); width: 0%; z-index: 999;
+  transition: width .1s linear;
+}
 
-  /* Reading progress bar */
-  #progress-bar {
-    position: fixed;
-    top: 0; left: 0;
-    height: 3px;
-    width: 0%;
-    background: var(--progress-color);
-    z-index: 9999;
-    transition: width 0.1s linear;
-  }
+/* MASTHEAD */
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.masthead h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.masthead .date-ru {
+  margin-top: .6rem;
+  font-size: .85rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+.masthead .total {
+  margin-top: .4rem;
+  font-size: .78rem;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .08em;
+}
 
-  /* Masthead */
-  .masthead {
-    background: #000;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
+/* LAYOUT */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, #111 0%, #000 70%);
-  }
+/* CHANNEL HEADER */
+.ch-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 2.5rem 0 1rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 0;
+}
+.ch-name {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.ch-count {
+  font-size: .78rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
 
-  .masthead-inner {
-    position: relative;
-    z-index: 1;
-  }
+/* CARD */
+.card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 1.25rem;
+  row-gap: .4rem;
+}
+.card-num {
+  font-family: var(--font-serif);
+  font-size: .8rem;
+  color: var(--ink-3);
+  padding-top: .35rem;
+  font-weight: 300;
+  font-style: italic;
+}
+.card h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  grid-column: 2;
+}
+.card .body {
+  font-size: .95rem;
+  color: var(--ink-2);
+  line-height: 1.65;
+  grid-column: 2;
+}
+.card-source {
+  grid-column: 2;
+  font-size: .72rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .25rem;
+}
 
-  .masthead h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(3rem, 10vw, 9rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    line-height: 0.9;
-    color: #fff;
-    text-transform: uppercase;
-  }
+/* EMPTY STATE */
+.empty {
+  padding: 5rem 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+}
 
-  .masthead .date {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    font-weight: 300;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: #888;
-    margin-top: 2rem;
-  }
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--ink-3);
+  letter-spacing: .06em;
+  background: var(--bg);
+}
+footer a { color: var(--ink-2); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
 
-  .masthead .rule {
-    width: 80px;
-    height: 1px;
-    background: #444;
-    margin: 2rem auto;
-  }
-
-  /* Тихий день — quiet day spread */
-  .quiet-day {
-    min-height: 100vh;
-    background: #080c10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .quiet-day::before {
-    content: '◦';
-    position: absolute;
-    font-size: 40vw;
-    color: #0d1a2a;
-    font-family: 'Fraunces', serif;
-    line-height: 1;
-    pointer-events: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .quiet-day-inner {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
-  }
-
-  .quiet-day h2 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(4rem, 12vw, 10rem);
-    font-weight: 900;
-    font-style: italic;
-    line-height: 0.9;
-    color: #e8f4f8;
-    letter-spacing: -0.03em;
-  }
-
-  .quiet-day p {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    font-weight: 300;
-    color: #58a6ff;
-    margin-top: 2.5rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  .quiet-day .sub {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-    font-weight: 300;
-    color: #4a5568;
-    margin-top: 1.5rem;
-    letter-spacing: 0.05em;
-    line-height: 1.8;
-  }
-
-  /* Stars decoration */
-  .stars {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 3rem;
-    font-size: 0.5rem;
-    color: #2d3748;
-    letter-spacing: 0.5rem;
-  }
-
-  /* Footer */
-  footer {
-    background: #000;
-    color: #444;
-    text-align: center;
-    padding: 3rem 2rem;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    border-top: 1px solid #111;
-  }
-
-  footer a {
-    color: #58a6ff;
-    text-decoration: none;
-  }
+@media (max-width: 480px) {
+  .card { grid-template-columns: 1.5rem 1fr; column-gap: .75rem; }
+}
 </style>
 </head>
 <body>
+<div id="bar"></div>
+<script>window.addEventListener('scroll',()=>{const d=document.documentElement;document.getElementById('bar').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'})</script>
+<header class="masthead">
+  <h1>Tourism Digest</h1>
+  <div class="date-ru">14 июня 2026</div>
+  <div class="total">15 новостей &bull; @tourdom &bull; @atorus</div>
+</header>
+<div class="container">
+<div class="ch-header"><span class="ch-name">@tourdom</span><span class="ch-count">14 новостей</span></div>
+<article class="card">
+  <span class="card-num">01</span>
+  <h2>На курортах Лазурного берега очень хотят, чтобы вернулись россияне: отельеры, рестораторы и…</h2>
+  <p class="body">владельцы бутиков с грустью вспоминают щедрых туристов, некогда наводнявших набережные в Каннах и Ницце, заявил генеральный консул РФ в Марселе Станислав Оранский.
+ 
+Ключевые потери – в торговле. Главная ценность гостей из России была не в количестве купленного, а в том, что они выкладывали по 1–10 тыс. евро и более за каждый товар брендов Louis Vuitton, Dior и Cartier… 
+Тоскуют по нашим и в отелях Ниццы и Канн, где одна ночь стоит 500–3000 евро. Приезжие из России там, конечно, сейчас останавливаются, но их стало гораздо меньше. Подробнее написали на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">02</span>
+  <h2>Авиакомпании корректируют расписание полетов из столичных аэропортов «в связи с действием 14 июня временных ограничений» в московском авиаузле».</h2>
+  <p class="body">Так, «Аэрофлот» отменил сегодня из Шереметьево два десятка вылетов по 13 направлениям, в том числе 4 в Калининград и 5 в Сочи. 
 
-<div id="progress-bar"></div>
+Часть лайнеров не добрались до пунктов назначения. Например, SU-2154, вылетевший в Бодрум, сел в Самаре, а SU-2160, направлявшийся в Анталью, приземлился в Волгограде. Подробнее написали на ТурДоме. 
 
-<!-- Masthead -->
-<section class="masthead">
-  <div class="masthead-inner">
-    <h1>Tourism<br>Digest</h1>
-    <div class="rule"></div>
-    <div class="date">14 июня 2026</div>
-  </div>
-</section>
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">03</span>
+  <h2>Ковры в аэропортах Сочи и Краснодара привели к массовым переносам вылетов рейсов.</h2>
+  <p class="body">В Сочи часть рейсов уже сдвинули на завтра. Один из них – в Екатеринбург. Пассажиры U6-322 проведут в ожидании минимум 14 часов: вылет борта «Уральских авиалиний» назначен на 01:50 15 июня. Настолько же отложен рейс N4-477 Сочи – Красноярск: новое время – завтра в 03:45. В аэропорту Краснодара из-за закрытия неба вышел из расписания десяток рейсов – задержки до 4 часов.
+Сейчас ограничения в обоих аэропортах сняты. Подробнее написали на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">04</span>
+  <h2>Росавиация запретила вылеты из российских аэропортов в Иран.</h2>
+  <p class="body">Ограничения будут действовать ежедневно с 14 по 24 июня с 23:00 до 11:00 мск. С 11:00 до 23:00 решение будет приниматься «на основании произведенной оценки рисков, в том числе с учетом соответствующих рекомендаций Международной организации гражданской авиации (ИКАО)».
+ 
+«Меры необходимы для обеспечения безопасности полетов», - сообщили в ведомстве.
+ 
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">05</span>
+  <h2>Доброе утро! В Москве установлен новый погодный рекорд: накануне в осадкомер опорной…</h2>
+  <p class="body">метеостанции ВДНХ за несколько часов попало 27 мм дождя, что составляет 35% месячной нормы. Предыдущий суточный максимум осадков для 13 июня зафиксирован в 2020 году – 21,3 мм. 
 
-<!-- Quiet Day -->
-<section class="quiet-day">
-  <div class="quiet-day-inner">
-    <h2>Тихий<br>день</h2>
-    <p>Нет новостей за вчера</p>
-    <div class="sub">
-      Каналы @tourdom и @atorus<br>не опубликовали материалов 13 июня 2026
-    </div>
-    <div class="stars">● ● ● ● ●</div>
-  </div>
-</section>
+На востоке столицы за несколько часов выпало 122,9 мм осадков – 160% июньской нормы. Сильные ливни также прошли на северо-западе, западе и юго-востоке города.
+Некоторые трассы превратились в полноводные реки. Волонтеры помогали водителям выбираться из машин на сап-бордах. 
 
+В Подмосковье сильнее всего залило Железнодорожный: «69 мм или 90% от нормы всего месяца. То есть, на каждый квадратный метр земли вылилось по 7 ведер дождевой воды», – пояснил ведущий специалист Центра погоды ФОБОС Евгений Тишковец.
+ 
+ Вероятность осадков в Москве, по прогнозам синоптиков, сохранится на всю предстоящую неделю. А какая у вас погода? Поделитесь в комментариях. 
+ 
+ Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">06</span>
+  <h2>На заметку туристам, планирующим новогодний отдых в Таиланде: возможно уже сейчас, за…</h2>
+  <p class="body">шесть с половиной месяцев до зимних праздников самое время позаботиться о покупке авиабилетов.
+
+Самый бюджетный вариант с отправлением из Москвы на Пхукет 30 декабря, обратно – 10 января мы обнаружили у Air China: 84,9 тыс. руб. с пересадкой в Пекине. Прямыми рейсами «Аэрофлота» в те же даты – в два с половиной раза дороже. 
+
+Сколько можно сэкономить, проведя новогоднюю ночь дома и отправившись на таиландский курорт 1 января на 10 дней, написали на ТурДоме. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">07</span>
+  <h2>Налетай, подешевело: 35 тыс.</h2>
+  <p class="body">руб. за аренду бунгало на шестерых просят на пляже «Мантера» в Сириусе. Туристы зашли, чтобы выяснить цены и выложили в соцсетях видео. 
+Ролик вызвал бурное обсуждение. Кто-то припомнил, что в прошлом сезоне цена доходила до 60 тыс. в выходные дни, предположив, что высокая стоимость лежаков должна отпугнуть приходящих гостей: «Чтобы не мешали отдыхающим из отеля – для них сервис бесплатный». Другие возмущаются: «За 35 тыс. у нас в городе однушку можно снять на месяц».
+ 
+Кто сейчас в Сочи, расскажите: какие цены на шезлонги на пляжах?
+ 
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">08</span>
+  <h2>Как оказалось, не только москвичи не могут купить билеты на поезд, чтобы после 7 сентября вернуться домой с южных курортов.</h2>
+  <p class="body">В аналогичной ситуации оказались и жители Санкт-Петербурга: им тоже при попытке найти свободные места на 8-11 сентября из Адлера, Анапы или Новороссийска сообщают, что «на указанную дату нет прямых железнодорожных рейсов. 
+
+А вот у самарцев или екатеринбуржцев проблем нет – продажи открыты и билеты еще есть. 
+
+
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">09</span>
+  <h2>Посмотрели, какой будет вторая половина июня на популярных курортах России, Турции, Египта и Таиланда.</h2>
+  <p class="body">В Сочи запасы воды в дождевых облаках похоже иссякают: сегодня и завтра еще возможны грозы, а со вторника осадков уже не ожидается. В Анталье отменили штормовое предупреждение: там, как и в Мармарисе, тепло и сухо. В Шарм-эль-Шейхе загорать лучше всего в тени, а на Пхукете днем – натуральная баня. 
+Но самое главное – море везде теплое. Подробнее читайте на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">10</span>
+  <h2>Туристам, отправившимся в круиз выходного дня по маршруту Москва – Калязин – Дубна – Хвойный бор – Москва, пришлось изменить планы.</h2>
+  <p class="body">Началось с того, что 12 июня четырехпалубный лайнер «Максим Литвинов» вышел из порта отправления на 3 часа позже, а потом и вовсе встал на прикол из-за поломки на борту. 
+
+Пассажиров вернули в Москву другими теплоходами. Пришлось отменить и круиз Москва – Дубна – Углич – Ярославль – Мышкин – Москва, который должен был начаться сегодня. 
+
+«Компания выполнит все обязательства перед пассажирами данных рейсов», – рассказали Крыше ТурДома в туроператоре «Донинтурфлот». О том, что произошло и куда обращаться тем, у кого сорвалось путешествие, подробнее написали на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">11</span>
+  <h2>Наш подписчик поделился не самым удачным опытом покупки экскурсии на отдыхе во Вьетнаме.</h2>
+  <p class="body">Программу с посещением древнего города Хойан Александр С. приобрел через отельного гида, но поездку неожиданно перенесли на другую дату. Туристы решили отказаться и заранее предупредили об этом организатора. Однако вместо возврата денег получили отказ: якобы сроки уже прошли, а некие «именные билеты» давно оформлены.
+
+В этой истории есть и еще одна любопытная деталь: оплату попросили перевести на личную банковскую карту сотрудника, хотя в документах указан другой способ расчета.
+
+Можно ли требовать деньги назад, если дату экскурсии изменили уже после покупки? И насколько убедительны доводы о «сгоревших билетах»? Что по этому поводу говорит юрист, читайте на ТурДоме. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">12</span>
+  <h2>Не смогли пройти мимо комментария нашего подписчика, который считает, что 35 тыс.</h2>
+  <p class="body">руб. за 6-местное бунгало на пляже в Сириусе – это нормально. Другие тоже отмечают, что речь в видеоролике идет об одном из самых дорогих отелей, а обычная цена за лежак на черноморском побережье составляет 400–1000 руб. Плюс ко всему, есть много мест, где можно отдыхать бесплатно, правда, зонтики от солнца нужно приносить с собой. 
+
+Подробнее о тарифах на пляжное оборудование на черноморских курортах читайте на ТурДоме. 
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">13</span>
+  <h2>В РЖД обещают открыть продажи билетов с юга в Москву и Санкт-Петербург на даты после 7 сентября на следующей неделе.</h2>
+  <p class="body">Но выкладывать их будут постепенно. И это нервирует пассажиров: «По одному вагону в день? Или по одному пропущенному числу в день? Люди пишут, что вразброс места могут продавать. А как покупать на семью из 4 человек, два из которых маленькие дети?» 
+
+Туристы жалуются, что невозможно даже записаться в лист ожидания: «Не получается оформить заявку: выдает внутреннюю ошибку уже несколько дней». 
+ 
+Мы посмотрели, до каких станций сегодня можно купить билеты с юга на 8–11 сентября, и оказалось, что проблемы возникают не только у тех, кому надо в обе столицы, но и в Мурманск, Воркуту, Калининград и еще ряд городов, маршруты в которые пролегают через Ростовскую область. Кстати, до самого Ростова-на-Дону продажи уже открыты, а вот до следующих станций – Лихой и Миллерово – нет. Подробнее написали на ТурДоме. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">14</span>
+  <h2>Проверили, реально ли сэкономить на билетах в Турцию на завершающейся сегодня очередной распродаже авиакомпании «Победа».</h2>
+  <p class="body">Лоукостер доставит из Москвы в Анталью 20 июня, обратно – 30-го за 55,6 тыс. руб., с собой можно взять 10 кг багажа. А комбинация рейсов Pegasus и Southwind в те же даты обойдется на 7 тыс. дешевле. 
+
+О том, в пользу ли «Победы» сравнение тарифов на пиковые даты летнего сезона в августе, читайте на ТурДоме. 
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<div class="ch-header"><span class="ch-name">@atorus</span><span class="ch-count">1 новостей</span></div>
+<article class="card">
+  <span class="card-num">15</span>
+  <h2>🇮🇷✈️ Росавиация ограничила полеты в Иран С 14 до 24 июня 2026…</h2>
+  <p class="body">года, в период с 23:00 до 11:00 МСК, вылеты российских эксплуатантов воздушного транспорта из аэропортов России в аэропорты Ирана запрещены.
+
+В остальное время – с 11:01 до 22:59 МСК – решение о полетах в аэропорты Ирана должно приниматься на основании произведенной оценки рисков, в том числе с учетом соответствующих рекомендаций Международной организации гражданской авиации (ИКАО).
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+</div>
 <footer>
-  Tourism Digest &bull; <a href="https://t.me/tourdom">@tourdom</a> &bull; <a href="https://t.me/atorus">@atorus</a> &bull; Сгенерировано автоматически
+  Tourism Digest &bull;
+  <a href="https://t.me/tourdom">@tourdom</a> &bull;
+  <a href="https://t.me/atorus">@atorus</a> &bull;
+  Сгенерировано автоматически
 </footer>
-
-<script>
-  const bar = document.getElementById('progress-bar');
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
-  });
-</script>
-
 </body>
 </html>
