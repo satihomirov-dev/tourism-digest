@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tourism Digest — 27 июня 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --progress-color: #58a6ff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Reading progress bar */
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--progress-color);
+    z-index: 9999;
+    transition: width 0.1s linear;
+  }
+
+  /* Masthead */
+  .masthead {
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 8rem);
+  }
+
+  .masthead-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 12vw, 10rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  .masthead-date {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    color: #888;
+  }
+
+  .masthead-rule {
+    width: clamp(60px, 20vw, 200px);
+    height: 1px;
+    background: #333;
+    margin: 2.5rem auto;
+  }
+
+  /* Quiet day spread */
+  .quiet-day {
+    min-height: 100vh;
+    background: #0d0d0d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 8rem);
+  }
+
+  .quiet-day-headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(4rem, 15vw, 14rem);
+    font-weight: 300;
+    font-style: italic;
+    color: #e0e0e0;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .quiet-day-sub {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+    color: #555;
+    margin-top: 3rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .quiet-day-channels {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    color: #3a3a3a;
+    margin-top: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* Footer */
+  footer {
+    background: #111;
+    color: #444;
+    text-align: center;
+    padding: 3rem clamp(2rem, 8vw, 8rem);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+  }
+
+  footer span {
+    color: #666;
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- Masthead -->
+<section class="masthead">
+  <div class="masthead-title">Tourism<br>Digest</div>
+  <div class="masthead-rule"></div>
+  <div class="masthead-date">27 июня 2026</div>
+</section>
+
+<!-- Quiet day -->
+<section class="quiet-day">
+  <div class="quiet-day-headline">Тихий<br>день</div>
+  <div class="quiet-day-sub">Новостей за вчера не найдено</div>
+  <div class="quiet-day-channels">@tourdom &nbsp;·&nbsp; @atorus</div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <span>Tourism Digest</span> &nbsp;·&nbsp; @tourdom &nbsp;·&nbsp; @atorus &nbsp;·&nbsp; Сгенерировано автоматически
+</footer>
+
+<script>
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  });
+</script>
+
+</body>
+</html>
