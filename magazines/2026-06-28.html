@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tourism Digest — 28 июня 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #111;
+    background: #000;
+    overflow-x: hidden;
+  }
+
+  /* Reading progress bar */
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: #58a6ff;
+    z-index: 9999;
+    transition: width 0.1s linear;
+  }
+
+  /* Masthead */
+  .masthead {
+    min-height: 100vh;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 8rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, #111 0%, #000 70%);
+  }
+
+  .masthead-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .masthead-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+
+  .masthead-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.5rem, 12vw, 11rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+  }
+
+  .masthead-date {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 300;
+    font-style: italic;
+    color: #666;
+    letter-spacing: 0.05em;
+  }
+
+  .masthead-rule {
+    width: 80px;
+    height: 1px;
+    background: #333;
+    margin: 2rem auto;
+  }
+
+  /* Quiet day section */
+  .quiet-day {
+    min-height: 100vh;
+    background: #050508;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 8rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quiet-day::before {
+    content: '◦';
+    position: absolute;
+    font-size: 40rem;
+    color: #0d0d14;
+    font-family: 'Fraunces', serif;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .quiet-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+  }
+
+  .quiet-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #2a2a3a;
+    margin-bottom: 3rem;
+  }
+
+  .quiet-headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(4rem, 14vw, 10rem);
+    font-weight: 300;
+    font-style: italic;
+    color: #e8e8f0;
+    line-height: 1;
+    margin-bottom: 3rem;
+    letter-spacing: -0.02em;
+  }
+
+  .quiet-rule {
+    width: 60px;
+    height: 1px;
+    background: #222230;
+    margin: 0 auto 3rem;
+  }
+
+  .quiet-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: #404055;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .quiet-body em {
+    color: #585870;
+    font-style: italic;
+  }
+
+  /* Stars decoration */
+  .stars {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 4rem;
+    color: #1a1a2a;
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+  }
+
+  /* Footer */
+  footer {
+    background: #000;
+    padding: clamp(2rem, 5vw, 4rem) clamp(3rem, 8vw, 8rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid #111;
+  }
+
+  .footer-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 0.15em;
+  }
+
+  .footer-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: #2a2a2a;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  .footer-channels {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    color: #222;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- Masthead -->
+<section class="masthead">
+  <div class="masthead-inner">
+    <p class="masthead-eyebrow">Ежедневное издание</p>
+    <h1 class="masthead-title">TOURISM<br>DIGEST</h1>
+    <div class="masthead-rule"></div>
+    <p class="masthead-date">28 июня 2026</p>
+  </div>
+</section>
+
+<!-- Quiet Day -->
+<section class="quiet-day">
+  <div class="quiet-inner">
+    <p class="quiet-label">Выпуск № —</p>
+    <h2 class="quiet-headline">Тихий<br>день</h2>
+    <div class="quiet-rule"></div>
+    <p class="quiet-body">
+      Сегодня каналы <em>@tourdom</em> и <em>@atorus</em><br>
+      хранили молчание.<br><br>
+      Новостей за 28 июня не поступало —<br>
+      туристическая отрасль взяла паузу.
+    </p>
+    <div class="stars">· · ·</div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">TOURISM DIGEST</div>
+  <div class="footer-channels">@tourdom &nbsp;·&nbsp; @atorus</div>
+  <div class="footer-text">Сгенерировано автоматически</div>
+</footer>
+
+<script>
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+  });
+</script>
+</body>
+</html>
