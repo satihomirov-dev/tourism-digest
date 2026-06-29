@@ -2,262 +2,431 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tourism Digest — 28 июня 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --ink: #1c1c1e;
+  --ink-2: #48484a;
+  --ink-3: #8e8e93;
+  --accent: #1c1c1e;
+  --rule: #e0dfd9;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #111;
-    background: #000;
-    overflow-x: hidden;
-  }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-  /* Reading progress bar */
-  #progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    width: 0%;
-    background: #58a6ff;
-    z-index: 9999;
-    transition: width 0.1s linear;
-  }
+#bar {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--ink); width: 0%; z-index: 999;
+  transition: width .1s linear;
+}
 
-  /* Masthead */
-  .masthead {
-    min-height: 100vh;
-    background: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
+/* MASTHEAD */
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.masthead h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.masthead .date-ru {
+  margin-top: .6rem;
+  font-size: .85rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+.masthead .total {
+  margin-top: .4rem;
+  font-size: .78rem;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .08em;
+}
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, #111 0%, #000 70%);
-  }
+/* LAYOUT */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
 
-  .masthead-inner {
-    position: relative;
-    z-index: 1;
-  }
+/* CHANNEL HEADER */
+.ch-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 2.5rem 0 1rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 0;
+}
+.ch-name {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.ch-count {
+  font-size: .78rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
 
-  .masthead-eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(0.65rem, 1.5vw, 0.85rem);
-    font-weight: 500;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: #555;
-    margin-bottom: 2rem;
-  }
+/* CARD */
+.card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 1.25rem;
+  row-gap: .4rem;
+}
+.card-num {
+  font-family: var(--font-serif);
+  font-size: .8rem;
+  color: var(--ink-3);
+  padding-top: .35rem;
+  font-weight: 300;
+  font-style: italic;
+}
+.card h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  grid-column: 2;
+}
+.card .body {
+  font-size: .95rem;
+  color: var(--ink-2);
+  line-height: 1.65;
+  grid-column: 2;
+}
+.card-source {
+  grid-column: 2;
+  font-size: .72rem;
+  color: var(--ink-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .25rem;
+}
 
-  .masthead-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(3.5rem, 12vw, 11rem);
-    font-weight: 900;
-    color: #fff;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-    margin-bottom: 2.5rem;
-  }
+/* EMPTY STATE */
+.empty {
+  padding: 5rem 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+}
 
-  .masthead-date {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    font-weight: 300;
-    font-style: italic;
-    color: #666;
-    letter-spacing: 0.05em;
-  }
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--ink-3);
+  letter-spacing: .06em;
+  background: var(--bg);
+}
+footer a { color: var(--ink-2); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
 
-  .masthead-rule {
-    width: 80px;
-    height: 1px;
-    background: #333;
-    margin: 2rem auto;
-  }
-
-  /* Quiet day section */
-  .quiet-day {
-    min-height: 100vh;
-    background: #050508;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: clamp(3rem, 8vw, 8rem);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .quiet-day::before {
-    content: '◦';
-    position: absolute;
-    font-size: 40rem;
-    color: #0d0d14;
-    font-family: 'Fraunces', serif;
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .quiet-inner {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
-  }
-
-  .quiet-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: #2a2a3a;
-    margin-bottom: 3rem;
-  }
-
-  .quiet-headline {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(4rem, 14vw, 10rem);
-    font-weight: 300;
-    font-style: italic;
-    color: #e8e8f0;
-    line-height: 1;
-    margin-bottom: 3rem;
-    letter-spacing: -0.02em;
-  }
-
-  .quiet-rule {
-    width: 60px;
-    height: 1px;
-    background: #222230;
-    margin: 0 auto 3rem;
-  }
-
-  .quiet-body {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    color: #404055;
-    line-height: 1.8;
-    font-weight: 300;
-  }
-
-  .quiet-body em {
-    color: #585870;
-    font-style: italic;
-  }
-
-  /* Stars decoration */
-  .stars {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 4rem;
-    color: #1a1a2a;
-    font-size: 1.5rem;
-    letter-spacing: 0.5rem;
-  }
-
-  /* Footer */
-  footer {
-    background: #000;
-    padding: clamp(2rem, 5vw, 4rem) clamp(3rem, 8vw, 8rem);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    border-top: 1px solid #111;
-  }
-
-  .footer-logo {
-    font-family: 'Fraunces', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #333;
-    letter-spacing: 0.15em;
-  }
-
-  .footer-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    color: #2a2a2a;
-    letter-spacing: 0.1em;
-    text-align: center;
-  }
-
-  .footer-channels {
-    display: flex;
-    gap: 1.5rem;
-    font-size: 0.75rem;
-    color: #222;
-    letter-spacing: 0.05em;
-  }
+@media (max-width: 480px) {
+  .card { grid-template-columns: 1.5rem 1fr; column-gap: .75rem; }
+}
 </style>
 </head>
 <body>
+<div id="bar"></div>
+<script>window.addEventListener('scroll',()=>{const d=document.documentElement;document.getElementById('bar').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'})</script>
+<header class="masthead">
+  <h1>Tourism Digest</h1>
+  <div class="date-ru">28 июня 2026</div>
+  <div class="total">17 новостей &bull; @tourdom &bull; @atorus</div>
+</header>
+<div class="container">
+<div class="ch-header"><span class="ch-name">@tourdom</span><span class="ch-count">13 новостей</span></div>
+<article class="card">
+  <span class="card-num">01</span>
+  <h2>В Москву и Подмосковье возвращается жара: Гидрометцентр обещает +30 уже во вторник, а в четверг может быть и +32 в тени.</h2>
+  <p class="body">Любите жару в городе? Если да, ставьте 🔥. 
 
-<div id="progress-bar"></div>
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">02</span>
+  <h2>Нашли для вас интересные по цене варианты слетать из Москвы на дальние туристические направления.</h2>
+  <p class="body">Авиакомпания China Eastern за 38 тыс. руб. доставит прямым рейсом в Шанхай 16 июля, обратно – через неделю, 22-го. 
 
-<!-- Masthead -->
-<section class="masthead">
-  <div class="masthead-inner">
-    <p class="masthead-eyebrow">Ежедневное издание</p>
-    <h1 class="masthead-title">TOURISM<br>DIGEST</h1>
-    <div class="masthead-rule"></div>
-    <p class="masthead-date">28 июня 2026</p>
-  </div>
-</section>
+А нацперевозчик КНР Air China за 45 тыс. руб. отвезет осенью в столицу Японии со стыковкой в Пекине: вылет туда – 9 сентября, возвращение – 27-го. 
 
-<!-- Quiet Day -->
-<section class="quiet-day">
-  <div class="quiet-inner">
-    <p class="quiet-label">Выпуск № —</p>
-    <h2 class="quiet-headline">Тихий<br>день</h2>
-    <div class="quiet-rule"></div>
-    <p class="quiet-body">
-      Сегодня каналы <em>@tourdom</em> и <em>@atorus</em><br>
-      хранили молчание.<br><br>
-      Новостей за 28 июня не поступало —<br>
-      туристическая отрасль взяла паузу.
-    </p>
-    <div class="stars">· · ·</div>
-  </div>
-</section>
+Наличие билетов и тарифы мы проверяли в 18:00. 
 
-<!-- Footer -->
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">03</span>
+  <h2>Продолжаем отслеживать ситуацию с бензином на туристических маршрутах.</h2>
+  <p class="body">Собрали свежую информацию из популярных у автомобилистов регионов – от Москвы и Петербурга до Карелии, Поволжья и Калининградской области.
+
+Где можно заправиться без лишних хлопот, а где лучше не откладывать визит на АЗС до последнего, написали на ТурДоме.
+
+Фото от подписчика Сергея Чиркова из Санкт-Петербурга.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">04</span>
+  <h2>Туристы и турагенты жалуются на овербукинг у Turkish Airlines: из Антальи в…</h2>
+  <p class="body">Москву приходится лететь с пересадками, хотя билеты покупались на прямой рейс.
+На этой неделе о подобном заявлялось трижды. 
+
+Например, 25 июня в салон из-за замены лайнера, по словам путешественников, не пустили сразу 26 человек. История с нехваткой мест повторилась 26 июня. А сегодня еще об одном инциденте заявила москвичка, оказавшаяся «за бортом» с грудным ребенком. Подробнее об этих случаях, а также о том, какая компенсация положена пассажирам, написали на ТурДоме. 
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">05</span>
+  <h2>Дефицит топлива в России не критический, заявил сегодня президент России Владимир Путин.</h2>
+  <p class="body">Он добавил, что задача энергоснабжения Крыма и Севастополя будет решена, а потребности полуострова в топливе – около 70 тыс. тонн в месяц – обеспечены.
+
+«Сейчас там есть запас на несколько дней. Будем наращивать поставки топлива и по земле, и по морю», – сказал глава государства.
+ 
+ Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">06</span>
+  <h2>Если вам, как нашему админу, тоже всегда интересно, что делают пилоты во время приземления самолета, то это видео для вас: посадка в Домодедово.</h2>
+  <p class="body">Видео: pilot_karen
+
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">07</span>
+  <h2>Смотрите, как красиво было минувшей ночью в Санкт-Петербурге.</h2>
+  <p class="body">Выпускники школ отправляются в плавание по морю жизни. А какое путешествие этим летом планируете вы? Поделитесь в комментариях.
+
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">08</span>
+  <h2>Из Сочи сегодня проще улететь в Турцию, чем в Москву.</h2>
+  <p class="body">В столицу задерживается отправление полутора десятков рейсов, пассажиры 12 из них ждут со вчерашнего дня. Например, SU-1119 в Шереметьево: он должен был вылететь еще в 01:25 субботы, но сдвинут на 13:25 воскресенья, отставание от графика – 36 часов. Всего более чем на 6 часов отложено около 50 бортов, часть из них уже перенесли на завтра. 
+
+А вот самолеты за границу стараются отправлять по расписанию. Согласно онлайн-табло, в Стамбул, Анталью, Шарм-эль-Шейх, Дубай, Абу-Даби, Тель-Авив, Ереван должны полететь вовремя. Подробнее о том, что происходит в аэропорту популярного черноморского курорта, написали на ТурДоме. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">09</span>
+  <h2>Fun&amp;Sun с утра порадовал сообщением о том, как продвигается восстановление IT-функционала компании и ее сервисов.</h2>
+  <p class="body">«Дорогие друзья!
+
+Спасибо за вашу поддержку и за то, что вы уже возвращаетесь к бронированиям туров от Fun&amp;Sun. Для нашей команды особенно важно видеть, что агентства начинают активно работать с доступным продуктом.
+
+На сегодняшний день в системе опубликованы туры с вылетом из Москвы:
+
+– в Турцию: Анталья, Бодрум и Даламан;
+– в Египет: Хургада и Шарм-эль-Шейх;
+– в Азербайджан.
+
+Ассортимент отелей по направлениям будет расширяться по мере загрузки данных. 
+
+В течение суток откроются продажи туров из регионов.
+
+Также доступны туры с наземным обслуживанием в Азербайджан, Абхазию и Казахстан.
+
+Мы продолжаем подгружать в личные кабинеты данные по ранее созданным вами заявкам. Информация по ним будет постепенно актуализироваться, поэтому отдельные сведения могут отображаться не сразу или временно отражаться некорректно. Это не означает, что заявка утрачена или аннулирована. Просим немного подождать, пока загрузка и проверка данных будут завершены.
+
+За время действия технических ограничений Fun&amp;Sun уже обслужил более 167 тыс. туристов. Полетные программы продолжают выполняться, туристов встречают, размещают в подтвержденных отелях и сопровождают по действующим заявкам.
+
+Спасибо, что вы снова бронируете вместе c Fun&amp;Sun. Мы продолжаем восстанавливать сервисы, расширять ассортимент и будем сообщать вам о каждом следующем этапе.
+
+Владимир Рубцов,
+генеральный директор Fun&amp;Sun»
+
+Если среди вас остались те, кто не может дозвониться до компании и есть срочные вопросы, пишите нашему админу.
+
+Все новости в MAX.</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">10</span>
+  <h2>Пассажирка рейса Turkish Airlines Анталья – Москва пожаловалась, что ее с грудным…</h2>
+  <p class="body">ребенком не пустили на рейс: после замены самолета в нем не хватило мест. По словам туристки по имени Евгения, на регистрацию пришли около 200 человек и только тогда узнали, что придется лететь другим бортом. В результате нескольким из них предложили другой маршрут с пересадкой в Стамбуле. 
+
+Она пыталась объяснить представителям авиакомпании, что у нее нет с собой нужного количества детского питания и ради младенца она специально покупала билет на прямой рейс. Но эти доводы никого не убедили. Подробнее на ТурДоме.
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">11</span>
+  <h2>В эти выходные некоторым туристам, отправляющимся на отдых в Турцию, не везет из-за задержек рейсов.</h2>
+  <p class="body">Самолет «Азимута» из Краснодара в Анталью отправился с опозданием почти на 14 часов: вместо 20:40 вчерашнего дня в 10 утра сегодняшнего. Причина – «ковер» в краснодарском аэропорту.
+
+А в Москве пассажирам рейса ZF 3009 авиакомпании AZUR air придется подождать вылета на турецкий курорт до 20:00, на это время он перенесен с 13:30. Как пояснил представитель перевозчика, это следствие субботней корректировки графика: лайнеру, назначенному на маршрут, потребовалось дополнительное техническое обслуживание. Вчерашний рейс на нем в Анталью отправился сегодня ранним утром, самолет должен вернуться во Внуково в 16:40. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">12</span>
+  <h2>Авиакомпания Nordwind отменила с июля рейсы в Сочи из пяти городов: Самары, Челябинска, Ульяновска, Чебоксар, а также из Красноярска.</h2>
+  <p class="body">Туристам из первых четырех предлагают лететь в Сухум. Стоить это будет примерно столько же, сколько на российский курорт у других перевозчиков. 
+
+Так, дорога Санкт-Петербург – Сухум – Санкт-Петербург на 17–24 июля обойдется в 35,3 тыс. руб. (с багажом), а в Сочи – от 35,4 тыс. 
+
+Из Москвы недельный round trip в Абхазию во второй половине июля у разных авиакомпаний можно купить от 43 тыс. руб. Подробнее написали на ТурДоме.
+ 
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<article class="card">
+  <span class="card-num">13</span>
+  <h2>Самый актуальный вопрос для автомобилистов, собирающихся в ближайшее время ехать на Черное…</h2>
+  <p class="body">море на машине, – «Что с горючим?» Собрали для вас комментарии туристов, которые сегодня проехали по разным частям трассы М4 «Дон» в южном направлении. 
+
+По их словам, до Ростова с заправкой проблем практически нет, после уже начинаются очереди, а вот перед Краснодаром лучше залить полный бак – в городе работает лишь половина АЗС, а дальше топлива может не быть вовсе. Подробнее написали на ТурДоме. 
+
+@tourdom</p>
+  <div class="card-source">@tourdom</div>
+</article>
+<div class="ch-header"><span class="ch-name">@atorus</span><span class="ch-count">4 новостей</span></div>
+<article class="card">
+  <span class="card-num">14</span>
+  <h2>⚡️ FUN&amp;SUN возвращает продажи: что уже доступно агентам Генеральный директор FUN&amp;SUN Владимир…</h2>
+  <p class="body">Рубцов поблагодарил турагентов за поддержку и за то, что они уже возвращаются к бронированию туров. По его словам, для команды компании особенно важно видеть, что агентства снова активно работают с доступным продуктом.
+
+На сегодняшний день в системе опубликованы туры с вылетом из Москвы:
+• Турция – Анталья, Бодрум и Даламан;
+• Египет – Хургада и Шарм-эль-Шейх;
+• Азербайджан.
+
+Ассортимент отелей по этим направлениям будет расширяться по мере загрузки данных.
+
+В течение суток также откроются продажи туров с вылетом из регионов.
+
+Кроме того, уже доступны туры с наземным обслуживанием в Азербайджан, Абхазию и Казахстан.
+
+Компания продолжает подгружать в личные кабинеты данные по ранее созданным заявкам. Информация будет постепенно актуализироваться, поэтому отдельные сведения могут отображаться не сразу или временно отражаться некорректно. В компании подчеркивают, что это не означает утрату или аннулирование заявки, и просят дождаться завершения загрузки и проверки данных.
+
+За время действия технических ограничений FUN&amp;SUN уже обслужил более 167 тысяч туристов. Полетные программы продолжают выполняться, туристов встречают, размещают в подтвержденных отелях и сопровождают по действующим заявкам.
+
+«Спасибо, что вы снова бронируете вместе с FUN&amp;SUN. Мы продолжаем восстанавливать сервисы, расширять ассортимент и будем сообщать вам о каждом следующем этапе», – отметил генеральный директор FUN&amp;SUN Владимир Рубцов.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">15</span>
+  <h2>❓ Вопрос к знатокам путешествий!</h2>
+  <p class="body">Угадаете, где находится это необычное кафе? 👀
+
+Без поиска в интернете: только ваша интуиция, опыт путешествий и внимание к деталям.
+
+Пишите свои версии в комментариях. Посмотрим, кто первым назовет правильное место!
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">16</span>
+  <h2>⚡️FUN&amp;SUN: туристы по подтвержденным заявкам продолжают вылетать с подтверждением бронирования Сайт туроператора…</h2>
+  <p class="body">FUN&amp;SUN для туристов пока продолжает восстанавливаться, поэтому приобрести доступные туры сейчас можно только через туристические агентства.
+
+❗️Важно: в личные кабинеты турагентов пока загружены не все данные по ранее созданным заявкам. Компания продолжает восстанавливать информацию, поэтому сведения по отдельным заявкам могут появляться постепенно. В FUN&amp;SUN подчеркивают, что это не означает утрату или аннулирование заявки.
+
+Главное для туристов, которые уже отправляются на отдых: до полного восстановления системы документы по туру пока не выдаются в привычном формате.
+
+Туристы по подтвержденным и полностью оплаченным заявкам продолжают вылетать с подтверждением бронирования, ранее направленным турагенту. Накануне вылета агент сообщит актуальную информацию по заявке и дальнейший порядок действий.
+
+К привычному формату оформления и выдачи документов FUN&amp;SUN вернется позже. Туристов проинформируют об этом дополнительно.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+<article class="card">
+  <span class="card-num">17</span>
+  <h2>🍜 Нячанг вкуснее, чем кажется: что попробовать во Вьетнаме Сохраните этот список,…</h2>
+  <p class="body">если собираетесь в Нячанг. Тут не только фо и бань ми, но и блюда, ради которых потом будут расспрашивать друзья.
+
+Для первого знакомства:
+
+🍜 Фо бо – говяжий суп с рисовой лапшой, травами и ростками. Его подают и в уличных кафе, и в отелях на завтрак.
+
+🥖 Бань ми – вьетнамский сэндвич в хрустящем багете с мясом, паштетом, овощами, зеленью и острым соусом. Идеален для перекуса на ходу.
+
+☕️ Кофе со льдом и сгущенкой – сладкий, крепкий и очень вьетнамский.
+
+Для тех, кто хочет попробовать местное:
+
+🍢 Нем ныонг – свиные шашлычки на гриле. Их подают с рисовой бумагой, овощами и густым соусом.
+
+🥞 Бань кан – маленькие рисовые блинчики с яйцом, креветкой или кальмаром.
+
+🦑 Бань сео мук – хрустящий блин с кальмаром и кисло-сладким соусом.
+
+🐟 Рыбные котлеты Нячанга – делают из свежей рыбы без лишних наполнителей. Можно пробовать на месте или купить в вакуумной упаковке.
+
+Для гастрономических смельчаков:
+
+🪼 Суп с медузами – медуза в нем не «скользкая», а упруго-хрустящая. Бульон варят из мелкой рыбы, добавляют зелень, чили и рыбные котлетки.
+
+🐟 Суп с глазами тунца – местный деликатес для тех, кто любит необычные впечатления.
+
+🐊 Жареный крокодил – по текстуре что-то между кальмаром и курицей.
+
+☕️ Соленый кофе – черный кофе со сгущенкой, сливками и щепоткой соли. Звучит странно, но вкус получается карамельно-бархатным.
+
+Где искать: рынок Дам, уличные кафе, кофейни, рестораны морепродуктов и местные закусочные. Главное правило – выбирайте места, где много местных: там обычно свежо и вкусно.
+
+Подробности – на сайте АТОР.
+
+Пишите в комментариях, что из этого уже пробовали 👇🏼 и делитесь с друзьями, которые планируют поездку во Вьетнам.
+
+АТОР ВКонтакте | Дзен</p>
+  <div class="card-source">@atorus</div>
+</article>
+</div>
 <footer>
-  <div class="footer-logo">TOURISM DIGEST</div>
-  <div class="footer-channels">@tourdom &nbsp;·&nbsp; @atorus</div>
-  <div class="footer-text">Сгенерировано автоматически</div>
+  Tourism Digest &bull;
+  <a href="https://t.me/tourdom">@tourdom</a> &bull;
+  <a href="https://t.me/atorus">@atorus</a> &bull;
+  Сгенерировано автоматически
 </footer>
-
-<script>
-  const bar = document.getElementById('progress-bar');
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
-  });
-</script>
 </body>
 </html>
